@@ -1,0 +1,2892 @@
+
+Imports java.awt.Container
+Imports java.awt.Font
+Imports java.awt.GridBagConstraints
+Imports java.awt.GridBagLayout
+Imports java.awt.Insets
+Imports java.awt.event.ActionEvent
+Imports java.awt.event.KeyEvent
+Imports java.io.OutputStream
+Imports java.lang.reflect.Array
+Imports java.sql.Connection
+Imports java.sql.DriverManager
+Imports java.sql.PreparedStatement
+Imports java.sql.ResultSet
+Imports java.sql.Timestamp
+Imports java.util.Date
+Imports javax.comm.CommPortIdentifier
+Imports javax.comm.SerialPort
+Imports javax.swing.JApplet
+Imports javax.swing.JButton
+Imports javax.swing.JComboBox
+Imports javax.swing.JFrame
+Imports javax.swing.JLabel
+Imports javax.swing.JMenu
+Imports javax.swing.JMenuItem
+Imports javax.swing.JOptionPane
+Imports javax.swing.JPanel
+Imports javax.swing.JScrollPane
+Imports javax.swing.JTable
+Imports javax.swing.JTextArea
+Imports javax.swing.JTextField
+Imports javax.swing.event.DocumentEvent
+Imports javax.swing.table.DefaultTableModel
+Imports javax.swing.table.TableColumn
+Imports javax.swing.table.TableColumnModel
+Imports javax.swing.table.TableModel
+Imports javax.swing.text.Document
+Public Class DataVoice
+    Inherits JApplet
+    Implements java.awt.event.ActionListener, javax.comm.SerialPortEventListener, javax.swing.event.TableModelListener, java.awt.event.KeyListener
+
+    Private cmbPortList As JComboBox
+
+    Private cmbConductor As JComboBox
+
+    Private lblHeader As JLabel
+
+    Private lblSerialPort As JLabel
+
+    Private lblWayBill As JLabel
+
+    Private lblTicket As JLabel
+
+    Private lblSmartCard As JLabel
+
+    Private lblCollectionDate As JLabel
+
+    Private lblConductor As JLabel
+
+    Private lblCouponCollectiondate As JLabel
+
+    Private lblTotalTicketCollection As JLabel
+
+    Private lblTotalTopUpCollection As JLabel
+
+    Private lblTotalCollection As JLabel
+
+    Private lblTotalCollectionAmt As JLabel
+
+    Private lblTotalCouponData As JLabel
+
+    Private btnCollectData As JButton
+
+    Private btnWayBill As JButton
+
+    Private btnUploadData As JButton
+
+    Private btnDelWayBill As JButton
+
+    Private btnEraseData As JButton
+
+    Private btnWayBillNumber As JButton
+
+    Private btnUploadWayBill As JButton
+
+    Private btnCollectCash As JButton
+
+    Private btnGetTotalAmount As JButton
+
+    Private btnCauculateAmount As JButton
+
+    Private btnGetConductorCoupon As JButton
+
+    Private btnUploadCouponData As JButton
+
+    Private btnGetCouponAmount As JButton
+
+    Private btnGetCardTopUp As JButton
+
+    Private btnUploadCardData As JButton
+
+    Private btnCouponCollectCash As JButton
+
+    Private txtWayBillNo As JTextField
+
+    Private txtCashCollDate As JTextField
+
+    Private txtCashCollected As JTextField
+
+    Private txtCouponCollectDate As JTextField
+
+    Private txtTotalTicketCollection As JTextField
+
+    Private txtTotalTopupCollection As JTextField
+
+    Private txtTotalCollection As JTextField
+
+    Private txtTotalCouponCollection As JTextField
+
+    Private progressBar As javax.swing.JProgressBar
+
+    Private txtData As JTextArea
+
+    Public Shared txtWayData As JTextArea = New JTextArea(3, 75)
+
+    Private txtSmartCardData As JTextArea
+
+    Private menuBar As javax.swing.JMenuBar
+
+    Private menuAuditing As JMenu
+
+    Private menuMasters As JMenu
+
+    Private menuItemCollection As JMenuItem
+
+    Private menuItemCreateWaybill As JMenuItem
+
+    Private menuItemCouponTicket As JMenuItem
+
+    Private panelAuditing As JPanel
+
+    Private panelWaybillTicket As JPanel
+
+    Private panelButton As JPanel
+
+    Private panelMain As JPanel
+
+    Private panelHeader As JPanel
+
+    Private panelProgress As JPanel
+
+    Private panelFrontPage As JPanel
+
+    Private panelHeaderAll As JPanel
+
+    Private panelCreateWaybill As JPanel
+
+    Private panelDisplayCont As JPanel
+
+    Private panelGetWayBill As JPanel
+
+    Private panelWayBillUpload As JPanel
+
+    Private panelCashCollection As JPanel
+
+    Private panelGetCash As JPanel
+
+    Private panelCashDate As JPanel
+
+    Private panelCashDisp As JPanel
+
+    Private panelCoupon1 As JPanel
+
+    Private panelCoupon2 As JPanel
+
+    Private panelCoupon3 As JPanel
+
+    Private panelCouponButton As JPanel
+
+    Private panelTicketCollection As JPanel
+
+    Private lblParticulars As JLabel
+
+    Private lblCount As JLabel
+
+    Private lblAmount As JLabel
+
+    Private lblP1000 As JLabel
+
+    Private lblP500 As JLabel
+
+    Private lblP100 As JLabel
+
+    Private lblP50 As JLabel
+
+    Private lblP20 As JLabel
+
+    Private lblP10 As JLabel
+
+    Private lblP5 As JLabel
+
+    Private lblP2 As JLabel
+
+    Private lblP1 As JLabel
+
+    Private lblPS10 As JLabel
+
+    Private lblPS5 As JLabel
+
+    Private lblPS2 As JLabel
+
+    Private lblPS1 As JLabel
+
+    Private lblPS50 As JLabel
+
+    Private lblDivisionCoins As JLabel
+
+    Private lblToTalAmtCol As JLabel
+
+    Private lblAmtDifference As JLabel
+
+    Private txtAmtDifference As JTextField
+
+    Private txtPC1000 As JTextField
+
+    Private txtPC1500 As JTextField
+
+    Private txtPC100 As JTextField
+
+    Private txtPC50 As JTextField
+
+    Private txtPC20 As JTextField
+
+    Private txtPC10 As JTextField
+
+    Private txtPC5 As JTextField
+
+    Private txtPC2 As JTextField
+
+    Private txtPC1 As JTextField
+
+    Private txtPCs10 As JTextField
+
+    Private txtPCs5 As JTextField
+
+    Private txtPCs2 As JTextField
+
+    Private txtPCs1 As JTextField
+
+    Private txtPCs05 As JTextField
+
+    Private txtPA1000 As JTextField
+
+    Private txtPA1500 As JTextField
+
+    Private txtPA100 As JTextField
+
+    Private txtPA50 As JTextField
+
+    Private txtPA20 As JTextField
+
+    Private txtPA10 As JTextField
+
+    Private txtPA5 As JTextField
+
+    Private txtPA2 As JTextField
+
+    Private txtPA1 As JTextField
+
+    Private txtPCsA10 As JTextField
+
+    Private txtPCsA5 As JTextField
+
+    Private txtPCsA2 As JTextField
+
+    Private txtPCsA1 As JTextField
+
+    Private txtPCsA05 As JTextField
+
+    Private txtTotalAmtCol As JTextField
+
+    Private tblWayBillDetails As JTable
+
+    Private tblCashCollection As JTable
+
+    Private tblConductorCoupon As JTable
+
+    Private model As DefaultTableModel
+
+    Private couponModel As DefaultTableModel
+
+    Private Shared portId As CommPortIdentifier
+
+    Private Shared portList As java.util.Enumeration
+
+    Public Shared db As Connection = Nothing
+
+    Public Shared sql As java.sql.Statement
+
+    Public Shared dbmd As java.sql.DatabaseMetaData
+
+    Public Shared database As String = "db_vvmt_010413"
+
+    Public Shared username As String = "root"
+
+    Public Shared password As String = "p@ssw0rd321#"
+
+    Public Shared server As String = "85.25.117.20"
+
+    Public Shared conCatenateWayBill As String
+
+    Public Shared serialPort As SerialPort
+
+    Public Shared commPort As javax.comm.CommPort
+
+    Public Shared sessId As Integer
+
+    Private input As java.io.InputStream
+
+    Private output As OutputStream
+
+    Public Shared machineType As String = ""
+
+    Private logText As String
+
+    Private concatDeviceData As String
+
+    Private columnHeader() As String
+
+    Private cashCollected As String
+
+    Private conductorName As String
+
+    Public Shared busyCursor As java.awt.Cursor = java.awt.Cursor.getPredefinedCursor(3)
+
+    Public Shared defaultCursor As java.awt.Cursor = java.awt.Cursor.getDefaultCursor
+
+    Private Shared NEW_LINE_ASCII As Integer = 10
+
+    Private dollarData As Integer
+
+    Private ticketData As Integer
+
+    Private wayBillData As Integer
+
+    Private ticketEraseData As Integer
+
+    Private tcketEraseData1 As Integer
+
+    Private wayBillEraseData As Integer
+
+    Private wayBillUpload As Integer
+
+    Private cardTopUp As Integer
+
+    Private endOfString As Integer
+
+    Private taxFactor As String
+
+    Private etmNumberValue As String
+
+    Private dataType As String
+
+    Private commandString As Integer
+
+    Private chkWayBillSend As Integer
+
+    Public Sub New()
+        MyBase.New()
+        Me.cmbPortList = New JComboBox
+        Me.cmbConductor = New JComboBox
+        Me.lblHeader = New JLabel("Vasai-Virar Muncipal Transport (VVMT)")
+        Me.lblSerialPort = New JLabel("Select Serial Port")
+        Me.lblWayBill = New JLabel("WayBill")
+        Me.lblTicket = New JLabel("Ticket")
+        Me.lblSmartCard = New JLabel("Smart Card")
+        Me.lblCollectionDate = New JLabel("Collection Date")
+        Me.lblConductor = New JLabel("Select Conductor")
+        Me.lblCouponCollectiondate = New JLabel("Date")
+        Me.lblTotalTicketCollection = New JLabel("Total Ticket Collection")
+        Me.lblTotalTopUpCollection = New JLabel("Total Topup Collection")
+        Me.lblTotalCollection = New JLabel("Total Collection")
+        Me.lblTotalCollectionAmt = New JLabel("Total Collection")
+        Me.lblTotalCouponData = New JLabel("Total Ticket Amount")
+        Me.btnCollectData = New JButton("Collect Ticket")
+        Me.btnWayBill = New JButton("Collect WayBill")
+        Me.btnUploadData = New JButton("Upload Ticket")
+        Me.btnDelWayBill = New JButton("Delete Waybill")
+        Me.btnEraseData = New JButton("Erase Ticket")
+        Me.btnWayBillNumber = New JButton("Get Waybill")
+        Me.btnUploadWayBill = New JButton("Upload Waybill")
+        Me.btnCollectCash = New JButton("Collect Cash")
+        Me.btnGetTotalAmount = New JButton("Get Total Amount")
+        Me.btnCauculateAmount = New JButton("Upload Collection")
+        Me.btnGetConductorCoupon = New JButton("Get Conductor Ticket Details")
+        Me.btnUploadCouponData = New JButton("Upload Ticket Data")
+        Me.btnGetCouponAmount = New JButton("Get No. of Tickets")
+        Me.btnGetCardTopUp = New JButton("Collect Card Data")
+        Me.btnUploadCardData = New JButton("Upload Card Data")
+        Me.btnCouponCollectCash = New JButton("Collect Cash")
+        Me.txtWayBillNo = New JTextField(10)
+        Me.txtCashCollDate = New JTextField(10)
+        Me.txtCashCollected = New JTextField(10)
+        Me.txtCouponCollectDate = New JTextField(10)
+        Me.txtTotalTicketCollection = New JTextField(10)
+        Me.txtTotalTopupCollection = New JTextField(10)
+        Me.txtTotalCollection = New JTextField(10)
+        Me.txtTotalCouponCollection = New JTextField(10)
+        Me.progressBar = New javax.swing.JProgressBar
+        Me.txtData = New JTextArea(5, 75)
+        Me.txtSmartCardData = New JTextArea(2, 75)
+        Me.menuBar = New javax.swing.JMenuBar
+        Me.menuAuditing = New JMenu("Auditing")
+        Me.menuMasters = New JMenu("Masters")
+        Me.menuItemCollection = New JMenuItem("ETIM Ticket")
+        Me.menuItemCreateWaybill = New JMenuItem("Waybill Creation")
+        Me.menuItemCouponTicket = New JMenuItem("Ticket Collection")
+        Me.panelAuditing = New JPanel(New GridBagLayout)
+        Me.panelWaybillTicket = New JPanel(New GridBagLayout)
+        Me.panelButton = New JPanel(New GridBagLayout)
+        Me.panelMain = New JPanel(New GridBagLayout)
+        Me.panelHeader = New JPanel(New GridBagLayout)
+        Me.panelProgress = New JPanel(New GridBagLayout)
+        Me.panelFrontPage = New JPanel(New GridBagLayout)
+        Me.panelHeaderAll = New JPanel(New GridBagLayout)
+        Me.panelCreateWaybill = New JPanel(New GridBagLayout)
+        Me.panelDisplayCont = New JPanel(New GridBagLayout)
+        Me.panelGetWayBill = New JPanel(New GridBagLayout)
+        Me.panelWayBillUpload = New JPanel(New GridBagLayout)
+        Me.panelCashCollection = New JPanel(New GridBagLayout)
+        Me.panelGetCash = New JPanel(New GridBagLayout)
+        Me.panelCashDate = New JPanel(New GridBagLayout)
+        Me.panelCashDisp = New JPanel(New GridBagLayout)
+        Me.panelCoupon1 = New JPanel(New GridBagLayout)
+        Me.panelCoupon2 = New JPanel(New GridBagLayout)
+        Me.panelCoupon3 = New JPanel(New GridBagLayout)
+        Me.panelCouponButton = New JPanel(New GridBagLayout)
+        Me.panelTicketCollection = New JPanel(New GridBagLayout)
+        Me.lblParticulars = New JLabel("Particulars")
+        Me.lblCount = New JLabel("Count")
+        Me.lblAmount = New JLabel("Amount")
+        Me.lblP1000 = New JLabel("1000 x")
+        Me.lblP500 = New JLabel("500 x")
+        Me.lblP100 = New JLabel("100 x")
+        Me.lblP50 = New JLabel("50 x")
+        Me.lblP20 = New JLabel("20 x")
+        Me.lblP10 = New JLabel("10 x")
+        Me.lblP5 = New JLabel("5 x")
+        Me.lblP2 = New JLabel("2 x")
+        Me.lblP1 = New JLabel("1 x")
+        Me.lblPS10 = New JLabel("10 x")
+        Me.lblPS5 = New JLabel("5 x")
+        Me.lblPS2 = New JLabel("2 x")
+        Me.lblPS1 = New JLabel("1 x")
+        Me.lblPS50 = New JLabel("0.5 x")
+        Me.lblDivisionCoins = New JLabel("Coins")
+        Me.lblToTalAmtCol = New JLabel("Total Amount Collected")
+        Me.lblAmtDifference = New JLabel("Difference")
+        Me.txtAmtDifference = New JTextField(10)
+        Me.txtPC1000 = New JTextField(5)
+        Me.txtPC1500 = New JTextField(5)
+        Me.txtPC100 = New JTextField(5)
+        Me.txtPC50 = New JTextField(5)
+        Me.txtPC20 = New JTextField(5)
+        Me.txtPC10 = New JTextField(5)
+        Me.txtPC5 = New JTextField(5)
+        Me.txtPC2 = New JTextField(5)
+        Me.txtPC1 = New JTextField(5)
+        Me.txtPCs10 = New JTextField(5)
+        Me.txtPCs5 = New JTextField(5)
+        Me.txtPCs2 = New JTextField(5)
+        Me.txtPCs1 = New JTextField(5)
+        Me.txtPCs05 = New JTextField(5)
+        Me.txtPA1000 = New JTextField(5)
+        Me.txtPA1500 = New JTextField(5)
+        Me.txtPA100 = New JTextField(5)
+        Me.txtPA50 = New JTextField(5)
+        Me.txtPA20 = New JTextField(5)
+        Me.txtPA10 = New JTextField(5)
+        Me.txtPA5 = New JTextField(5)
+        Me.txtPA2 = New JTextField(5)
+        Me.txtPA1 = New JTextField(5)
+        Me.txtPCsA10 = New JTextField(5)
+        Me.txtPCsA5 = New JTextField(5)
+        Me.txtPCsA2 = New JTextField(5)
+        Me.txtPCsA1 = New JTextField(5)
+        Me.txtPCsA05 = New JTextField(5)
+        Me.txtTotalAmtCol = New JTextField(5)
+        Me.input = Nothing
+        Me.output = Nothing
+        Me.logText = ""
+        Me.concatDeviceData = ""
+        Me.columnHeader = New String() {"WayBill No", "Conductor", "Driver", "Vehicle", "ETM NO", "Division", "Depot Name", "Depot Code", "Schedule"}
+        Me.cashCollected = ""
+        Me.conductorName = ""
+        Me.dollarData = 36
+        Me.ticketData = 68
+        Me.wayBillData = 66
+        Me.ticketEraseData = 69
+        Me.tcketEraseData1 = 46
+        Me.wayBillEraseData = 67
+        Me.wayBillUpload = 65
+        Me.cardTopUp = 78
+        Me.endOfString = 4
+        Me.taxFactor = "00.15"
+        Me.etmNumberValue = ""
+        Me.dataType = ""
+        Me.commandString = 0
+        Me.chkWayBillSend = 0
+    End Sub
+
+    Public Sub init()
+        System.setSecurityManager(Nothing)
+        portList = CommPortIdentifier.getPortIdentifiers
+        sessId = 12398
+        'Integer.parseInt(getParameter("sessionId"));
+        System.out.print(portList)
+        System.out.print(portList.hasMoreElements)
+
+        While portList.hasMoreElements
+            System.out.print("in while")
+            portId = CType(portList.nextElement, CommPortIdentifier)
+            System.out.print(portId.getPortType)
+            If (portId.getPortType = 1) Then
+                Me.cmbPortList.addItem(portId.getName)
+                System.out.println(portId.getName)
+            End If
+
+
+        End While
+
+        Me.menuBar.add(Me.menuAuditing)
+        Me.menuBar.add(Me.menuMasters)
+        Me.menuAuditing.add(Me.menuItemCollection)
+        Me.menuMasters.add(Me.menuItemCreateWaybill)
+        Me.menuMasters.add(Me.menuItemCouponTicket)
+        Me.menuItemCollection.addActionListener(New DataVoice.MenuAction)
+        Me.menuItemCreateWaybill.addActionListener(New DataVoice.MenuAction)
+        Me.menuItemCouponTicket.addActionListener(New DataVoice.MenuAction)
+        setJMenuBar(Me.menuBar)
+        Me.tblWayBillDetails = New JTable
+        Me.tblWayBillDetails.setFillsViewportHeight(False)
+        Me.tblWayBillDetails.setAutoCreateRowSorter(True)
+        Me.tblWayBillDetails.setSelectionMode(0)
+        Me.tblWayBillDetails.setCellSelectionEnabled(False)
+        Me.tblWayBillDetails.setRowSelectionAllowed(True)
+        Me.tblWayBillDetails.setAutoResizeMode(0)
+        Dim localJScrollPane1 As JScrollPane = New JScrollPane(Me.tblWayBillDetails)
+        localJScrollPane1.setPreferredSize(New java.awt.Dimension(800, 300))
+        Dim arrayOfString() As String = New String() {"Particulars", "Count", "Amount"}
+        Dim {(,) As String
+        Dim arrayOfString1(,) As String = New String() {{, "1000 x", "0", "0"}
+        "500 x"
+        "0"
+        "0"
+    End Sub
+End Class
+,{"50 x"
+,"0"
+,"0"
+Unknown,{"20 x"
+,"0"
+,"0"
+Unknown,{"10 x"
+,"0"
+,"0"
+Unknown,{"5 x"
+,"0"
+,"0"
+Unknown,{"2 x"
+,"0"
+,"0"
+Unknown,{"1 x"
+,"0"
+,"0"
+Unknown,{"50 x"
+,"0"
+,"0"
+Unknown,{"Total"
+,"0"
+,"0"
+UnknownUnknowntblCashCollection = New JTable(arrayOfString1, arrayOfString)
+Dim localJTableHeader As javax.swing.table.JTableHeader = tblCashCollection.getTableHeader
+localJTableHeader.setBackground(java.awt.Color.yellow)
+Dim localJScrollPane2 As JScrollPane = New JScrollPane(tblCashCollection)
+localJScrollPane2.setPreferredSize(New java.awt.Dimension(300, 300))
+tblConductorCoupon = New JTable
+tblConductorCoupon.setFillsViewportHeight(false)
+tblConductorCoupon.setAutoCreateRowSorter(true)
+tblConductorCoupon.setSelectionMode(0)
+tblConductorCoupon.setCellSelectionEnabled(false)
+tblConductorCoupon.setRowSelectionAllowed(true)
+tblConductorCoupon.setAutoResizeMode(0)
+Dim localJScrollPane3 As JScrollPane = New JScrollPane(tblConductorCoupon)
+localJScrollPane3.setPreferredSize(New java.awt.Dimension(750, 300))
+tblConductorCoupon.setCellSelectionEnabled(true)
+couponModel = New DefaultTableModel
+tblConductorCoupon.setModel(couponModel)
+tblConductorCoupon.getModel.addTableModelListener(Me)
+Dim localGridBagConstraints1 As GridBagConstraints = New GridBagConstraints
+Dim insets As Insets = New Insets(5, 5, 5, 5)
+Dim gridx As Integer = 0
+Dim gridy As Integer = 0
+panelCoupon1.add(cmbConductor, localGridBagConstraints1)
+gridx = 0
+gridy = 1
+panelCoupon1.add(txtCouponCollectDate, localGridBagConstraints1)
+gridx = 0
+gridy = 2
+panelCoupon1.add(btnGetConductorCoupon, localGridBagConstraints1)
+gridx = 0
+gridy = 3
+panelCoupon1.add(localJScrollPane3, localGridBagConstraints1)
+Dim localGridBagConstraints2 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(5, 5, 5, 5)
+gridx = 0
+gridy = 0
+panelCouponButton.add(lblTotalCouponData, localGridBagConstraints2)
+gridx = 1
+gridy = 0
+panelCouponButton.add(txtTotalCouponCollection, localGridBagConstraints2)
+gridx = 1
+gridy = 1
+panelCouponButton.add(btnUploadCouponData, localGridBagConstraints2)
+gridx = 2
+gridy = 1
+panelCouponButton.add(btnCouponCollectCash, localGridBagConstraints2)
+Dim localGridBagConstraints3 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(5, 5, 5, 5)
+gridx = 0
+gridy = 0
+panelCoupon2.add(panelCoupon1, localGridBagConstraints3)
+gridx = 0
+gridy = 1
+panelCoupon2.add(panelCouponButton, localGridBagConstraints3)
+Dim localGridBagConstraints4 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(5, 5, 5, 5)
+gridx = 0
+gridy = 0
+panelHeader.add(lblHeader, localGridBagConstraints4)
+Dim localGridBagConstraints5 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(5, 5, 5, 5)
+gridx = 0
+gridy = 0
+panelAuditing.add(lblSerialPort, localGridBagConstraints5)
+gridx = 1
+gridy = 0
+panelAuditing.add(cmbPortList, localGridBagConstraints5)
+Dim localGridBagConstraints6 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(5, 5, 5, 5)
+gridx = 0
+gridy = 1
+panelWaybillTicket.add(lblWayBill, localGridBagConstraints6)
+Dim localJScrollPane4 As JScrollPane = New JScrollPane(txtWayData)
+gridx = 1
+gridy = 1
+panelWaybillTicket.add(localJScrollPane4, localGridBagConstraints6)
+gridx = 0
+gridy = 2
+panelWaybillTicket.add(lblTicket, localGridBagConstraints6)
+gridx = 0
+gridy = 3
+panelWaybillTicket.add(lblSmartCard, localGridBagConstraints6)
+Dim localJScrollPane5 As JScrollPane = New JScrollPane(txtData)
+gridx = 1
+gridy = 2
+panelWaybillTicket.add(localJScrollPane5, localGridBagConstraints6)
+Dim localJScrollPane6 As JScrollPane = New JScrollPane(txtSmartCardData)
+gridx = 1
+gridy = 3
+panelWaybillTicket.add(localJScrollPane6, localGridBagConstraints6)
+Dim localGridBagConstraints7 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(5, 5, 5, 5)
+gridx = 0
+gridy = 0
+panelTicketCollection.add(lblTotalTicketCollection, localGridBagConstraints7)
+gridx = 1
+gridy = 0
+panelTicketCollection.add(txtTotalTicketCollection, localGridBagConstraints7)
+gridx = 0
+gridy = 1
+panelTicketCollection.add(lblTotalTopUpCollection, localGridBagConstraints7)
+gridx = 1
+gridy = 1
+panelTicketCollection.add(txtTotalTopupCollection, localGridBagConstraints7)
+gridx = 0
+gridy = 2
+panelTicketCollection.add(lblTotalCollection, localGridBagConstraints7)
+gridx = 1
+gridy = 2
+panelTicketCollection.add(txtTotalCollection, localGridBagConstraints7)
+Dim localGridBagConstraints8 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(3, 3, 3, 3)
+gridx = 0
+gridy = 0
+panelButton.add(btnWayBill, localGridBagConstraints8)
+gridx = 1
+gridy = 0
+panelButton.add(btnCollectData, localGridBagConstraints8)
+btnCollectData.setEnabled(false)
+gridx = 2
+gridy = 0
+panelButton.add(btnUploadData, localGridBagConstraints8)
+btnUploadData.setEnabled(false)
+gridx = 3
+gridy = 0
+panelButton.add(btnGetCardTopUp, localGridBagConstraints8)
+btnGetCardTopUp.setEnabled(false)
+gridx = 4
+gridy = 0
+panelButton.add(btnUploadCardData, localGridBagConstraints8)
+btnUploadCardData.setEnabled(false)
+gridx = 5
+gridy = 0
+panelButton.add(btnCollectCash, localGridBagConstraints8)
+btnCollectCash.setEnabled(false)
+gridx = 6
+gridy = 0
+panelButton.add(btnEraseData, localGridBagConstraints8)
+gridx = 7
+gridy = 0
+panelButton.add(btnDelWayBill, localGridBagConstraints8)
+Dim localGridBagConstraints9 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(10, 10, 10, 10)
+gridx = 0
+gridy = 0
+panelProgress.add(progressBar, localGridBagConstraints9)
+Dim localGridBagConstraints10 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(5, 5, 5, 5)
+gridx = 0
+gridy = 0
+panelHeaderAll.add(panelHeader, localGridBagConstraints10)
+gridx = 0
+gridy = 1
+panelHeaderAll.add(panelAuditing, localGridBagConstraints10)
+Dim localGridBagConstraints11 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(10, 10, 10, 10)
+gridx = 0
+gridy = 0
+panelGetWayBill.add(txtWayBillNo, localGridBagConstraints11)
+gridx = 1
+gridy = 0
+panelGetWayBill.add(btnWayBillNumber, localGridBagConstraints11)
+Dim localGridBagConstraints12 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(10, 10, 10, 10)
+gridx = 0
+gridy = 0
+panelWayBillUpload.add(btnUploadWayBill, localGridBagConstraints12)
+Dim localGridBagConstraints13 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(0, 0, 0, 0)
+gridx = 0
+gridy = 2
+panelCreateWaybill.add(panelGetWayBill, localGridBagConstraints13)
+gridx = 0
+gridy = 3
+panelCreateWaybill.add(localJScrollPane1, localGridBagConstraints13)
+gridx = 0
+gridy = 4
+panelCreateWaybill.add(panelWayBillUpload, localGridBagConstraints13)
+Dim localGridBagConstraints14 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(2, 2, 2, 2)
+gridx = 0
+gridy = 0
+panelCashDisp.add(lblParticulars, localGridBagConstraints14)
+gridx = 1
+gridy = 0
+panelCashDisp.add(lblCount, localGridBagConstraints14)
+gridx = 2
+gridy = 0
+panelCashDisp.add(lblAmount, localGridBagConstraints14)
+gridx = 0
+gridy = 1
+panelCashDisp.add(lblP1000, localGridBagConstraints14)
+gridx = 1
+gridy = 1
+panelCashDisp.add(txtPC1000, localGridBagConstraints14)
+txtPC1000.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC1000.getDocument.putProperty("name", "txtPC1000")
+txtPC1000.addKeyListener(Me)
+gridx = 2
+gridy = 1
+panelCashDisp.add(txtPA1000, localGridBagConstraints14)
+gridx = 0
+gridy = 2
+panelCashDisp.add(lblP500, localGridBagConstraints14)
+gridx = 1
+gridy = 2
+panelCashDisp.add(txtPC1500, localGridBagConstraints14)
+txtPC1500.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC1500.getDocument.putProperty("name", "txtPC1500")
+txtPC1500.addKeyListener(Me)
+gridx = 2
+gridy = 2
+panelCashDisp.add(txtPA1500, localGridBagConstraints14)
+gridx = 0
+gridy = 3
+panelCashDisp.add(lblP100, localGridBagConstraints14)
+gridx = 1
+gridy = 3
+panelCashDisp.add(txtPC100, localGridBagConstraints14)
+txtPC100.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC100.getDocument.putProperty("name", "txtPC100")
+txtPC100.addKeyListener(Me)
+gridx = 2
+gridy = 3
+panelCashDisp.add(txtPA100, localGridBagConstraints14)
+gridx = 0
+gridy = 4
+panelCashDisp.add(lblP50, localGridBagConstraints14)
+gridx = 1
+gridy = 4
+panelCashDisp.add(txtPC50, localGridBagConstraints14)
+txtPC50.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC50.getDocument.putProperty("name", "txtPC50")
+txtPC50.addKeyListener(Me)
+gridx = 2
+gridy = 4
+panelCashDisp.add(txtPA50, localGridBagConstraints14)
+gridx = 0
+gridy = 5
+panelCashDisp.add(lblP20, localGridBagConstraints14)
+gridx = 1
+gridy = 5
+panelCashDisp.add(txtPC20, localGridBagConstraints14)
+txtPC20.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC20.getDocument.putProperty("name", "txtPC20")
+txtPC20.addKeyListener(Me)
+gridx = 2
+gridy = 5
+panelCashDisp.add(txtPA20, localGridBagConstraints14)
+gridx = 0
+gridy = 6
+panelCashDisp.add(lblP10, localGridBagConstraints14)
+gridx = 1
+gridy = 6
+panelCashDisp.add(txtPC10, localGridBagConstraints14)
+txtPC10.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC10.getDocument.putProperty("name", "txtPC10")
+txtPC10.addKeyListener(Me)
+gridx = 2
+gridy = 6
+panelCashDisp.add(txtPA10, localGridBagConstraints14)
+gridx = 0
+gridy = 7
+panelCashDisp.add(lblP5, localGridBagConstraints14)
+gridx = 1
+gridy = 7
+panelCashDisp.add(txtPC5, localGridBagConstraints14)
+txtPC5.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC5.getDocument.putProperty("name", "txtPC5")
+txtPC5.addKeyListener(Me)
+gridx = 2
+gridy = 7
+panelCashDisp.add(txtPA5, localGridBagConstraints14)
+gridx = 0
+gridy = 8
+panelCashDisp.add(lblP2, localGridBagConstraints14)
+gridx = 1
+gridy = 8
+panelCashDisp.add(txtPC2, localGridBagConstraints14)
+txtPC2.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC2.getDocument.putProperty("name", "txtPC2")
+txtPC2.addKeyListener(Me)
+gridx = 2
+gridy = 8
+panelCashDisp.add(txtPA2, localGridBagConstraints14)
+gridx = 0
+gridy = 9
+panelCashDisp.add(lblP1, localGridBagConstraints14)
+gridx = 1
+gridy = 9
+panelCashDisp.add(txtPC1, localGridBagConstraints14)
+txtPC1.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPC1.getDocument.putProperty("name", "txtPC1")
+txtPC1.addKeyListener(Me)
+gridx = 2
+gridy = 9
+panelCashDisp.add(txtPA1, localGridBagConstraints14)
+gridx = 1
+gridy = 10
+panelCashDisp.add(lblDivisionCoins, localGridBagConstraints14)
+gridx = 0
+gridy = 11
+panelCashDisp.add(lblPS10, localGridBagConstraints14)
+gridx = 1
+gridy = 11
+panelCashDisp.add(txtPCs10, localGridBagConstraints14)
+txtPCs10.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPCs10.getDocument.putProperty("name", "txtPCs10")
+txtPCs10.addKeyListener(Me)
+gridx = 2
+gridy = 11
+panelCashDisp.add(txtPCsA10, localGridBagConstraints14)
+gridx = 0
+gridy = 12
+panelCashDisp.add(lblPS5, localGridBagConstraints14)
+gridx = 1
+gridy = 12
+panelCashDisp.add(txtPCs5, localGridBagConstraints14)
+txtPCs5.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPCs5.getDocument.putProperty("name", "txtPCs5")
+txtPCs5.addKeyListener(Me)
+gridx = 2
+gridy = 12
+panelCashDisp.add(txtPCsA5, localGridBagConstraints14)
+gridx = 0
+gridy = 13
+panelCashDisp.add(lblPS2, localGridBagConstraints14)
+gridx = 1
+gridy = 13
+panelCashDisp.add(txtPCs2, localGridBagConstraints14)
+txtPCs2.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPCs2.getDocument.putProperty("name", "txtPCs2")
+txtPCs2.addKeyListener(Me)
+gridx = 2
+gridy = 13
+panelCashDisp.add(txtPCsA2, localGridBagConstraints14)
+gridx = 0
+gridy = 14
+panelCashDisp.add(lblPS1, localGridBagConstraints14)
+gridx = 1
+gridy = 14
+panelCashDisp.add(txtPCs1, localGridBagConstraints14)
+txtPCs1.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPCs1.getDocument.putProperty("name", "txtPCs1")
+txtPCs1.addKeyListener(Me)
+gridx = 2
+gridy = 14
+panelCashDisp.add(txtPCsA1, localGridBagConstraints14)
+gridx = 0
+gridy = 15
+panelCashDisp.add(lblPS50, localGridBagConstraints14)
+gridx = 1
+gridy = 15
+panelCashDisp.add(txtPCs05, localGridBagConstraints14)
+txtPCs05.getDocument.addDocumentListener(New DataVoice.MyDocumentListener)
+txtPCs05.getDocument.putProperty("name", "txtPCs05")
+txtPCs05.addKeyListener(Me)
+gridx = 2
+gridy = 15
+panelCashDisp.add(txtPCsA05, localGridBagConstraints14)
+gridx = 0
+gridy = 16
+panelCashDisp.add(lblToTalAmtCol, localGridBagConstraints14)
+gridx = 2
+gridy = 16
+panelCashDisp.add(txtTotalAmtCol, localGridBagConstraints14)
+gridx = 0
+gridy = 17
+panelCashDisp.add(lblAmtDifference, localGridBagConstraints14)
+gridx = 2
+gridy = 17
+panelCashDisp.add(txtAmtDifference, localGridBagConstraints14)
+txtPA1000.setText("0.0")
+txtPA1500.setText("0.0")
+txtPA100.setText("0.0")
+txtPA50.setText("0.0")
+txtPA20.setText("0.0")
+txtPA10.setText("0.0")
+txtPA5.setText("0.0")
+txtPA2.setText("0.0")
+txtPA1.setText("0.0")
+txtPCsA10.setText("0.0")
+txtPCsA5.setText("0.0")
+txtPCsA2.setText("0.0")
+txtPCsA1.setText("0.0")
+txtPCsA05.setText("0.0")
+txtTotalAmtCol.setText("0.0")
+txtAmtDifference.setText("0.0")
+txtPA1000.setEditable(false)
+txtPA1000.setFocusable(false)
+txtPA1500.setEditable(false)
+txtPA1500.setFocusable(false)
+txtPA100.setEditable(false)
+txtPA100.setFocusable(false)
+txtPA50.setEditable(false)
+txtPA50.setFocusable(false)
+txtPA20.setEditable(false)
+txtPA20.setFocusable(false)
+txtPA10.setEditable(false)
+txtPA10.setFocusable(false)
+txtPA5.setEditable(false)
+txtPA5.setFocusable(false)
+txtPA2.setEditable(false)
+txtPA2.setFocusable(false)
+txtPA1.setEditable(false)
+txtPA1.setFocusable(false)
+txtPCsA10.setEditable(false)
+txtPCsA10.setFocusable(false)
+txtPCsA5.setEditable(false)
+txtPCsA5.setFocusable(false)
+txtPCsA2.setEditable(false)
+txtPCsA2.setFocusable(false)
+txtPCsA5.setEditable(false)
+txtPCsA5.setFocusable(false)
+txtPCsA1.setEditable(false)
+txtPCsA1.setFocusable(false)
+txtPCsA05.setEditable(false)
+txtPCsA05.setFocusable(false)
+txtCashCollected.setEditable(false)
+txtCashCollected.setFocusable(false)
+txtTotalCouponCollection.setEditable(false)
+txtCashCollDate.setEditable(false)
+txtTotalAmtCol.setEditable(false)
+txtTotalAmtCol.setFocusable(false)
+txtCouponCollectDate.setEditable(false)
+txtTotalCollection.setEditable(false)
+txtAmtDifference.setEditable(false)
+txtAmtDifference.setFocusable(false)
+txtTotalTicketCollection.setEditable(false)
+txtTotalTopupCollection.setEditable(false)
+Dim localFont1 As Font = New Font(txtTotalCollection.getFont.getName, 1, txtTotalCollection.getFont.getSize)
+txtTotalCollection.setFont(localFont1)
+Dim localGridBagConstraints15 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(2, 2, 2, 2)
+gridx = 0
+gridy = 0
+panelCashDate.add(lblCollectionDate, localGridBagConstraints15)
+gridx = 1
+gridy = 0
+panelCashDate.add(txtCashCollDate, localGridBagConstraints15)
+Dim localGridBagConstraints16 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(2, 2, 2, 2)
+gridx = 0
+gridy = 0
+panelGetCash.add(lblTotalCollectionAmt, localGridBagConstraints16)
+gridx = 1
+gridy = 0
+panelGetCash.add(txtCashCollected, localGridBagConstraints16)
+Dim localGridBagConstraints17 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(2, 2, 2, 2)
+gridx = 0
+gridy = 0
+panelCashCollection.add(panelCashDate, localGridBagConstraints13)
+gridx = 0
+gridy = 1
+panelCashCollection.add(panelGetCash, localGridBagConstraints13)
+gridx = 0
+gridy = 2
+panelCashCollection.add(panelCashDisp, localGridBagConstraints13)
+gridx = 0
+gridy = 3
+panelCashCollection.add(btnCauculateAmount, localGridBagConstraints13)
+Dim localGridBagConstraints18 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(10, 10, 10, 10)
+gridx = 0
+gridy = 2
+panelMain.add(panelWaybillTicket, localGridBagConstraints18)
+gridx = 0
+gridy = 3
+panelMain.add(panelButton, localGridBagConstraints18)
+gridx = 0
+gridy = 4
+panelMain.add(panelTicketCollection, localGridBagConstraints18)
+panelProgress.setVisible(false)
+Dim localGridBagConstraints19 As GridBagConstraints = New GridBagConstraints
+insets = New Insets(5, 5, 5, 5)
+gridx = 0
+gridy = 0
+panelDisplayCont.add(panelHeaderAll, localGridBagConstraints19)
+gridx = 0
+gridy = 1
+panelDisplayCont.add(panelCreateWaybill, localGridBagConstraints19)
+gridx = 0
+gridy = 2
+panelDisplayCont.add(panelMain, localGridBagConstraints19)
+gridx = 0
+gridy = 3
+panelDisplayCont.add(panelCashCollection, localGridBagConstraints19)
+gridx = 0
+gridy = 4
+panelDisplayCont.add(panelCoupon2, localGridBagConstraints19)
+Dim localContainer As Container = getContentPane
+localContainer.setLayout(New java.awt.FlowLayout)
+localContainer.add(panelFrontPage)
+localContainer.add(panelDisplayCont)
+HidePanel
+txtData.setLineWrap(true)
+txtData.setEditable(false)
+txtSmartCardData.setLineWrap(true)
+txtSmartCardData.setEditable(false)
+txtWayData.setEditable(false)
+Dim localFont2 As Font = New Font("Arial", 1, 22)
+lblHeader.setFont(localFont2)
+btnUploadCouponData.setEnabled(true)
+btnCouponCollectCash.setEnabled(false)
+btnWayBill.addActionListener(Me)
+btnCollectData.addActionListener(Me)
+btnUploadData.addActionListener(Me)
+btnDelWayBill.addActionListener(Me)
+btnEraseData.addActionListener(Me)
+btnWayBillNumber.addActionListener(Me)
+btnUploadWayBill.addActionListener(Me)
+btnCollectCash.addActionListener(Me)
+btnGetTotalAmount.addActionListener(Me)
+btnCauculateAmount.addActionListener(Me)
+btnGetConductorCoupon.addActionListener(Me)
+btnUploadCouponData.addActionListener(Me)
+btnGetCardTopUp.addActionListener(Me)
+btnUploadCardData.addActionListener(Me)
+btnGetCouponAmount.addActionListener(Me)
+btnCouponCollectCash.addActionListener(Me)
+getConductorDetails
+UnknownClass MyDocumentListener
+Implements javax.swing.event.DocumentListener
+
+Private Sub New()
+    MyBase.New()
+
+End Sub
+
+Public Sub insertUpdate(ByVal paramDocumentEvent As DocumentEvent)
+    Me.updateAmount(paramDocumentEvent, "Insert")
+End Sub
+
+Public Sub removeUpdate(ByVal paramDocumentEvent As DocumentEvent)
+    Me.updateAmount(paramDocumentEvent, "Remove")
+End Sub
+
+Public Sub changedUpdate(ByVal paramDocumentEvent As DocumentEvent)
+
+End Sub
+
+Public Sub updateAmount(ByVal paramDocumentEvent As DocumentEvent, ByVal paramString As String)
+    Try
+        Dim localDocument As Document = paramDocumentEvent.getDocument
+        Dim str1 As String = localDocument.getText(0, localDocument.getLength)
+        Dim str2 As String = (" " + localDocument.getProperty("name"))
+        Dim str3 As String = ""
+        str2 = str2.trim
+        Dim f As Single
+        If str2.equals("txtPC1000") Then
+            f = (Integer.parseInt(str1) * 1000)
+            str3 = (" " + f)
+            txtPA1000.setText(str3)
+        ElseIf str2.equals("txtPC1500") Then
+            f = (Integer.parseInt(str1) * 500)
+            str3 = (" " + f)
+            txtPA1500.setText(str3)
+        ElseIf str2.equals("txtPC100") Then
+            f = (Integer.parseInt(str1) * 100)
+            str3 = (" " + f)
+            txtPA100.setText(str3)
+        ElseIf str2.equals("txtPC50") Then
+            f = (Integer.parseInt(str1) * 50)
+            str3 = (" " + f)
+            txtPA50.setText(str3)
+        ElseIf str2.equals("txtPC20") Then
+            f = (Integer.parseInt(str1) * 20)
+            str3 = (" " + f)
+            txtPA20.setText(str3)
+        ElseIf str2.equals("txtPC10") Then
+            f = (Integer.parseInt(str1) * 10)
+            str3 = (" " + f)
+            txtPA10.setText(str3)
+        ElseIf str2.equals("txtPC5") Then
+            f = (Integer.parseInt(str1) * 5)
+            str3 = (" " + f)
+            txtPA5.setText(str3)
+        ElseIf str2.equals("txtPC2") Then
+            f = (Integer.parseInt(str1) * 2)
+            str3 = (" " + f)
+            txtPA2.setText(str3)
+        ElseIf str2.equals("txtPC1") Then
+            f = (Integer.parseInt(str1) * 1)
+            str3 = (" " + f)
+            txtPA1.setText(str3)
+        ElseIf str2.equals("txtPCs10") Then
+            f = (Integer.parseInt(str1) * 10)
+            str3 = (" " + f)
+            txtPCsA10.setText(str3)
+        ElseIf str2.equals("txtPCs5") Then
+            f = (Integer.parseInt(str1) * 5)
+            str3 = (" " + f)
+            txtPCsA5.setText(str3)
+        ElseIf str2.equals("txtPCs2") Then
+            f = (Integer.parseInt(str1) * 2)
+            str3 = (" " + f)
+            txtPCsA2.setText(str3)
+        ElseIf str2.equals("txtPCs1") Then
+            f = (Integer.parseInt(str1) * 1)
+            str3 = (" " + f)
+            txtPCsA1.setText(str3)
+        ElseIf str2.equals("txtPCs05") Then
+            f = (Integer.parseInt(str1) * 50)
+            str3 = (" " _
+                        + (f / 100.0!))
+            txtPCsA05.setText(str3)
+        End If
+
+        Me.getTotalAmoutCollected(str3)
+    Catch localException As Exception
+
+    End Try
+
+End Sub
+
+Public Sub getTotalAmoutCollected(ByVal paramString As String)
+    Try
+        Dim localFloat1 As Float = Float.valueOf((Float.parseFloat(txtPA1000.getText.trim) _
+                        + (Float.parseFloat(txtPA1500.getText.trim) _
+                        + (Float.parseFloat(txtPA100.getText.trim) _
+                        + (Float.parseFloat(txtPA50.getText.trim) _
+                        + (Float.parseFloat(txtPA20.getText.trim) _
+                        + (Float.parseFloat(txtPA10.getText.trim) _
+                        + (Float.parseFloat(txtPA5.getText.trim) _
+                        + (Float.parseFloat(txtPA2.getText.trim) _
+                        + (Float.parseFloat(txtPA1.getText.trim) _
+                        + (Float.parseFloat(txtPCsA10.getText.trim) _
+                        + (Float.parseFloat(txtPCsA5.getText.trim) _
+                        + (Float.parseFloat(txtPCsA2.getText.trim) _
+                        + (Float.parseFloat(txtPCsA1.getText.trim) + Float.parseFloat(txtPCsA05.getText.trim)))))))))))))))
+        Dim str As String = (" " + localFloat1)
+        txtTotalAmtCol.setText(str)
+        Dim localFloat2 As Float = Float.valueOf((Float.parseFloat(txtCashCollected.getText.trim) - localFloat1.floatValue))
+        txtAmtDifference.setText(("" + localFloat2))
+    Catch localException As Exception
+
+    End Try
+
+End Sub
+End Class
+Private Class MenuAction
+    Implements java.awt.event.ActionListener
+
+    Private Sub New()
+        MyBase.New()
+
+    End Sub
+
+    Public Sub actionPerformed(ByVal paramActionEvent As ActionEvent)
+        HidePanel()
+        If (paramActionEvent.getSource = menuItemCollection) Then
+            panelHeaderAll.setVisible(True)
+            panelMain.setVisible(True)
+        ElseIf (paramActionEvent.getSource = menuItemCreateWaybill) Then
+            model = New DefaultTableModel
+            panelHeaderAll.setVisible(True)
+            panelCreateWaybill.setVisible(True)
+            model.addColumn("WayBill No")
+            model.addColumn("Conductor")
+            model.addColumn("Driver")
+            model.addColumn("Vehicle")
+            model.addColumn("ETM NO")
+            model.addColumn("Division")
+            model.addColumn("Division Code")
+            model.addColumn("Depot Name")
+            model.addColumn("Depot Code")
+            model.addColumn("Schedule")
+            model.addColumn("Waybill Date")
+            tblWayBillDetails.setModel(model)
+            tblWayBillDetails.getColumnModel.getColumn(0).setPreferredWidth(90)
+            tblWayBillDetails.getColumnModel.getColumn(1).setPreferredWidth(100)
+            tblWayBillDetails.getColumnModel.getColumn(2).setPreferredWidth(100)
+            tblWayBillDetails.getColumnModel.getColumn(3).setPreferredWidth(100)
+            tblWayBillDetails.getColumnModel.getColumn(4).setPreferredWidth(75)
+        ElseIf (paramActionEvent.getSource = menuItemCouponTicket) Then
+            panelHeaderAll.setVisible(True)
+            panelCoupon2.setVisible(True)
+            Dim localDate As Date = New Date
+            Dim localTimestamp As Timestamp = New Timestamp(localDate.getTime)
+            Dim str As String = ("" + localTimestamp)
+            str = str.substring(0, 10)
+            txtCouponCollectDate.setText(str)
+            couponModel.setNumRows(0)
+            couponModel.setColumnCount(0)
+            couponModel.addColumn("Denomination")
+            couponModel.addColumn("Ticket Block Series Number")
+            couponModel.addColumn("Ticket Start Number")
+            couponModel.addColumn("Ticket End Number")
+            couponModel.addColumn("No. of Tickets")
+            couponModel.addColumn("Amount")
+            couponModel.addColumn("Nutrition Tax")
+            couponModel.addColumn("TicketMax Number")
+            tblConductorCoupon.getColumnModel.getColumn(0).setPreferredWidth(100)
+            tblConductorCoupon.getColumnModel.getColumn(1).setPreferredWidth(150)
+            tblConductorCoupon.getColumnModel.getColumn(2).setPreferredWidth(150)
+            tblConductorCoupon.getColumnModel.getColumn(3).setPreferredWidth(150)
+            tblConductorCoupon.getColumnModel.getColumn(4).setPreferredWidth(100)
+            tblConductorCoupon.getColumnModel.getColumn(5).setPreferredWidth(100)
+            tblConductorCoupon.getColumnModel.getColumn(6).setPreferredWidth(0)
+            tblConductorCoupon.getColumnModel.getColumn(7).setPreferredWidth(0)
+            tblConductorCoupon.putClientProperty("terminateEditOnFocusLost", Boolean.valueOf(True))
+            Dim localJTextField As JTextField = New JTextField
+            localJTextField.setEditable(False)
+            Dim localDefaultCellEditor1 As javax.swing.DefaultCellEditor = New javax.swing.DefaultCellEditor(localJTextField)
+            Dim localDefaultCellEditor2 As javax.swing.DefaultCellEditor = New javax.swing.DefaultCellEditor(New JTextField)
+            localDefaultCellEditor2.setClickCountToStart(1)
+            Dim i As Integer = 0
+            Do While (i < tblConductorCoupon.getColumnModel.getColumnCount)
+                Dim localTableColumn As TableColumn
+                If (i = 3) Then
+                    localTableColumn = tblConductorCoupon.getColumnModel.getColumn(i)
+                    localTableColumn.setCellEditor(localDefaultCellEditor2)
+                Else
+                    localTableColumn = tblConductorCoupon.getColumnModel.getColumn(i)
+                    localTableColumn.setCellEditor(localDefaultCellEditor1)
+                End If
+
+                i = (i + 1)
+            Loop
+
+        End If
+
+    End Sub
+End Class
+Unknown
+
+Public Sub keyPressed(ByVal paramKeyEvent As KeyEvent)
+    If (paramKeyEvent.getKeyCode = 10) Then
+        java.awt.KeyboardFocusManager.getCurrentKeyboardFocusManager.getFocusOwner.transferFocus()
+        java.awt.KeyboardFocusManager.getCurrentKeyboardFocusManager.getFocusOwner.transferFocus()
+    End If
+
+End Sub
+
+Public Sub keyReleased(ByVal paramKeyEvent As KeyEvent)
+
+End Sub
+
+Public Sub keyTyped(ByVal paramKeyEvent As KeyEvent)
+
+End Sub
+
+Public Sub HidePanel()
+    panelHeaderAll.setVisible(False)
+    panelCreateWaybill.setVisible(False)
+    panelMain.setVisible(False)
+    panelCashCollection.setVisible(False)
+    panelCoupon2.setVisible(False)
+End Sub
+
+Public Sub tableChanged(ByVal paramTableModelEvent As javax.swing.event.TableModelEvent)
+    Try
+        Dim str1 As String = ""
+        Dim i As Integer = paramTableModelEvent.getFirstRow
+        Dim j As Integer = paramTableModelEvent.getColumn
+        If (j = 3) Then
+            Dim localTableModel As TableModel = CType(paramTableModelEvent.getSource, TableModel)
+            Dim str2 As String = localTableModel.getColumnName(j)
+            Dim localObject As Object = localTableModel.getValueAt(i, j)
+            Dim str3 As String = (" " + localObject)
+            Try
+                Dim str4 As String = (" " + localTableModel.getValueAt(i, 0))
+                Dim str5 As String = (" " + localTableModel.getValueAt(i, 2))
+                Dim str6 As String = (" " + localTableModel.getValueAt(i, 6))
+                Dim str7 As String = (" " + localTableModel.getValueAt(i, 7))
+                Dim k As Integer = Integer.parseInt(str5.trim)
+                Dim m As Integer = Integer.parseInt(str3.trim)
+                Dim n As Integer = Integer.parseInt(str7.trim)
+                Dim localFloat1 As Float
+                Dim localFloat2 As Float
+                Dim localFloat3 As Float
+                Dim localFloat4 As Float
+                Dim localFloat5 As Float
+                Dim localInteger As Integer
+                Dim localFloat6 As Float
+                If (m > 0) Then
+                    If (m < k) Then
+                        JOptionPane.showMessageDialog(Me, "Ticket End Number should be greater than start no.", "Ticket Number", 0)
+                        Return
+                    End If
+
+                    If (m > n) Then
+                        JOptionPane.showMessageDialog(Me, "Ticket End Number should be less than max no.", "Ticket Number", 0)
+                        Return
+                    End If
+
+                    localFloat1 = Float.valueOf(Float.parseFloat(str4.trim))
+                    localFloat2 = Float.valueOf(Float.parseFloat(str5.trim))
+                    localFloat3 = Float.valueOf(Float.parseFloat(str3.trim))
+                    localFloat4 = Float.valueOf(Float.parseFloat(str6.trim))
+                    localFloat5 = Float.valueOf((localFloat3.floatValue - localFloat2.floatValue))
+                    localInteger = Integer.valueOf(localFloat5.intValue)
+                    localFloat6 = Float.valueOf(((localFloat1.floatValue + localFloat4.floatValue) _
+                                    * localFloat5.floatValue))
+                    str1 = localFloat6.toString
+                    localTableModel.setValueAt(localInteger, i, 4)
+                    localTableModel.setValueAt(localFloat6, i, 5)
+                    calculateCouponCollectAmount()
+                    calculateTotalFare()
+                ElseIf (m = 0) Then
+                    localFloat1 = Float.valueOf(Float.parseFloat(str4.trim))
+                    localFloat2 = Float.valueOf(Float.parseFloat(str5.trim))
+                    localFloat3 = Float.valueOf(Float.parseFloat(str7.trim))
+                    localFloat4 = Float.valueOf(Float.parseFloat(str6.trim))
+                    localFloat5 = Float.valueOf(((localFloat3.floatValue - localFloat2.floatValue) _
+                                    + 1.0!))
+                    localInteger = Integer.valueOf(localFloat5.intValue)
+                    localFloat6 = Float.valueOf(((localFloat1.floatValue + localFloat4.floatValue) _
+                                    * localFloat5.floatValue))
+                    str1 = localFloat6.toString
+                    localTableModel.setValueAt(localInteger, i, 4)
+                    localTableModel.setValueAt(localFloat6, i, 5)
+                    calculateCouponCollectAmount()
+                    calculateTotalFare()
+                Else
+                    JOptionPane.showMessageDialog(Me, "Ticket Number should be integer", "Ticket Number", 0)
+                    Return
+                End If
+
+            Catch localNumberFormatException As NumberFormatException
+                JOptionPane.showMessageDialog(Me, "Ticket Number should be integer", "Ticket Number", 0)
+                Return
+            End Try
+
+        End If
+
+    Catch localException As Exception
+
+    End Try
+
+End Sub
+
+Public Sub calculateCouponCollectAmount()
+    Try
+        Dim i As Integer = tblConductorCoupon.getRowCount
+        Dim localFloat As Float = Float.valueOf(0.0!)
+        Dim j As Integer = 0
+        Do While (j < i)
+            Dim localObject As Object = tblConductorCoupon.getModel.getValueAt(j, 5)
+            Dim str As String = localObject.toString
+            Dim f As Single = Float.parseFloat(str)
+            localFloat = Float.valueOf((localFloat.floatValue + f))
+            txtTotalCouponCollection.setText(("" + localFloat))
+            j = (j + 1)
+        Loop
+
+    Catch localException As Exception
+
+    End Try
+
+End Sub
+
+Public Sub SetData(ByVal paramObject As Object, ByVal paramInt1 As Integer, ByVal paramInt2 As Integer)
+    tblConductorCoupon.getModel.setValueAt(paramObject, paramInt1, paramInt2)
+End Sub
+
+Public Sub initListener()
+    Try
+        serialPort.addEventListener(Me)
+        serialPort.notifyOnDataAvailable(True)
+    Catch localTooManyListenersException As java.util.TooManyListenersException
+
+    End Try
+
+End Sub
+
+Public Sub disConnect()
+    Try
+        serialPort.removeEventListener()
+        serialPort.close()
+        input.close()
+        output.close()
+    Catch localException As Exception
+
+    End Try
+
+End Sub
+
+Public Sub serialEvent(ByVal paramSerialPortEvent As javax.comm.SerialPortEvent)
+    If (paramSerialPortEvent.getEventType = 1) Then
+        Try
+            Dim i As Integer = -1
+            Dim arrayOfByte() As Byte = New Byte((Microsoft.VisualBasic.ChrW(69)) - 1) {}
+            Dim str As String = ""
+
+            While (input.available > 0)
+                i = input.read(arrayOfByte)
+                str = New String(arrayOfByte, 0, i)
+                concatDeviceData = (concatDeviceData + str)
+                Dim localStringBuffer As StringBuffer
+                Dim m As Integer
+                If (dataType.equals("Ticket") OrElse dataType.equals("WayBill")) Then
+                    If str.equals("$") Then
+                        Dim j As Integer = CType(commandString, Char)
+                        output.write(j)
+                    End If
+
+                    Dim arrayOfChar1() As Char = str.toCharArray
+                    localStringBuffer = New StringBuffer
+                    m = 0
+                    Do While (m < arrayOfChar1.length)
+                        If Integer.toHexString(arrayOfChar1(m)).equals("4") Then
+                            disConnect()
+                            If dataType.equals("Ticket") Then
+                                btnCollectData.setEnabled(True)
+                                btnUploadData.setEnabled(True)
+                                calculateFare()
+                            ElseIf dataType.equals("WayBill") Then
+                                btnWayBill.setEnabled(True)
+                                btnCollectData.setEnabled(True)
+                                getEtimDetails()
+                            End If
+
+                        End If
+
+                        m = (m + 1)
+                    Loop
+
+                Else
+                    Dim k As Integer
+                    If dataType.equals("DelWayBill") Then
+                        If str.equals("$") Then
+                            k = CType(commandString, Char)
+                            output.write(k)
+                            disConnect()
+                        End If
+
+                    ElseIf dataType.equals("Erase") Then
+                        If str.equals("$") Then
+                            k = CType(commandString, Char)
+                            output.write(k)
+                        ElseIf str.equals("0") Then
+                            k = CType(tcketEraseData1, Char)
+                            output.write(k)
+                        Else
+                            disConnect()
+                        End If
+
+                    ElseIf dataType.equals("UploadWayBill") Then
+                        If str.equals("$") Then
+                            k = CType(commandString, Char)
+                            output.write(k)
+                        ElseIf (str.equals("O") _
+                                    AndAlso (chkWayBillSend = 0)) Then
+                            chkWayBillSend = 1
+                            output.write(conCatenateWayBill.getBytes(java.nio.charset.Charset.forName("UTF-8")))
+                        Else
+                            disConnect()
+                        End If
+
+                    ElseIf dataType.equals("Cardtopup") Then
+                        If str.equals("$") Then
+                            k = CType(commandString, Char)
+                            output.write(k)
+                        End If
+
+                        txtSmartCardData.append(str)
+                        Dim arrayOfChar2() As Char = str.toCharArray
+                        localStringBuffer = New StringBuffer
+                        m = 0
+                        Do While (m < arrayOfChar2.length)
+                            If Integer.toHexString(arrayOfChar2(m)).equals("4") Then
+                                disConnect()
+                                calculateTopupAmount()
+                            End If
+
+                            m = (m + 1)
+                        Loop
+
+                    End If
+
+                End If
+
+                If dataType.equals("Ticket") Then
+                    txtData.append(str)
+                ElseIf dataType.equals("WayBill") Then
+                    txtWayData.append(str)
+                End If
+
+
+            End While
+
+        Catch localException As Exception
+
+        End Try
+
+    End If
+
+End Sub
+
+Public Function initIOStream() As Boolean
+    Dim bool As Boolean = False
+    Try
+        input = serialPort.getInputStream
+        output = serialPort.getOutputStream
+        Return True
+    Catch localIOException As java.io.IOException
+
+    End Try
+
+    Return bool
+End Function
+
+Public Sub connect()
+    Try
+        Dim str As String = CType(cmbPortList.getSelectedItem, String)
+        Dim localCommPortIdentifier As CommPortIdentifier = CommPortIdentifier.getPortIdentifier(str)
+        If Not localCommPortIdentifier.isCurrentlyOwned Then
+            commPort = localCommPortIdentifier.open(getClass.getName, 2000)
+            If (TypeOf commPort Is SerialPort) Then
+                serialPort = CType(commPort, SerialPort)
+                serialPort.setSerialPortParams(115200, 8, 1, 0)
+                serialPort.enableReceiveTimeout(0)
+            End If
+
+        End If
+
+    Catch localException As Exception
+
+    End Try
+
+End Sub
+
+Public Sub getEtimDetails()
+    Dim str1 As String = ""
+    etmNumberValue = ""
+    Dim str2 As String = txtWayData.getText
+    str2 = str2.replaceAll("[$]", "")
+    str2 = str2.trim
+    If str2.contains("BALAJI") Then
+        machineType = "BALAJI"
+        etmNumberValue = str2.substring(63, 66)
+    Else
+        machineType = "SAI"
+        etmNumberValue = str2.substring(63, 66)
+    End If
+
+End Sub
+
+Public Sub calculateFare()
+    txtTotalCollection.setText("")
+    txtCashCollected.setText("")
+    txtAmtDifference.setText("")
+    txtTotalTopupCollection.setText("")
+    Dim str1 As String = txtData.getText
+    str1 = str1.replaceAll("[$]", "")
+    str1 = str1.trim
+    If Not str1.equals("") Then
+        Dim arrayOfString() As String = txtData.getText.split("\" & vbLf)
+        Dim i As Integer = arrayOfString.length
+        Dim str2 As String = ""
+        Dim str3 As String = ""
+        Dim f1 As Single = 0.0!
+        Dim f2 As Single = 0.0!
+        Dim f3 As Single = 0.0!
+        Dim j As Integer = 0
+        Do While (j < i)
+            Try
+                str2 = arrayOfString(j)
+                str2 = str2.replaceAll("[$]", "")
+                str2 = str2.replaceAll("" & vbLf, "")
+                str2 = str2.replaceAll("" & vbCr, "")
+                If (Not str2.equals("") _
+                            AndAlso (str2.length > 1)) Then
+                    If machineType.equals("BALAJI") Then
+                        str3 = str2.substring(15, 19).trim
+                    Else
+                        str3 = str2.substring(7, 11).trim
+                    End If
+
+                    If Not str3.equals("CARD") Then
+                        If machineType.equals("BALAJI") Then
+                            f1 = (f1 + Integer.parseInt(str2.substring(44, 51)))
+                        Else
+                            f1 = (f1 + Integer.parseInt(str2.substring(36, 43)))
+                        End If
+
+                    End If
+
+                End If
+
+            Catch localException As Exception
+
+            End Try
+
+            j = (j + 1)
+        Loop
+
+        f2 = (f1 / 100.0!)
+        txtTotalTicketCollection.setText(("" + f2))
+        calculateTotalFare()
+    End If
+
+End Sub
+
+Public Sub calculateTopupAmount()
+    Dim str1 As String = txtSmartCardData.getText
+    str1 = str1.replaceAll("[$]", "")
+    str1 = str1.trim
+    If Not str1.equals("") Then
+        Dim arrayOfString() As String = str1.split("@")
+        Dim i As Integer = arrayOfString.length
+        Dim str2 As String = ""
+        Dim f1 As Single = 0.0!
+        Dim f2 As Single = 0.0!
+        Dim j As Integer = 0
+        Do While (j < i)
+            str2 = arrayOfString(j)
+            str2 = str2.replaceAll("[$]", "")
+            str2 = str2.replaceAll("" & vbLf, "")
+            str2 = str2.replaceAll("" & vbCr, "")
+            If (Not str2.equals("") _
+                        AndAlso (str2.length > 1)) Then
+                f1 = (f1 + Integer.parseInt(str2.substring(16, 32).trim))
+            End If
+
+            j = (j + 1)
+        Loop
+
+        f2 = (f1 / 100.0!)
+        txtTotalTopupCollection.setText(("" + f2))
+        calculateTotalFare()
+        btnUploadCardData.setEnabled(True)
+    End If
+
+End Sub
+
+Public Sub calculateTotalFare()
+    Dim f1 As Single = 0.0!
+    Dim f2 As Single = 0.0!
+    Dim f3 As Single = 0.0!
+    Dim f4 As Single = 0.0!
+    Dim str1 As String = txtTotalTicketCollection.getText.trim
+    Dim str2 As String = txtTotalTopupCollection.getText.trim
+    Dim str3 As String = txtTotalCouponCollection.getText.trim
+    If Not str1.equals("") Then
+        f2 = Float.parseFloat(str1)
+    End If
+
+    If Not str2.equals("") Then
+        f3 = Float.parseFloat(str2)
+    End If
+
+    If Not str3.equals("") Then
+        f4 = Float.parseFloat(str3)
+    End If
+
+    f1 = (f2 _
+                + (f3 + f4))
+    txtTotalCollection.setText(("" + f1))
+    txtCashCollected.setText(("" + f1))
+    txtAmtDifference.setText(("" + f1))
+End Sub
+
+Public Sub actionPerformed(ByVal paramActionEvent As ActionEvent)
+    If (paramActionEvent.getSource = btnCollectData) Then
+        Dim str1 As String = txtWayData.getText
+        str1 = str1.replaceAll("$", "")
+        If (str1.length >= 82) Then
+            btnCollectData.setEnabled(False)
+            setCursor(busyCursor)
+            insertSmsContent(etmNumberValue, "Download Ticket")
+            commandString = ticketData
+            txtData.setText("")
+            txtTotalCollection.setText("")
+            txtCashCollected.setText("")
+            txtAmtDifference.setText("")
+            txtTotalTopupCollection.setText("")
+            txtTotalTicketCollection.setText("")
+            dataType = "Ticket"
+            Try
+                connect()
+                If (initIOStream = True) Then
+                    initListener()
+                    Dim k As Integer = CType(dollarData, Char)
+                    output.write(k)
+                End If
+
+                setCursor(defaultCursor)
+            Catch localException6 As Exception
+
+            End Try
+
+        Else
+            JOptionPane.showMessageDialog(Me, "Please collect the waybill first...", "Error", 0)
+        End If
+
+    ElseIf (paramActionEvent.getSource = btnWayBill) Then
+        commandString = wayBillData
+        txtData.setText("")
+        txtWayData.setText("")
+        txtSmartCardData.setText("")
+        txtTotalCollection.setText("")
+        txtCashCollected.setText("")
+        txtAmtDifference.setText("")
+        txtTotalTopupCollection.setText("")
+        txtTotalTicketCollection.setText("")
+        btnUploadData.setEnabled(False)
+        btnGetCardTopUp.setEnabled(False)
+        btnUploadCardData.setEnabled(False)
+        btnCollectCash.setEnabled(False)
+        dataType = "WayBill"
+        Try
+            connect()
+            If (initIOStream = True) Then
+                initListener()
+                Dim i As Integer = CType(dollarData, Char)
+                output.write(i)
+            End If
+
+        Catch localException1 As Exception
+
+        End Try
+
+    Else
+        Dim str2 As String
+        Dim str5 As String
+        Dim str7 As String
+        Dim str9 As String
+        Dim localObject6 As Object
+        Dim localObject7 As Object
+        Dim localObject8 As Object
+        Dim localObject9 As Object
+        Dim str11 As String
+        Dim localObject11 As Object
+        Dim localObject12 As Object
+        Dim localObject13 As Object
+        Dim localObject15 As Object
+        Dim str13 As String
+        Dim localObject18 As Object
+        If (paramActionEvent.getSource = btnUploadCardData) Then
+            btnUploadCardData.setEnabled(False)
+            btnCollectCash.setEnabled(True)
+            insertSmsContent(etmNumberValue, "Upload Topup Data")
+            str2 = txtSmartCardData.getText
+            str2 = str2.replaceAll("[$]", "")
+            str2 = str2.replaceAll("o", "")
+            str2 = str2.replaceAll("O", "")
+            str2 = str2.trim
+            If Not str2.equals("") Then
+                str5 = ""
+                str7 = ""
+                str9 = ""
+                localObject6 = ""
+                localObject7 = ""
+                localObject8 = ""
+                localObject9 = ""
+                str11 = ""
+                localObject11 = ""
+                localObject12 = ""
+                localObject13 = ""
+                Try
+                        Class.forName("com.mysql.jdbc.Driver").newInstance
+                        db = DriverManager.getConnection(("jdbc:mysql://"  _
+                                        + (server + (":3306/" + database))), username, password)
+                        dbmd = db.getMetaData
+                        sql = db.createStatement
+                    Catch localException13 As Exception
+                        btnUploadCardData.setEnabled(true)
+                        JOptionPane.showMessageDialog(Me, "Error...Please try later", "Smart Card Upload", 0)
+                        Return
+                    End Try
+
+                    Try 
+                        setCursor(busyCursor)
+    Dim localDate1 As Date = New Date
+                        localObject15 = New Timestamp(localDate1.getTime)
+                        str13 = txtWayData.getText
+                        str13 = str13.replaceAll("[$]", "")
+                        str5 = str13.substring(0, 7)
+                        str7 = str13.substring(7, 17)
+                        str9 = str13.substring(17, 27)
+                        localObject6 = str13.substring(27, 37)
+                        localObject7 = str13.substring(37, 46)
+                        localObject8 = str13.substring(46, 48)
+                        localObject9 = str13.substring(48, 57)
+                        str11 = str13.substring(57, 59)
+                        localObject11 = str13.substring(59, 63)
+                        localObject12 = str13.substring(63, 66)
+                        localObject13 = str13.substring(66, 82)
+                        localObject18 = db.prepareStatement("INSERT INTO tbl_waybill_handheld_smartcard_data (fldv_waybill_no,fldv_conductor_name, "& vbTab&"fldv_driver_na"& _ 
+                            "me,fldv_vehicle_number,fldv_division_name,fldv_division_code,fldv_depot_name,fldv_depot_code,fldv_sc"& _ 
+                            "hedule,fldv_etm_number,fldv_waybill_date_time,fldl_smartcard_data,fldc_status,fldi_user_id,flddt_las"& _ 
+                            "t_upd_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())")
+                        CType(localObject18,PreparedStatement).setString(1, str5)
+                        CType(localObject18,PreparedStatement).setString(2, str7)
+                        CType(localObject18,PreparedStatement).setString(3, str9)
+                        CType(localObject18,PreparedStatement).setString(4, CType(localObject6,String))
+                        CType(localObject18,PreparedStatement).setString(5, CType(localObject7,String))
+                        CType(localObject18,PreparedStatement).setString(6, CType(localObject8,String))
+                        CType(localObject18,PreparedStatement).setString(7, CType(localObject9,String))
+                        CType(localObject18,PreparedStatement).setString(8, str11)
+                        CType(localObject18,PreparedStatement).setString(9, CType(localObject11,String))
+                        CType(localObject18,PreparedStatement).setString(10, CType(localObject12,String))
+                        CType(localObject18,PreparedStatement).setString(11, CType(localObject13,String))
+                        CType(localObject18,PreparedStatement).setString(12, str2)
+                        CType(localObject18,PreparedStatement).setString(13, "N")
+                        CType(localObject18,PreparedStatement).setInt(14, sessId)
+                        CType(localObject18,PreparedStatement).executeUpdate
+                        CType(localObject18,PreparedStatement).close
+                        JOptionPane.showMessageDialog(Me, "Smart Card Details uploaded successfully...", "Smart Card Upload", 0)
+                        db.close
+                        btnUploadCardData.setEnabled(true)
+                        btnCollectCash.setEnabled(true)
+                        setCursor(defaultCursor)
+                    Catch localException14 As Exception
+                        btnUploadCardData.setEnabled(true)
+                        JOptionPane.showMessageDialog(Me, "Error...Please try later", "Smart Card Upload", 0)
+                        Return
+                    End Try
+
+                End If
+
+            Else
+    Dim localObject21 As Object
+    Dim i17 As Integer
+    Dim i16 As Integer
+                If (paramActionEvent.getSource = btnUploadData) Then
+                    str2 = txtData.getText
+                    str2 = str2.replaceAll("[$]", "")
+                    str2 = str2.trim
+                    If Not str2.equals("") Then
+                        btnUploadData.setEnabled(false)
+                        insertSmsContent(etmNumberValue, "Upload Ticket")
+                        str5 = ""
+                        str7 = ""
+                        str9 = ""
+                        localObject6 = ""
+                        localObject7 = ""
+                        localObject8 = ""
+                        localObject9 = ""
+                        str11 = ""
+                        localObject11 = ""
+                        localObject12 = ""
+                        localObject13 = ""
+                        Try 
+                            Class.forName("com.mysql.jdbc.Driver").newInstance
+                            db = DriverManager.getConnection(("jdbc:mysql://"  _
+                                            + (server + (":3306/" + database))), username, password)
+                            dbmd = db.getMetaData
+                            sql = db.createStatement
+                        Catch localException15 As Exception
+                            localObject15 = New java.io.StringWriter
+                            localException15.printStackTrace(New java.io.PrintWriter(CType(localObject15,java.io.Writer)))
+                            btnUploadData.setEnabled(true)
+                            panelProgress.setVisible(false)
+                            JOptionPane.showMessageDialog(Me, "Error...Please try later", "Ticket Upload", 0)
+                            Return
+                        End Try
+
+                        Try 
+                            setCursor(busyCursor)
+        Dim localDate2 As Date = New Date
+                            localObject15 = New Timestamp(localDate2.getTime)
+                            str13 = txtWayData.getText
+                            str13 = str13.replaceAll("[$]", "")
+                            If machineType.equals("BALAJI") Then
+                                str5 = str13.substring(0, 7)
+                                str7 = str13.substring(7, 17)
+                                str9 = str13.substring(17, 27)
+                                localObject6 = str13.substring(27, 37)
+                                localObject7 = str13.substring(37, 46)
+                                localObject8 = str13.substring(46, 48)
+                                localObject9 = str13.substring(48, 57)
+                                str11 = str13.substring(57, 59)
+                                localObject11 = str13.substring(59, 63)
+                                localObject12 = str13.substring(63, 66)
+                                localObject13 = str13.substring(93, 109)
+                            Else
+                                str5 = str13.substring(0, 7)
+                                str7 = str13.substring(7, 17)
+                                str9 = str13.substring(17, 27)
+                                localObject6 = str13.substring(27, 37)
+                                localObject7 = str13.substring(37, 46)
+                                localObject8 = str13.substring(46, 48)
+                                localObject9 = str13.substring(48, 57)
+                                str11 = str13.substring(57, 59)
+                                localObject11 = str13.substring(59, 63)
+                                localObject12 = str13.substring(63, 66)
+                                localObject13 = str13.substring(66, 82)
+                            End If
+
+        Dim localObject19() As Object = txtData.getText.split("\" & vbLf)
+        Dim i14 As Integer = Array.getLength(localObject19)
+        'localObject18.length;
+                            localObject21 = ""
+                            i17 = 0
+        Dim str15 As String = ""
+        Dim i15 As Integer = 0
+                            Do While (i15 < i14)
+                                Try 
+                                    i16 = 0
+                                    localObject21 = localObject19(i15)
+                                    localObject21 = CType(localObject21,String).replaceAll("[$]", "")
+                                    localObject21 = CType(localObject21,String).replaceAll(""& vbLf, "")
+                                    localObject21 = CType(localObject21,String).replaceAll(""& vbCr, "")
+                                    If (Not CType(localObject21,String).equals("")  _
+                                                AndAlso (CType(localObject21,String).length > 1)) Then
+                                        Try 
+                                            Try 
+                                                i17 = (i17 + 1)
+                                                If str15.equals("") Then
+                                                    str15 = ("('"  _
+                                                                + (str5 + ("','"  _
+                                                                + (str7 + ("','"  _
+                                                                + (str9 + ("','"  _
+                                                                + (CType(localObject6,String) + ("','"  _
+                                                                + (CType(localObject7,String) + ("','"  _
+                                                                + (CType(localObject8,String) + ("','"  _
+                                                                + (CType(localObject9,String) + ("','"  _
+                                                                + (str11 + ("','"  _
+                                                                + (CType(localObject11,String) + ("','"  _
+                                                                + (CType(localObject12,String) + ("','"  _
+                                                                + (CType(localObject13,String) + ("','"  _
+                                                                + (CType(localObject21,String) + ("','"  _
+                                                                + (machineType + ("','N','"  _
+                                                                + (sessId + "',NOW())"))))))))))))))))))))))))))))
+                                                Else
+                                                    str15 = (str15 + (" ," + ("('"  _
+                                                                + (str5 + ("','"  _
+                                                                + (str7 + ("','"  _
+                                                                + (str9 + ("','"  _
+                                                                + (CType(localObject6,String) + ("','"  _
+                                                                + (CType(localObject7,String) + ("','"  _
+                                                                + (CType(localObject8,String) + ("','"  _
+                                                                + (CType(localObject9,String) + ("','"  _
+                                                                + (str11 + ("','"  _
+                                                                + (CType(localObject11,String) + ("','"  _
+                                                                + (CType(localObject12,String) + ("','"  _
+                                                                + (CType(localObject13,String) + ("','"  _
+                                                                + (CType(localObject21,String) + ("','"  _
+                                                                + (machineType + ("','N','"  _
+                                                                + (sessId + "',NOW())"))))))))))))))))))))))))))))))
+                                                End If
+
+                                                If (i17 = 100) Then
+        Dim localPreparedStatement5 As PreparedStatement = db.prepareStatement(("INSERT INTO tbl_waybill_ticket_handheld_data_dummy (fldv_waybill_no,fldv_conductor_name,fldv_driver_n" & _
+            "ame,fldv_vehicle_number,fldv_division_name,fldv_division_code,fldv_depot_name,fldv_depot_code,fldv_s" & _
+            "chedule,fldv_etm_number,fldv_waybill_date_time,fldv_ticket_data,fldv_vendor_name,fldc_status,fldi_us" & _
+            "er_id,flddt_last_upd_date) VALUES " _
+                        + (str15 + "")))
+                                                    localPreparedStatement5.executeUpdate
+                                                    localPreparedStatement5.close
+                                                    i17 = 0
+                                                    str15 = ""
+                                                End If
+
+                                            Catch localException18 As Exception
+                                                btnUploadData.setEnabled(true)
+                                                panelProgress.setVisible(false)
+                                                JOptionPane.showMessageDialog(Me, "Error...Please try later", "Ticket Upload", 0)
+                                                setCursor(defaultCursor)
+                                                Return
+                                            End Try
+
+                                        Catch localException19 As Exception
+                                            btnUploadData.setEnabled(true)
+                                            panelProgress.setVisible(false)
+                                            JOptionPane.showMessageDialog(Me, "Error...Please try later", "Ticket Upload", 0)
+                                            setCursor(defaultCursor)
+                                            Return
+                                        End Try
+
+                                    End If
+
+                                Catch localException20 As Exception
+                                    btnUploadData.setEnabled(true)
+                                    panelProgress.setVisible(false)
+                                    JOptionPane.showMessageDialog(Me, "Error...Please try later", "Ticket Upload", 0)
+                                    setCursor(defaultCursor)
+                                    Return
+                                End Try
+
+                                i15 = (i15 + 1)
+                            Loop
+
+                            If (i17 < 100) Then
+                                Try 
+        Dim localPreparedStatement6 As PreparedStatement = db.prepareStatement(("INSERT INTO tbl_waybill_ticket_handheld_data_dummy (fldv_waybill_no,fldv_conductor_name,fldv_driver_n" & _
+            "ame,fldv_vehicle_number,fldv_division_name,fldv_division_code,fldv_depot_name,fldv_depot_code,fldv_s" & _
+            "chedule,fldv_etm_number,fldv_waybill_date_time,fldv_ticket_data,fldv_vendor_name,fldc_status,fldi_us" & _
+            "er_id,flddt_last_upd_date) VALUES " _
+                        + (str15 + "")))
+                                    localPreparedStatement6.executeUpdate
+                                    localPreparedStatement6.close
+                                    i17 = 0
+                                    str15 = ""
+                                Catch localException21 As Exception
+                                    btnUploadData.setEnabled(true)
+                                    panelProgress.setVisible(false)
+                                    JOptionPane.showMessageDialog(Me, "Error...Please try later", "Ticket Upload", 0)
+                                    setCursor(defaultCursor)
+                                    Return
+                                End Try
+
+                            End If
+
+                            JOptionPane.showMessageDialog(Me, "Tickets uploaded successfully...", "Ticket Upload", 0)
+                            db.close
+                            panelProgress.setVisible(false)
+                            btnUploadData.setEnabled(true)
+                            If machineType.equals("BALAJI") Then
+                                btnCollectCash.setEnabled(true)
+                            Else
+                                btnGetCardTopUp.setEnabled(true)
+                            End If
+
+                            setCursor(defaultCursor)
+                        Catch localException16 As Exception
+                            panelProgress.setVisible(false)
+                            btnUploadData.setEnabled(true)
+                            setCursor(defaultCursor)
+                        End Try
+
+                    End If
+
+                Else
+        Dim m As Integer
+                    If (paramActionEvent.getSource = btnEraseData) Then
+                        str2 = txtWayData.getText
+                        str2 = str2.replaceAll("$", "")
+                        If (str2.length >= 82) Then
+                            insertSmsContent(etmNumberValue, "Erase Ticket")
+                            m = JOptionPane.showConfirmDialog(Me, "Do you want to erase the tickets from the Hand held device?", "Erase Tickets", 0, 2)
+                            If (m = 0) Then
+                                dataType = "Erase"
+                                commandString = ticketEraseData
+                                Try 
+                                    connect
+                                    If (initIOStream = true) Then
+                                        initListener
+        Dim i3 As Integer = CType(dollarData, Char)
+                                        output.write(i3)
+                                    End If
+
+                                Catch localException11 As Exception
+
+                                End Try
+
+                            End If
+
+                        Else
+                            JOptionPane.showMessageDialog(Me, "Please collect the waybill first...", "Error", 0)
+                        End If
+
+                    ElseIf (paramActionEvent.getSource = btnGetCardTopUp) Then
+                        insertSmsContent(etmNumberValue, "Download Topup Data")
+                        btnUploadCardData.setEnabled(true)
+                        dataType = "Cardtopup"
+                        txtSmartCardData.setText("")
+                        commandString = cardTopUp
+                        Try 
+                            connect
+                            If (initIOStream = true) Then
+                                initListener
+        Dim j As Integer = CType(dollarData, Char)
+                                output.write(j)
+                            End If
+
+                        Catch localException2 As Exception
+
+                        End Try
+
+                    Else
+        Dim str3 As String
+                        If (paramActionEvent.getSource = btnDelWayBill) Then
+                            str3 = txtWayData.getText
+                            str3 = str3.replaceAll("$", "")
+                            If (str3.length >= 82) Then
+                                insertSmsContent(etmNumberValue, "Delete Waybill")
+                                m = JOptionPane.showConfirmDialog(Me, "Do you want to erase the waybill from the Hand held device?", "Erase Waybill", 0, 2)
+                                If (m = 0) Then
+                                    dataType = "DelWayBill"
+                                    commandString = wayBillEraseData
+                                    Try 
+                                        connect
+                                        If (initIOStream = true) Then
+                                            initListener
+        Dim i4 As Integer = CType(dollarData, Char)
+                                            output.write(i4)
+                                        End If
+
+                                    Catch localException12 As Exception
+
+                                    End Try
+
+                                End If
+
+                            Else
+                                JOptionPane.showMessageDialog(Me, "Please collect the waybill first...", "Error", 0)
+                            End If
+
+                        Else
+        Dim localObject3 As Object
+                            If (paramActionEvent.getSource = btnWayBillNumber) Then
+                                Try 
+                                    model.setRowCount(0)
+                                    setCursor(busyCursor)
+                                    Class.forName("com.mysql.jdbc.Driver").newInstance
+                                    db = DriverManager.getConnection(("jdbc:mysql://"  _
+                                                    + (server + (":3306/" + database))), username, password)
+                                    dbmd = db.getMetaData
+                                    sql = db.createStatement
+                                    str3 = txtWayBillNo.getText
+                                    str3 = str3.trim
+            Dim localPreparedStatement1 As PreparedStatement
+                                    If Not str3.equals("") Then
+                                        localPreparedStatement1 = db.prepareStatement(("select fldv_waybill_no,fldv_conductor_employee_code ,fldv_driver_employee_code ,fldv_vehicle_number,f"& _ 
+                                            "ldv_division_name,fldv_division_code,fldv_depot_name,fldv_depot_code,fldv_schedule,fldv_etm_number,f"& _ 
+                                            "ldv_waybill_created_date from tbl_waybill_mst where fldv_waybill_no = '"  _
+                                                        + (str3 + "' and fldc_status = 'Y' and fldc_waybill_open_close_status = 'N'")))
+                                    Else
+                                        localPreparedStatement1 = db.prepareStatement("select fldv_waybill_no,fldv_conductor_employee_code ,fldv_driver_employee_code ,fldv_vehicle_number,f"& _ 
+                                            "ldv_division_name,fldv_division_code,fldv_depot_name,fldv_depot_code,fldv_schedule,fldv_etm_number,f"& _ 
+                                            "ldv_waybill_created_date from tbl_waybill_mst where  fldc_status = 'Y' and fldc_waybill_open_close_s"& _ 
+                                            "tatus = 'N' order by fldv_waybill_no asc")
+                                    End If
+
+                                    localObject3 = localPreparedStatement1.executeQuery
+
+                                    While CType(localObject3,ResultSet).next
+                                        model.addRow(New Object() {CType(localObject3,ResultSet).getString(1), CType(localObject3,ResultSet).getString(2), CType(localObject3,ResultSet).getString(3), CType(localObject3,ResultSet).getString(4), CType(localObject3,ResultSet).getString(10), CType(localObject3,ResultSet).getString(5), CType(localObject3,ResultSet).getString(6), CType(localObject3,ResultSet).getString(7), CType(localObject3,ResultSet).getString(8), CType(localObject3,ResultSet).getString(9), CType(localObject3,ResultSet).getString(11)})
+
+                                    End While
+
+                                    CType(localObject3,ResultSet).close
+                                    db.close
+                                    setCursor(defaultCursor)
+                                Catch localException3 As Exception
+
+                                End Try
+
+                            Else
+            Dim localObject14 As Object
+                                If (paramActionEvent.getSource = btnUploadWayBill) Then
+                                    Try 
+            Dim str4 As String = txtWayData.getText
+                                        str4 = str4.replaceAll("$", "")
+                                        If (str4.length < 82) Then
+                                            JOptionPane.showMessageDialog(Me, "Please collect the waybill first...", "Error", 0)
+                                        Else
+                                            chkWayBillSend = 0
+            Dim n As Integer = tblWayBillDetails.getSelectedRow
+                                            String.format("%1$-7s", New Object() {"san"})
+                                            localObject3 = String.format("%1$-7s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 0),String)})
+                                            str9 = String.format("%1$-10s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 1),String)})
+                                            localObject6 = String.format("%1$-10s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 2),String)})
+                                            localObject7 = String.format("%1$-10s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 3),String)})
+                                            localObject8 = String.format("%1$-3s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 4),String)})
+                                            localObject9 = String.format("%1$-9s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 5),String)})
+                                            str11 = String.format("%1$-2s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 6),String)})
+                                            localObject11 = String.format("%1$-9s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 7),String)})
+                                            localObject12 = String.format("%1$-2s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 8),String)})
+                                            localObject13 = String.format("%1$-4s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 9),String)})
+                                            localObject14 = String.format("%1$-16s", New Object() {CType(tblWayBillDetails.getModel.getValueAt(n, 10),String)})
+            Dim c As Char = CType(endOfString, Char)
+                                            If machineType.equals("BALAJI") Then
+                                                conCatenateWayBill = (CType(localObject3,String)  _
+                                                            + (str9  _
+                                                            + (CType(localObject6,String)  _
+                                                            + (CType(localObject7,String)  _
+                                                            + (CType(localObject9,String)  _
+                                                            + (str11  _
+                                                            + (CType(localObject11,String)  _
+                                                            + (CType(localObject12,String)  _
+                                                            + (CType(localObject13,String)  _
+                                                            + (CType(localObject8,String)  _
+                                                            + (CType(localObject14,String)  _
+                                                            + (taxFactor + c))))))))))))
+                                            Else
+                                                conCatenateWayBill = (CType(localObject3,String)  _
+                                                            + (str9  _
+                                                            + (CType(localObject6,String)  _
+                                                            + (CType(localObject7,String)  _
+                                                            + (CType(localObject9,String)  _
+                                                            + (str11  _
+                                                            + (CType(localObject11,String)  _
+                                                            + (CType(localObject12,String)  _
+                                                            + (CType(localObject13,String)  _
+                                                            + (CType(localObject8,String)  _
+                                                            + (CType(localObject14,String) + c)))))))))))
+                                            End If
+
+                                            dataType = "UploadWayBill"
+                                            commandString = wayBillUpload
+                                            Try 
+                                                connect
+                                                If (initIOStream = true) Then
+                                                    initListener
+            Dim i13 As Integer = CType(dollarData, Char)
+                                                    output.write(i13)
+                                                End If
+
+                                            Catch localException17 As Exception
+
+                                            End Try
+
+                                        End If
+
+                                    Catch localException4 As Exception
+
+                                    End Try
+
+                                Else
+            Dim localObject1 As Object
+            Dim localObject2 As Object
+                                    If (paramActionEvent.getSource = btnCollectCash) Then
+                                        HidePanel
+                                        panelHeaderAll.setVisible(true)
+                                        panelCashCollection.setVisible(true)
+                                        insertSmsContent(etmNumberValue, "Cash Collection")
+                                        localObject1 = New Date
+                                        localObject2 = New Timestamp(CType(localObject1,Date).getTime)
+                                        localObject3 = ("" + localObject2)
+                                        localObject3 = CType(localObject3,String).substring(0, 10)
+                                        txtCashCollDate.setText(CType(localObject3,String))
+                                    ElseIf (paramActionEvent.getSource = btnGetTotalAmount) Then
+                                        localObject1 = getCashCollected(txtCashCollDate.getText)
+                                        txtCashCollected.setText(CType(localObject1,String))
+                                    Else
+            Dim localObject17 As Object
+            Dim localObject20 As Object
+                                        If (paramActionEvent.getSource = btnUploadCouponData) Then
+                                            localObject1 = ""
+                                            Try 
+                                                localObject2 = CType(cmbConductor.getSelectedItem,String)
+                                                localObject2 = CType(localObject2,String).trim
+            Dim i5 As Integer = tblConductorCoupon.getRowCount
+            Dim i7 As Integer = 0
+                                                localObject6 = ""
+                                                Class.forName("com.mysql.jdbc.Driver").newInstance
+                                                db = DriverManager.getConnection(("jdbc:mysql://"  _
+                                                                + (server + (":3306/" + database))), username, password)
+                                                dbmd = db.getMetaData
+                                                sql = db.createStatement
+                                                localObject7 = db.prepareStatement(("select fldv_waybill_no from  tbl_waybill_mst where fldv_conductor_employee_code = '"  _
+                                                                + (CType(localObject2,String) + "' and fldc_status = 'Y' and fldc_waybill_open_close_status = 'N' order by flddt_date desc limit 0,1")))
+                                                localObject8 = CType(localObject7,PreparedStatement).executeQuery
+
+                                                While CType(localObject8,ResultSet).next
+                                                    localObject6 = CType(localObject8,ResultSet).getString(1)
+
+                                                End While
+
+                                                CType(localObject8,ResultSet).close
+                Dim i9 As Integer = 0
+                                                Do While (i9 < i5)
+                                                    localObject9 = Boolean.valueOf(true)
+                                                    localObject11 = tblConductorCoupon.getModel.getValueAt(i9, 0)
+                                                    localObject12 = tblConductorCoupon.getModel.getValueAt(i9, 1)
+                                                    localObject13 = tblConductorCoupon.getModel.getValueAt(i9, 2)
+                                                    localObject14 = tblConductorCoupon.getModel.getValueAt(i9, 3)
+                Dim localObject16 As Object = tblConductorCoupon.getModel.getValueAt(i9, 4)
+                                                    localObject17 = tblConductorCoupon.getModel.getValueAt(i9, 5)
+                                                    localObject18 = tblConductorCoupon.getModel.getValueAt(i9, 7)
+                                                    Try 
+                Dim str14 As String = localObject13.toString
+                                                        localObject20 = localObject14.toString
+                                                        localObject21 = localObject18.toString
+                                                        If Not CType(localObject20,String).equals("") Then
+                                                            i16 = Integer.parseInt(CType(localObject20,String))
+                                                            i17 = Integer.parseInt(str14)
+                Dim i18 As Integer = Integer.parseInt(CType(localObject21, String))
+                                                            If (i16 >= 0) Then
+                                                                If ((i16 < i17)  _
+                                                                            AndAlso (i16 > 0)) Then
+                                                                    i7 = 1
+                                                                    JOptionPane.showMessageDialog(Me, "Ticket End Number should be greater than start number", "Ticket Number", 0)
+                                                                    Return
+                                                                End If
+
+                                                                If ((i16 > i18)  _
+                                                                            AndAlso (i16 > 0)) Then
+                                                                    i7 = 1
+                                                                    JOptionPane.showMessageDialog(Me, "Ticket End Number should be less than max number", "Ticket Number", 0)
+                                                                    Return
+                                                                End If
+
+                Dim str16 As String = localObject16.toString
+                                                                If CType(localObject1,String).equals("") Then
+                                                                    localObject1 = ("('0','','"  _
+                                                                                + (CType(localObject2,String) + ("','0','"  _
+                                                                                + (localObject12 + ("','"  _
+                                                                                + (localObject11 + ("','"  _
+                                                                                + (str14 + ("','"  _
+                                                                                + (CType(localObject20,String) + ("','"  _
+                                                                                + (localObject17 + ("','"  _
+                                                                                + (str16 + ("',NOW(),'N','"  _
+                                                                                + (sessId + ("',NOW(),'"  _
+                                                                                + (CType(localObject6,String) + "')"))))))))))))))))))
+                                                                Else
+                                                                    localObject1 = (CType(localObject1,String) + (" ," + ("('0','','"  _
+                                                                                + (CType(localObject2,String) + ("','0','"  _
+                                                                                + (localObject12 + ("','"  _
+                                                                                + (localObject11 + ("','"  _
+                                                                                + (str14 + ("','"  _
+                                                                                + (CType(localObject20,String) + ("','"  _
+                                                                                + (localObject17 + ("','"  _
+                                                                                + (str16 + ("',NOW(),'N','"  _
+                                                                                + (sessId + ("',NOW(),'"  _
+                                                                                + (CType(localObject6,String) + "')"))))))))))))))))))))
+                                                                End If
+
+                                                            Else
+                                                                i7 = 1
+                                                                JOptionPane.showMessageDialog(Me, "Ticket Number should be integer", "Ticket Number", 0)
+                                                                Return
+                                                            End If
+
+                                                        End If
+
+                                                    Catch localNumberFormatException As NumberFormatException
+                                                        i7 = 1
+                                                        JOptionPane.showMessageDialog(Me, "Ticket Number should be integer", "Ticket Number", 0)
+                                                        Return
+                                                    End Try
+
+                                                    i9 = (i9 + 1)
+                                                Loop
+
+                                                If (i7 = 0) Then
+                Dim localPreparedStatement3 As PreparedStatement = db.prepareStatement(("insert into  tbl_conductor_coupon_collection_dummy (fldi_conductor_id,fldv_conductor_name,fldv_employ" & _
+                    "ee_code, fldi_coupon_id,fldv_coupon_blok_no,fldi_coupon_amount,fldi_coupon_start_number,fldi_coupon_" & _
+                    "end_number,fldv_total_amount,fldi_no_of_tickets,flddt_date,fldc_status,fldi_user_id,flddt_last_upd_d" & _
+                    "ate,fldv_waybill_no) values " _
+                                + (CType(localObject1, String) + " ")))
+                                                    localPreparedStatement3.executeUpdate
+                                                    localPreparedStatement3.close
+                                                    db.close
+                                                    JOptionPane.showMessageDialog(Me, "Data uploaded successfully...", "Ticket Upload", 0)
+                                                    couponModel.setRowCount(0)
+                                                    btnCouponCollectCash.setEnabled(true)
+                                                End If
+
+                                            Catch localException7 As Exception
+                                                JOptionPane.showMessageDialog(Me, "Error...Please try later", "Conductor", 0)
+                                            End Try
+
+                                        ElseIf (paramActionEvent.getSource = btnCouponCollectCash) Then
+                                            HidePanel
+                                            panelHeaderAll.setVisible(true)
+                                            panelCashCollection.setVisible(true)
+                                            insertSmsContent(etmNumberValue, "Cash Collection")
+                                            localObject1 = New Date
+                Dim localTimestamp1 As Timestamp = New Timestamp(CType(localObject1, Date).getTime)
+                Dim str8 As String = ("" + localTimestamp1)
+                                            str8 = str8.substring(0, 10)
+                                            txtCashCollDate.setText(str8)
+                                        Else
+                Dim localObject5 As Object
+                Dim localObject4 As Object
+                Dim localObject10 As Object
+                Dim i12 As Integer
+                Dim localObject19 As Object
+                Dim localResultSet As ResultSet
+                                            If (paramActionEvent.getSource = btnGetCouponAmount) Then
+                                                btnUploadCouponData.setEnabled(false)
+                                                btnGetCouponAmount.setEnabled(false)
+                                                localObject1 = CType(cmbConductor.getSelectedItem,String)
+                                                localObject1 = CType(localObject1,String).trim
+                                                If Not CType(localObject1,String).equals("") Then
+                Dim i8 As Integer
+                                                    Try 
+                Dim i1 As Integer = tblConductorCoupon.getRowCount
+                Dim i6 As Integer = 0
+                                                        Do While (i6 < i1)
+                                                            localObject5 = tblConductorCoupon.getModel.getValueAt(i6, 1)
+                                                            localObject6 = tblConductorCoupon.getModel.getValueAt(i6, 2)
+                                                            localObject7 = localObject5.toString
+                                                            i8 = Integer.parseInt(CType(localObject7,String))
+                                                            localObject9 = localObject6.toString.trim
+                                                            If Not CType(localObject9,String).equals("") Then
+                Dim i10 As Integer = Integer.parseInt(CType(localObject9, String))
+                                                                If (i10 > 0) Then
+                                                                    If (i10 < i8) Then
+                                                                        JOptionPane.showMessageDialog(Me, "Coupon End Number should be greater than start no.", "Coupon Number", 0)
+                                                                        Return
+                                                                    End If
+
+                                                                End If
+
+                                                            End If
+
+                                                            i6 = (i6 + 1)
+                                                        Loop
+
+                                                    Catch localException8 As Exception
+                                                        JOptionPane.showMessageDialog(Me, "Error", "Coupon Number", 0)
+                                                        Return
+                                                    End Try
+
+                                                    Try 
+                                                        Class.forName("com.mysql.jdbc.Driver").newInstance
+                                                        db = DriverManager.getConnection(("jdbc:mysql://"  _
+                                                                        + (server + (":3306/" + database))), username, password)
+                                                        dbmd = db.getMetaData
+                                                        sql = db.createStatement
+                    Dim i2 As Integer = tblConductorCoupon.getRowCount
+                                                        localObject7 = Float.valueOf(0!)
+                                                        i8 = 0
+                                                        Do While (i8 < i2)
+                                                            localObject4 = Float.valueOf(0!)
+                                                            localObject5 = Float.valueOf(0!)
+                                                            localObject6 = Float.valueOf(0!)
+                                                            localObject9 = tblConductorCoupon.getModel.getValueAt(i8, 1)
+                                                            localObject10 = tblConductorCoupon.getModel.getValueAt(i8, 2)
+                                                            localObject11 = tblConductorCoupon.getModel.getValueAt(i8, 0)
+                                                            localObject12 = localObject9.toString
+                    Dim i11 As Integer = Integer.parseInt(CType(localObject12, String))
+                                                            localObject14 = localObject10.toString.trim
+                                                            i12 = Integer.parseInt(CType(localObject14,String))
+                                                            localObject17 = localObject11.toString
+                    Dim f As Single = Float.parseFloat(CType(localObject17, String))
+                                                            localObject19 = db.prepareStatement(("SELECT sum(((fldi_coupon_end_number -  fldi_coupon_next_number)+1)) as totobal FROM tbl_coupon_alloca"& _ 
+                                                                "tion_data WHERE fldv_employee_code = '"  _
+                                                                            + (CType(localObject1,String) + ("' and fldc_coupon_completed = 'N' and fldc_status = 'Y'  and fldi_coupon_amount = '"  _
+                                                                            + (f + ("' and fldi_coupon_end_number < '"  _
+                                                                            + (i12 + "' group by fldi_coupon_amount")))))))
+                                                            localObject20 = CType(localObject19,PreparedStatement).executeQuery
+
+                                                            While CType(localObject20,ResultSet).next
+                                                                localObject4 = Float.valueOf(Float.parseFloat(CType(localObject20,ResultSet).getString(1)))
+
+                                                            End While
+
+                                                            CType(localObject20,ResultSet).close
+                                                            localObject21 = db.prepareStatement(("SELECT  (sum(('"  _
+                                                                            + (i12 + ("'- fldi_coupon_next_number)+1)) as totobal1 FROM tbl_coupon_allocation_data WHERE fldv_employee_code "& _ 
+                                                                            "= '"  _
+                                                                            + (CType(localObject1,String) + ("' and fldc_coupon_completed = 'N' and fldc_status = 'Y'  and fldi_coupon_amount = '"  _
+                                                                            + (f + ("' and ('"  _
+                                                                            + (i12 + "' between fldi_coupon_start_number and fldi_coupon_end_number) group by fldi_coupon_amount")))))))))
+                                                            localResultSet = CType(localObject21,PreparedStatement).executeQuery
+
+                                                            While localResultSet.next
+                                                                localObject5 = Float.valueOf(Float.parseFloat(localResultSet.getString(1)))
+
+                                                            End While
+
+                                                            localResultSet.close
+                                                            localObject6 = Float.valueOf((CType(localObject4,Float).floatValue + CType(localObject5,Float).floatValue))
+                                                            localObject7 = Float.valueOf((CType(localObject7,Float).floatValue  _
+                                                                            + (f * CType(localObject6,Float).floatValue)))
+                                                            tblConductorCoupon.getModel.setValueAt(localObject6, i8, 3)
+                                                            tblConductorCoupon.getModel.setValueAt(Float.valueOf((f * CType(localObject6,Float).floatValue)), i8, 4)
+                                                            i8 = (i8 + 1)
+                                                        Loop
+
+                                                        txtTotalCouponCollection.setText(("" + localObject7))
+                                                        calculateTotalFare
+                                                        db.close
+                                                        btnUploadCouponData.setEnabled(true)
+                                                    Catch localException9 As Exception
+                                                        localException9.printStackTrace
+                                                    End Try
+
+                                                End If
+
+                                                btnGetCouponAmount.setEnabled(true)
+                                                btnUploadCouponData.setEnabled(true)
+                                            ElseIf (paramActionEvent.getSource = btnGetConductorCoupon) Then
+                                                couponModel.setRowCount(0)
+                                                txtTotalCouponCollection.setText("")
+                                                btnCouponCollectCash.setEnabled(false)
+                                                localObject1 = CType(cmbConductor.getSelectedItem,String)
+                                                localObject1 = CType(localObject1,String).trim
+                                                If Not CType(localObject1,String).equals("") Then
+                                                    Try 
+                                                        Class.forName("com.mysql.jdbc.Driver").newInstance
+                                                        db = DriverManager.getConnection(("jdbc:mysql://"  _
+                                                                        + (server + (":3306/" + database))), username, password)
+                                                        dbmd = db.getMetaData
+                                                        sql = db.createStatement
+                        Dim localPreparedStatement2 As PreparedStatement = db.prepareStatement(("SELECT a.fldi_coupon_allocation_id,a.fldv_coupon_blok_no,a.fldi_coupon_next_number,a.fldi_coupon_amou" & _
+                            "nt,b.fldv_nutrition_tax,fldi_coupon_end_number FROM tbl_coupon_allocation_data as a,tbl_coupon_amoun" & _
+                            "t_mst as b WHERE a.fldi_coupon_amt_id = b.fldi_coupon_amt_id and a.fldi_coupon_amount = b.fldi_coupo" & _
+                            "n_amount and a.fldv_employee_code = '" _
+                                        + (CType(localObject1, String) + "' and a.fldc_coupon_completed = 'N' order by a.fldi_coupon_amount,a.fldi_coupon_start_number")))
+                                                        localObject4 = localPreparedStatement2.executeQuery
+
+                                                        While CType(localObject4,ResultSet).next
+                                                            localObject5 = CType(localObject4,ResultSet).getString(3)
+                                                            localObject6 = "0"
+                                                            localObject6 = CType(localObject4,ResultSet).getString(3)
+                                                            couponModel.addRow(New Object() {CType(localObject4,ResultSet).getString(4), CType(localObject4,ResultSet).getString(2), CType(localObject4,ResultSet).getString(3), localObject6, "0", "0.0", CType(localObject4,ResultSet).getString(5), CType(localObject4,ResultSet).getString(6)})
+
+                                                        End While
+
+                                                        CType(localObject4,ResultSet).close
+                                                        db.close
+                                                    Catch localException10 As Exception
+
+                                                    End Try
+
+                                                Else
+                                                    JOptionPane.showMessageDialog(Me, "Please select the conductor", "Conductor", 0)
+                                                End If
+
+                                            ElseIf (paramActionEvent.getSource = btnCauculateAmount) Then
+                                                Try 
+                                                    localObject1 = ""
+                        Dim str6 As String = ""
+                                                    localObject4 = ""
+                                                    localObject5 = ""
+                                                    localObject6 = ""
+                                                    localObject7 = ""
+                        Dim str10 As String = ""
+                                                    localObject9 = ""
+                                                    localObject10 = ""
+                                                    localObject11 = ""
+                                                    localObject12 = ""
+                        Dim str12 As String = txtWayData.getText
+                                                    str12 = str12.replaceAll("[$]", "")
+                                                    str12 = str12.trim
+                                                    localObject14 = CType(cmbConductor.getSelectedItem,String)
+                                                    If (Not str12.equals("")  _
+                                                                OrElse Not CType(localObject14,String).equals("Emp Code")) Then
+                                                        i12 = 0
+                                                        localObject17 = New Date
+                        Dim localTimestamp2 As Timestamp = New Timestamp(CType(localObject17, Date).getTime)
+                                                        Class.forName("com.mysql.jdbc.Driver").newInstance
+                                                        db = DriverManager.getConnection(("jdbc:mysql://"  _
+                                                                        + (server + (":3306/" + database))), username, password)
+                                                        dbmd = db.getMetaData
+                                                        sql = db.createStatement
+                                                        If Not str12.equals("") Then
+                                                            localObject1 = str12.substring(0, 7)
+                                                            str6 = str12.substring(7, 17)
+                                                            localObject4 = str12.substring(17, 27)
+                                                            localObject5 = str12.substring(27, 37)
+                                                            localObject6 = str12.substring(37, 46)
+                                                            localObject7 = str12.substring(46, 48)
+                                                            str10 = str12.substring(48, 57)
+                                                            localObject9 = str12.substring(57, 59)
+                                                            localObject10 = str12.substring(59, 63)
+                                                            localObject11 = str12.substring(63, 66)
+                                                            localObject12 = str12.substring(66, 82)
+                                                        Else
+                                                            localObject19 = db.prepareStatement(("select fldv_waybill_no,fldv_conductor_employee_code,fldv_driver_employee_code,fldv_vehicle_number,fld"& _ 
+                                                                "v_division_name,fldv_division_code,fldv_depot_name, "& vbTab&"fldv_depot_code,fldv_schedule,fldv_etm_number,f"& _ 
+                                                                "lddt_date from  tbl_waybill_mst where fldv_conductor_employee_code = '"  _
+                                                                            + (CType(localObject14,String) + "' and fldc_status = 'Y' and fldc_waybill_open_close_status = 'N' order by flddt_date desc limit 0,1")))
+                                                            localObject20 = CType(localObject19,PreparedStatement).executeQuery
+
+                                                            While CType(localObject20,ResultSet).next
+                                                                localObject1 = CType(localObject20,ResultSet).getString(1)
+                                                                str6 = CType(localObject20,ResultSet).getString(2)
+                                                                localObject4 = CType(localObject20,ResultSet).getString(3)
+                                                                localObject5 = CType(localObject20,ResultSet).getString(4)
+                                                                localObject6 = CType(localObject20,ResultSet).getString(5)
+                                                                localObject7 = CType(localObject20,ResultSet).getString(6)
+                                                                str10 = CType(localObject20,ResultSet).getString(7)
+                                                                localObject9 = CType(localObject20,ResultSet).getString(8)
+                                                                localObject10 = CType(localObject20,ResultSet).getString(9)
+                                                                localObject11 = CType(localObject20,ResultSet).getString(10)
+                                                                localObject12 = CType(localObject20,ResultSet).getString(11)
+
+                                                            End While
+
+                                                            CType(localObject20,ResultSet).close
+                                                        End If
+
+                                                        If Not CType(localObject1,String).equals("") Then
+                                                            localObject19 = txtCashCollDate.getText.trim
+                                                            localObject20 = ""
+                                                            localObject21 = db.prepareStatement(("select fldi_conductor_collection_id,fldv_waybill_no from tbl_conductor_collection_amount where fldv_w"& _ 
+                                                                "aybill_no = '"  _
+                                                                            + (CType(localObject1,String) + ("' and fldv_etm_number = '"  _
+                                                                            + (CType(localObject11,String) + ("' and fldv_vehicle_number = '"  _
+                                                                            + (CType(localObject5,String) + ("' and fldv_collection_date = '"  _
+                                                                            + (CType(localObject19,String) + "'")))))))))
+                                                            localResultSet = CType(localObject21,PreparedStatement).executeQuery
+
+                                                            While localResultSet.next
+                                                                i12 = 1
+                                                                localObject20 = localResultSet.getString(1)
+
+                                                            End While
+
+                            Dim localPreparedStatement4 As PreparedStatement
+                                                            If (i12 = 1) Then
+                                                                localPreparedStatement4 = db.prepareStatement(("update tbl_conductor_collection_amount set fldv_waybill_no=?,fldv_conductor_name=?,fldv_driver_name=?"& _ 
+                                                                    ",fldv_vehicle_number=?,fldv_division_name=?,fldv_division_code=?,fldv_depot_name=?,fldv_depot_code=?"& _ 
+                                                                    ",fldv_schedule=?,fldv_etm_number=?,flddt_collection_date=now(),fldv_collection_1000_count=?,fldf_col"& _ 
+                                                                    "lection_1000_amt=?,fldv_collection_500_count=?,fldf_collection_500_amt=?,fldv_collection_100_count=?"& _ 
+                                                                    ",fldf_collection_100_amt=?,fldv_collection_50_count=?,fldf_collection_50_amt=?, fldv_collection_20_c"& _ 
+                                                                    "ount=?,fldf_collection_20_amt=?,fldv_collection_10_count=?, fldf_collection_10_amt=?,fldv_collection"& _ 
+                                                                    "_5_count=?,fldf_collection_5_amt=?,fldv_collection_2_count=?,fldf_collection_2_amt=?,fldv_collection"& _ 
+                                                                    "_1_count=?,fldf_collection_1_amt=?,fldv_collection_10_ps_count=?,fldf_collection_10_ps_amt=?,fldv_co"& _ 
+                                                                    "llection_5_ps_count=?,fldf_collection_5_ps_amt=?,fldv_collection_2_ps_count=?,fldf_collection_2_ps_a"& _ 
+                                                                    "mt=?,fldv_collection_1_ps_count=?,fldf_collection_1_ps_amt=?,fldv_collection_5ps_ps_count=?,fldf_col"& _ 
+                                                                    "lection_5ps_ps_amt=?,fldf_collection_total_amt=?,fldv_collection_date=?,fldc_status=?,fldi_user_id=?"& _ 
+                                                                    ",flddt_last_upd_date=now() where fldi_conductor_collection_id = '"  _
+                                                                                + (CType(localObject20,String) + "'")))
+                                                            Else
+                                                                localPreparedStatement4 = db.prepareStatement("insert into tbl_conductor_collection_amount (fldv_waybill_no,fldv_conductor_name,fldv_driver_name,fld"& _ 
+                                                                    "v_vehicle_number,fldv_division_name,fldv_division_code,fldv_depot_name,fldv_depot_code,fldv_schedule"& _ 
+                                                                    ",fldv_etm_number,flddt_collection_date,fldv_collection_1000_count,fldf_collection_1000_amt,fldv_coll"& _ 
+                                                                    "ection_500_count,fldf_collection_500_amt,fldv_collection_100_count,fldf_collection_100_amt,fldv_coll"& _ 
+                                                                    "ection_50_count,fldf_collection_50_amt, fldv_collection_20_count,fldf_collection_20_amt,fldv_collect"& _ 
+                                                                    "ion_10_count, fldf_collection_10_amt,fldv_collection_5_count,fldf_collection_5_amt,fldv_collection_2"& _ 
+                                                                    "_count,fldf_collection_2_amt,fldv_collection_1_count,fldf_collection_1_amt,fldv_collection_10_ps_cou"& _ 
+                                                                    "nt,fldf_collection_10_ps_amt,fldv_collection_5_ps_count,fldf_collection_5_ps_amt,fldv_collection_2_p"& _ 
+                                                                    "s_count,fldf_collection_2_ps_amt,fldv_collection_1_ps_count,fldf_collection_1_ps_amt,fldv_collection"& _ 
+                                                                    "_5ps_ps_count,fldf_collection_5ps_ps_amt,fldf_collection_total_amt,fldv_collection_date,fldc_status,"& _ 
+                                                                    "fldi_user_id,flddt_last_upd_date) values(?,?,?,?,?,?,?,?,?,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?"& _ 
+                                                                    ",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())")
+                                                            End If
+
+                                                            localPreparedStatement4.setString(1, CType(localObject1,String))
+                                                            localPreparedStatement4.setString(2, str6)
+                                                            localPreparedStatement4.setString(3, CType(localObject4,String))
+                                                            localPreparedStatement4.setString(4, CType(localObject5,String))
+                                                            localPreparedStatement4.setString(5, CType(localObject6,String))
+                                                            localPreparedStatement4.setString(6, CType(localObject7,String))
+                                                            localPreparedStatement4.setString(7, str10)
+                                                            localPreparedStatement4.setString(8, CType(localObject9,String))
+                                                            localPreparedStatement4.setString(9, CType(localObject10,String))
+                                                            localPreparedStatement4.setString(10, CType(localObject11,String))
+                                                            localPreparedStatement4.setString(11, txtPC1000.getText.trim)
+                                                            localPreparedStatement4.setString(12, txtPA1000.getText.trim)
+                                                            localPreparedStatement4.setString(13, txtPC1500.getText.trim)
+                                                            localPreparedStatement4.setString(14, txtPA1500.getText.trim)
+                                                            localPreparedStatement4.setString(15, txtPC100.getText.trim)
+                                                            localPreparedStatement4.setString(16, txtPA100.getText.trim)
+                                                            localPreparedStatement4.setString(17, txtPC50.getText.trim)
+                                                            localPreparedStatement4.setString(18, txtPA50.getText.trim)
+                                                            localPreparedStatement4.setString(19, txtPC20.getText.trim)
+                                                            localPreparedStatement4.setString(20, txtPA20.getText.trim)
+                                                            localPreparedStatement4.setString(21, txtPC10.getText.trim)
+                                                            localPreparedStatement4.setString(22, txtPA10.getText.trim)
+                                                            localPreparedStatement4.setString(23, txtPC5.getText.trim)
+                                                            localPreparedStatement4.setString(24, txtPA5.getText.trim)
+                                                            localPreparedStatement4.setString(25, txtPC2.getText.trim)
+                                                            localPreparedStatement4.setString(26, txtPA2.getText.trim)
+                                                            localPreparedStatement4.setString(27, txtPC1.getText.trim)
+                                                            localPreparedStatement4.setString(28, txtPA1.getText.trim)
+                                                            localPreparedStatement4.setString(29, txtPCs10.getText.trim)
+                                                            localPreparedStatement4.setString(30, txtPCsA10.getText.trim)
+                                                            localPreparedStatement4.setString(31, txtPCs5.getText.trim)
+                                                            localPreparedStatement4.setString(32, txtPCsA5.getText.trim)
+                                                            localPreparedStatement4.setString(33, txtPCs2.getText.trim)
+                                                            localPreparedStatement4.setString(34, txtPCsA2.getText.trim)
+                                                            localPreparedStatement4.setString(35, txtPCs1.getText.trim)
+                                                            localPreparedStatement4.setString(36, txtPCsA1.getText.trim)
+                                                            localPreparedStatement4.setString(37, txtPCs05.getText.trim)
+                                                            localPreparedStatement4.setString(38, txtPCsA05.getText.trim)
+                                                            localPreparedStatement4.setString(39, txtTotalAmtCol.getText.trim)
+                                                            localPreparedStatement4.setString(40, txtCashCollDate.getText.trim)
+                                                            localPreparedStatement4.setString(41, "Y")
+                                                            localPreparedStatement4.setInt(42, sessId)
+                                                            localPreparedStatement4.executeUpdate
+                                                            localPreparedStatement4.close
+                                                            db.close
+                                                            JOptionPane.showMessageDialog(Me, "Data Uploaded Successfully", "Collection Data", 0)
+                                                            cmbConductor.setSelectedIndex(0)
+                                                            clearCollectionData
+                                                        Else
+                                                            JOptionPane.showMessageDialog(Me, "Waybill not generated for this conductor", "Collection Data", 0)
+                                                            cmbConductor.setSelectedIndex(0)
+                                                            clearCollectionData
+                                                        End If
+
+                                                    End If
+
+                                                Catch localException5 As Exception
+                                                    JOptionPane.showMessageDialog(Me, "Error..Please try later.", "Error", 0)
+                                                End Try
+
+                                            End If
+
+                                        End If
+
+                                    End If
+
+                                End If
+
+                            End If
+
+                        End If
+
+                    End If
+
+                End If
+
+            End If
+
+        End If
+
+    End Sub
+
+                            Public Sub clearCollectionData()
+                                txtPA1000.setText("0.0")
+                                txtPA1500.setText("0.0")
+                                txtPA100.setText("0.0")
+                                txtPA50.setText("0.0")
+                                txtPA20.setText("0.0")
+                                txtPA10.setText("0.0")
+                                txtPA5.setText("0.0")
+                                txtPA2.setText("0.0")
+                                txtPA1.setText("0.0")
+                                txtPCsA10.setText("0.0")
+                                txtPCsA5.setText("0.0")
+                                txtPCsA2.setText("0.0")
+                                txtPCsA1.setText("0.0")
+                                txtPCsA05.setText("0.0")
+                                txtTotalAmtCol.setText("0.0")
+                                txtAmtDifference.setText("0.0")
+                                txtPC1000.setText("")
+                                txtPC1500.setText("")
+                                txtPC100.setText("")
+                                txtPC50.setText("")
+                                txtPC20.setText("")
+                                txtPC10.setText("")
+                                txtPC5.setText("")
+                                txtPC2.setText("")
+                                txtPC1.setText("")
+                                txtPCs10.setText("")
+                                txtPCs5.setText("")
+                                txtPCs2.setText("")
+                                txtPCs1.setText("")
+                                txtPCs05.setText("")
+                                txtTotalCouponCollection.setText("")
+                                txtData.setText("")
+                                txtWayData.setText("")
+                                txtSmartCardData.setText("")
+                                txtTotalCollection.setText("")
+                                txtCashCollected.setText("")
+                                txtAmtDifference.setText("")
+                                txtTotalTopupCollection.setText("")
+                                txtTotalTicketCollection.setText("")
+                            End Sub
+
+                            Public Sub insertSmsContent(ByVal paramString1 As String, ByVal paramString2 As String)
+
+                            End Sub
+
+                            Public Sub getConductorDetails()
+                                Try
+            Class.forName("com.mysql.jdbc.Driver").newInstance
+            db = DriverManager.getConnection(("jdbc:mysql://"  _
+                            + (server + (":3306/" + database))), username, password)
+            dbmd = db.getMetaData
+            sql = db.createStatement
+                                Dim localPreparedStatement As PreparedStatement = db.prepareStatement("select fldi_conductor_id,fldv_conductor_name,fldv_employee_code  from tbl_conductor_mst where fldc_st" & _
+                                    "atus = 'Y' order by fldv_employee_code")
+                                Dim localResultSet As ResultSet = localPreparedStatement.executeQuery
+            cmbConductor.addItem("Emp Code")
+
+            While localResultSet.next
+                cmbConductor.addItem(localResultSet.getString(3))
+
+            End While
+
+            localResultSet.close
+            db.close
+        Catch localException As Exception
+
+        End Try
+
+    End Sub
+
+                                Public Function getCashCollected(ByVal paramString As String) As String
+                                    cashCollected = "0"
+                                    Try
+                                        Dim str As String = paramString.trim
+                                        If Not str.equals("") Then
+                Class.forName("com.mysql.jdbc.Driver").newInstance
+                db = DriverManager.getConnection(("jdbc:mysql://"  _
+                                + (server + (":3306/" + database))), username, password)
+                dbmd = db.getMetaData
+                sql = db.createStatement
+                                    Dim localPreparedStatement As PreparedStatement = db.prepareStatement(("select round( sum(fldi_ticket_fare)/100) as totalFare from tbl_trip_ticket_details where flddt_ticket" & _
+                                        "_date = '" _
+                                                    + (str + "'")))
+                                    Dim localResultSet As ResultSet = localPreparedStatement.executeQuery
+
+                While localResultSet.next
+                    cashCollected = localResultSet.getString(1)
+                    If (cashCollected.equals("") OrElse cashCollected.equals(Nothing)) Then
+                        cashCollected = "0"
+                    End If
+
+
+                End While
+
+                localResultSet.close
+                db.close
+            End If
+
+        Catch localException As Exception
+
+        End Try
+
+        Return cashCollected
+    End Function
+
+                                    Public Shared Sub main(ByVal paramArrayOfString() As String)
+                                        run(New DataVoice, 500, 300)
+                                    End Sub
+
+                                    Public Shared Sub run(ByVal paramJApplet As JApplet, ByVal paramInt1 As Integer, ByVal paramInt2 As Integer)
+                                        Dim localJFrame As JFrame = New JFrame("Data Voice")
+                                        localJFrame.setDefaultCloseOperation(3)
+                                        localJFrame.getContentPane.add(paramJApplet)
+                                        localJFrame.setSize(paramInt1, paramInt2)
+                                        paramJApplet.init()
+                                        paramJApplet.start()
+                                        localJFrame.setVisible(True)
+                                    End Sub

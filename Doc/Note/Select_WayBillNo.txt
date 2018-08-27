@@ -1,0 +1,36 @@
+ If System.IO.File.Exists(Path_Ticket) = True Then
+                Dim reader As New System.IO.StreamReader(Path_Ticket)
+                Do While (reader.Peek() <> -1)
+                    TextLine = reader.ReadLine()
+                    Dim words As String() = TextLine.Split(New Char() {" "c})
+                    If words.Length = 1 Then
+
+                    Else
+                        Dim WayBill_No As String = words(0).ToString()
+                        Dim Word_2 As String = words(1).ToString()
+                        Dim Word_3 As String = words(3).ToString()
+                        If WayBill_No = "" Then
+
+                        Else
+                            Dim WayBill_ As String = "0487526"
+                            Sql = "select fldv_waybill_no,fldv_conductor_employee_code ,fldv_driver_employee_code ,fldv_vehicle_number,fldv_division_name,
+                                fldv_division_code,fldv_depot_name,fldv_depot_code,fldv_schedule,fldv_etm_number,fldv_waybill_created_date 
+                                from tbl_waybill_mst where fldv_waybill_no = '" + WayBill_ + "' and fldc_status = 'Y' and fldc_waybill_open_close_status = 'Y'"
+                            Try
+                                conn.Open()
+                                dbcomm = New MySqlCommand(Sql, conn)
+                                dbread = dbcomm.ExecuteReader
+                                While dbread.Read()
+                                    _fldv_conductor_employee_code = dbread.GetString("fldv_conductor_employee_code")
+                                End While
+                                conn.Close()
+                            Catch ex As Exception
+                                MsgBox("unable to add" + ex.Message)
+
+                        End Try
+                        End If
+                    End If
+                Loop
+            Else
+                MessageBox.Show("File Not Exist")
+        End If

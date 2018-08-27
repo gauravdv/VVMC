@@ -1,0 +1,26 @@
+$AWWWWWWCCCCCCCCCCDDDDDDDDDDVVVVVVVVVVDDDDDDDDD00DDDDDDDDDDDDDDDDDDDDDDDD00SSSSEEEDDmmYYYYHHMMSSSS00.15
+i`
+
+************************************************************************************************
+\\                                 DETAILS     (105 CHAR)                                      \\
+************************************************************************************************
+
+$						- (CHAR 01) START CHAR
+A						- (CHAR 01) WAYBILL STRING CHAR
+0000004						- (CHAR 06) WAYBILL NO
+SHYAM						- (CHAR 10) CONDUCTOR DETAILS
+ASHISH						- (CHAR 10) DRIVER DETAILS
+MP09E4321					- (CHAR 10) VEHICLE NO.
+INDORE						- (CHAR 09) DIV. NAME
+01						- (CHAR 02) DIV. NO
+MAIN						- (CHAR 09) DEPOT NAME
+maona          					- (CHAR 15) DEPOT NAME
+01						- (CHAR 02) DEPOT NO
+0123						- (CHAR 04) SCHEDULE NO.
+888						- (CHAR 03) ETIM NO
+31/03/09					- (CHAR 08) DATE
+14:43:44					- (CHAR 08) TIME
+00.15						- (CHAR 05) ADHIBHAR AMT.
+						- (CHAR 01) STRING END MARK
+
+************************************************************************************************

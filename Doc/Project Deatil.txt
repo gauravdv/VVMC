@@ -1,0 +1,30 @@
+http://80.241.219.166/Secur3/phpMyAdmin
+user: - root
+pwd:-  Passw0rd123#
+
+db_vvmt_ticketing
+
+db_khopoling testing
+
+192.168.1.251:8081/secure_dis/phpMyAdmin
+root
+p@ssw0rd
+
+
+        Dim DatabaseName As String = "db_vvmt_ticketing"
+        Dim server As String = "192.168.1.253"
+        Dim userName As String = "root"
+        Dim password As String = "mysql@123"
+        Dim test As String = ""
+
+
+  Dim DatabaseName As String = "db_vvmt_ticketing"
+        Dim server As String = "192.168.1.251"
+        Dim userName As String = "Ramesh"
+        Dim password As String = "ramesh"
+        Dim test As String = ""
+
+
+
+
+SELECT * from tbl_waybill_mst where fldv_waybill_no = '0487526'
