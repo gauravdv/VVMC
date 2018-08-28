@@ -78,6 +78,8 @@ Public Class frm_CollectCash
             Dim _fldi_user_id As String
             Dim _flddt_last_upd_date As String
             Dim _fldv_amount_difference As String = txt_Diffrence.Text
+            Dim _flddt_last_upd_date2 As String
+            _flddt_last_upd_date2 = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
 
             rLine = WayBillText.Replace("$", "")
             get_EtimDetails() 'Get Machin Type
@@ -130,13 +132,13 @@ Public Class frm_CollectCash
                     fldv_collection_10_count,fldf_collection_10_amt,fldv_collection_5_count,fldf_collection_5_amt,fldv_collection_2_count,
                     fldf_collection_2_amt,fldv_collection_1_count,fldf_collection_1_amt,fldf_collection_total_amt,fldv_collection_date,fldc_status,
                     fldi_user_id,flddt_last_upd_date,fldv_amount_difference) 
-                    Value ('" + _fldv_waybill_no + "', '" + _fldv_conductor_name + "', '" + _fldv_driver_name + "','" + _fldv_vehicle_number + "',
+                    Value ('" + _fldv_waybill_no + "', '" + _fldv_conductor_employee_code + "', '" + _fldv_driver_name + "','" + _fldv_vehicle_number + "',
                     '" + _fldv_division_name + "','" + _fldv_division_code + "','" + _fldv_depot_name + "' , '" + _fldv_depot_code + "', '" + _fldv_schedule + "',
                     '" + _fldv_etm_number + "','" + _flddt_collection_date + "' ,'" + _fldv_collection_1000_count + "', '" + _fldf_collection_1000_amt + "','" + _fldv_collection_500_count + "','" + _fldf_collection_500_amt + "' ,
                    '" + _fldv_collection_100_count + "' , '" + _fldf_collection_100_amt + "', '" + _fldv_collection_50_count + "', '" + _fldf_collection_50_amt + "', '" + _fldv_collection_20_count + "', '" + _fldf_collection_20_amt + "',
                     '" + _fldv_collection_10_count + "', '" + _fldf_collection_10_amt + "', '" + _fldv_collection_5_count + "', '" + _fldf_collection_5_amt + "', '" + _fldv_collection_2_count + "',
                    '" + _fldf_collection_2_amt + "' , '" + _fldv_collection_1_count + "', '" + _fldf_collection_1_amt + "', '" + _fldf_collection_total_amt + "', '" + _fldv_collection_date + "', '" + _fldc_status + "',
-                   '" + _fldi_user_id + "' , '" + _flddt_last_upd_date + "', '" + _fldv_amount_difference + "')"
+                   '" + _fldi_user_id + "' , '" + _flddt_last_upd_date2 + "', '" + _fldv_amount_difference + "')"
 
             Try
                 conn.Open()
@@ -199,7 +201,7 @@ Public Class frm_CollectCash
     Public Function get_WayBillMast(ByRef _fldc_status As String, ByRef _fldi_user_id As String, ByRef _flddt_last_upd_date As String, ByRef _fldv_waybill_no As String)
         Dim Sql As String
         If Not _fldv_waybill_no = "" Then
-            Sql = "select fldc_status,fldi_user_id,flddt_last_upd_date  from  tbl_waybill_mst where fldv_waybill_no = '" + _fldv_waybill_no + "'"
+            Sql = "select fldc_status,fldi_user_id,	fldv_waybill_created_date  from  tbl_waybill_mst where fldv_waybill_no = '" + _fldv_waybill_no + "'"
             Try
                 conn.Open()
                 dbcomm = New MySqlCommand(Sql, conn)
@@ -207,7 +209,7 @@ Public Class frm_CollectCash
                 While dbread.Read()
                     _fldc_status = dbread.GetString("fldc_status")
                     _fldi_user_id = dbread.GetString("fldi_user_id")
-                    _flddt_last_upd_date = dbread.GetString("flddt_last_upd_date")
+                    _flddt_last_upd_date = dbread.GetString("fldv_waybill_created_date")
                 End While
             Catch ex As Exception
                 MsgBox(ex.Message)

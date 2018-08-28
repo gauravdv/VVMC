@@ -207,6 +207,7 @@ Public Class frm_Auditing
         Dim Sql As String
         Dim _fldv_waybill_no As String
         Dim _fldv_conductor_name As String
+        Dim _fldv_waybill_created_date As String
         Dim _fldv_conductor_employee_code As String
         Dim _fldv_driver_employee_code As String
         Dim _fldv_driver_name As String
@@ -256,7 +257,7 @@ Public Class frm_Auditing
                 _fldv_etm_number = Mid(rLine, 67, 16)
             End If
 
-            get_WayBillMast(_fldv_conductor_name, _fldv_driver_name, _fldv_waybill_no)
+            get_WayBillMast(_fldv_conductor_name, _fldv_driver_name, _fldv_waybill_no, _fldv_waybill_created_date)
 
             Dim TicketData1 As String = txt_Ticket.Text
             Dim FullTicketData1 As String
@@ -301,7 +302,7 @@ Public Class frm_Auditing
                                     dbcomm.Parameters.AddWithValue("@fldv_depot_code", _fldv_depot_code)
                                     dbcomm.Parameters.AddWithValue("@fldv_schedule", _fldv_schedule)
                                     dbcomm.Parameters.AddWithValue("@fldv_etm_number", _fldv_etm_number)
-                                    dbcomm.Parameters.AddWithValue("@fldv_waybill_date_time", _fldv_waybill_date_time)
+                                    dbcomm.Parameters.AddWithValue("@fldv_waybill_date_time", _fldv_waybill_created_date)
                                     dbcomm.Parameters.AddWithValue("@fldv_ticket_data", _fldv_ticket_data)
                                     dbcomm.Parameters.AddWithValue("@fldv_vendor_name", _fldv_vendor_name)
                                     dbcomm.Parameters.AddWithValue("@fldc_status", _fldc_status)
@@ -335,7 +336,7 @@ Public Class frm_Auditing
                                     dbcomm.Parameters.AddWithValue("@fldv_depot_code", _fldv_depot_code)
                                     dbcomm.Parameters.AddWithValue("@fldv_schedule", _fldv_schedule)
                                     dbcomm.Parameters.AddWithValue("@fldv_etm_number", _fldv_etm_number)
-                                    dbcomm.Parameters.AddWithValue("@fldv_waybill_date_time", _fldv_waybill_date_time)
+                                    dbcomm.Parameters.AddWithValue("@fldv_waybill_date_time", _fldv_waybill_created_date)
                                     dbcomm.Parameters.AddWithValue("@fldv_ticket_data", _fldv_ticket_data)
                                     dbcomm.Parameters.AddWithValue("@fldv_vendor_name", _fldv_vendor_name)
                                     dbcomm.Parameters.AddWithValue("@fldc_status", _fldc_status)
@@ -376,10 +377,10 @@ Public Class frm_Auditing
     End Sub
 
     'WayBill Master
-    Public Function get_WayBillMast(ByRef _fldv_conductor_name As String, ByRef _fldv_driver_name As String, ByRef _fldv_waybill_no As String)
+    Public Function get_WayBillMast(ByRef _fldv_conductor_name As String, ByRef _fldv_driver_name As String, ByRef _fldv_waybill_no As String, ByRef _fldv_waybill_created_date As String)
         Dim Sql As String
         If Not _fldv_waybill_no = "" Then
-            Sql = "select fldv_conductor_name,fldv_driver_name  from  tbl_waybill_mst where fldv_waybill_no = '" + _fldv_waybill_no + "'"
+            Sql = "select fldv_conductor_name,fldv_driver_name,fldv_waybill_created_date  from  tbl_waybill_mst where fldv_waybill_no = '" + _fldv_waybill_no + "'"
             Try
                 conn.Open()
                 dbcomm = New MySqlCommand(Sql, conn)
@@ -387,6 +388,7 @@ Public Class frm_Auditing
                 While dbread.Read()
                     _fldv_conductor_name = dbread.GetString("fldv_conductor_name")
                     _fldv_driver_name = dbread.GetString("fldv_driver_name")
+                    _fldv_waybill_created_date = dbread.GetString("fldv_waybill_created_date")
                 End While
             Catch ex As Exception
                 MsgBox(ex.Message)
