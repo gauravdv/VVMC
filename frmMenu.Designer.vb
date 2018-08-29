@@ -26,7 +26,6 @@ Partial Class frmMenu
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btn_Auditing = New System.Windows.Forms.Button()
         Me.btn_Push = New System.Windows.Forms.Button()
-        Me.CMBPORTNO = New System.Windows.Forms.ComboBox()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.BtnErase = New System.Windows.Forms.Button()
         Me.btnDownLoad = New System.Windows.Forms.Button()
@@ -34,6 +33,7 @@ Partial Class frmMenu
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.txtProcStat = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.CMBPORTNO = New System.Windows.Forms.ComboBox()
         Me.btn_Master.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -86,14 +86,6 @@ Partial Class frmMenu
         Me.btn_Push.Text = "Push"
         Me.btn_Push.UseVisualStyleBackColor = True
         Me.btn_Push.Visible = False
-        '
-        'CMBPORTNO
-        '
-        Me.CMBPORTNO.FormattingEnabled = True
-        Me.CMBPORTNO.Location = New System.Drawing.Point(71, 19)
-        Me.CMBPORTNO.Name = "CMBPORTNO"
-        Me.CMBPORTNO.Size = New System.Drawing.Size(82, 21)
-        Me.CMBPORTNO.TabIndex = 4
         '
         'btnExit
         '
@@ -166,6 +158,14 @@ Partial Class frmMenu
         Me.Label1.TabIndex = 9
         Me.Label1.Text = "Vasai-Virar Municipal Transport (VVMT)"
         '
+        'CMBPORTNO
+        '
+        Me.CMBPORTNO.FormattingEnabled = True
+        Me.CMBPORTNO.Location = New System.Drawing.Point(71, 19)
+        Me.CMBPORTNO.Name = "CMBPORTNO"
+        Me.CMBPORTNO.Size = New System.Drawing.Size(82, 21)
+        Me.CMBPORTNO.TabIndex = 4
+        '
         'frmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -188,11 +188,11 @@ Partial Class frmMenu
     Friend WithEvents BtnErase As System.Windows.Forms.Button
     Friend WithEvents btnDownLoad As System.Windows.Forms.Button
     Friend WithEvents btnSendFile As System.Windows.Forms.Button
-    Friend WithEvents CMBPORTNO As System.Windows.Forms.ComboBox
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents txtProcStat As System.Windows.Forms.TextBox
     Friend WithEvents btn_Push As Button
     Friend WithEvents btn_Auditing As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Label1 As Label
+    Friend WithEvents CMBPORTNO As ComboBox
 End Class
