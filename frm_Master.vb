@@ -6,8 +6,6 @@ Public Class frm_Master
     Dim conn As New MySqlConnection
     Public dbcomm As MySqlCommand
     Public dbread As MySqlDataReader
-    Dim dbAdp As MySqlDataAdapter
-    Dim dbTab As New DataTable
     Dim WayBill_txtPath As String
 
     Dim db_Server As String
@@ -15,7 +13,10 @@ Public Class frm_Master
     Dim db_UserID As String
     Dim db_Password As String
 
+    Dim _UserName As String = frm_Login._UserName
+    Dim _UserId As String = frm_Login._UserId
 
+    'DatabAse Connections
     Private Sub db_connection()
         Get_DataBaseDetail()
         Dim myCSB As MySqlConnectionStringBuilder = New MySqlConnectionStringBuilder()
@@ -70,7 +71,7 @@ Public Class frm_Master
         Dim conductor_Code As String
         Dim driver_Code As String
         Dim vehicle_number As String
-        Dim etim_id As String
+        Dim fldv_etm_number As String
         Dim division_name As String
         Dim division_code As String
         Dim depot_name As String
@@ -82,7 +83,7 @@ Public Class frm_Master
         Dim Last As Char = "13"
 
         If Not WayBillNo = "" Then
-            Sql = "SELECT fldv_waybill_no, 	fldv_conductor_employee_code, fldv_driver_employee_code, fldv_vehicle_number, fldi_etim_id, fldv_division_name, 
+            Sql = "SELECT fldv_waybill_no, 	fldv_conductor_employee_code, fldv_driver_employee_code, fldv_vehicle_number, fldv_etm_number, fldv_division_name, 
                     fldv_division_code, fldv_depot_name, fldv_depot_code, fldv_schedule, fldv_waybill_created_date FROM  tbl_waybill_mst
                     WHERE 	fldv_waybill_no = '" + WayBillNo + "'"
             Try
@@ -94,7 +95,7 @@ Public Class frm_Master
                     conductor_Code = dbread.GetString("fldv_conductor_employee_code")
                     driver_Code = dbread.GetString("fldv_driver_employee_code")
                     vehicle_number = dbread.GetString("fldv_vehicle_number")
-                    etim_id = dbread.GetString("fldi_etim_id")
+                    fldv_etm_number = dbread.GetString("fldv_etm_number")
                     division_name = dbread.GetString("fldv_division_name")
                     division_code = dbread.GetString("fldv_division_code")
                     depot_name = dbread.GetString("fldv_depot_name")
@@ -103,10 +104,9 @@ Public Class frm_Master
                     waybill_created_date = dbread.GetString("fldv_waybill_created_date")
 
                     'Grid View
-                    dgv_WayBillDetails.Rows.Add(New String() {WayBillNo, conductor_Code, driver_Code, vehicle_number, etim_id, division_name, division_code,
+                    dgv_WayBillDetails.Rows.Add(New String() {WayBillNo, conductor_Code, driver_Code, vehicle_number, fldv_etm_number, division_name, division_code,
                                    depot_name, depot_code, schedule, waybill_created_date})
 
-                    'Write a Way Bill Text File 
                     'Write a Way Bill Text File 
                     If Not IO.Directory.Exists(My.Application.Info.DirectoryPath & "\RaedWayBill") Then IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\RaedWayBill")
                     WayBill_txtPath = System.String.Concat(My.Application.Info.DirectoryPath, "\RaedWayBill\06_WAYBILL_STRING" & ".txt")
@@ -115,7 +115,7 @@ Public Class frm_Master
                         Dim Pad_conductor_Code As String = conductor_Code.PadRight(8, pad)
                         sw.WriteLine(Doller.PadRight(1, pad) + SCHAR.PadRight(1, pad) + WayBillNo.PadRight(6, pad) + conductor_Code.PadRight(10, pad) +
                                      driver_Code.PadRight(10, pad) + vehicle_number.PadRight(10, pad) + division_name.PadRight(9, pad) + division_code.PadRight(2, pad) +
-                                     depot_name.PadRight(9, pad) + depot_name.PadRight(15, pad) + depot_code.PadRight(2, pad) + schedule.PadRight(4, pad) + etim_id.PadRight(3, pad) _
+                                     depot_name.PadRight(9, pad) + depot_name.PadRight(15, pad) + depot_code.PadRight(2, pad) + schedule.PadRight(4, pad) + fldv_etm_number.PadRight(3, pad) _
                                      + waybill_created_date.PadRight(16, pad) + "00.15".PadRight(5, pad) + "".PadRight(5, pad))
                     End Using
 
@@ -125,7 +125,7 @@ Public Class frm_Master
             End Try
             conn.Close()
         Else
-            MessageBox.Show("Eneter VAlid WayBill")
+            MessageBox.Show("Enter Valid WayBill")
         End If
 
 
@@ -145,6 +145,9 @@ Public Class frm_Master
     End Sub
 
     Private Sub btn_GetWayBill_Click(sender As Object, e As EventArgs) Handles btn_GetWayBill.Click
+        'dgv_WayBillDetails.DataSource = Nothing
+        'dgv_WayBillDetails.Refresh()
+        dgv_WayBillDetails.Rows.Clear()
         get_WayBillDetail()
     End Sub
 
@@ -167,6 +170,9 @@ Public Class frm_Master
     'End Sub
 
     'Get Combo Box Port
+
+    'Get Machine Port
+
     Private Sub get_cmbPort()
         System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = False
         For Each sp As String In My.Computer.Ports.SerialPortNames
@@ -177,11 +183,13 @@ Public Class frm_Master
     'Load Form
     Private Sub frm_Master_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' DBconnect()
+        lab_UserName.Text = _UserName
         db_connection()
         get_cmbPort()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        dgv_WayBillDetails.Refresh()
         Push_WayBill()
     End Sub
 End Class

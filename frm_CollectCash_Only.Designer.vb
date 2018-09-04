@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frm_CollectCash
+Partial Class frm_CollectCash_Only
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,14 +22,6 @@ Partial Class frm_CollectCash
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.cmbPortList = New System.Windows.Forms.ComboBox()
-        Me.lab_Port = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.lab_CollectionDate = New System.Windows.Forms.Label()
-        Me.lab_TotalCollection = New System.Windows.Forms.Label()
-        Me.txt_CollectionDate = New System.Windows.Forms.TextBox()
-        Me.txt_TotalCollection = New System.Windows.Forms.TextBox()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txt_500 = New System.Windows.Forms.TextBox()
@@ -40,10 +32,18 @@ Partial Class frm_CollectCash
         Me.txt_5 = New System.Windows.Forms.TextBox()
         Me.txt_2 = New System.Windows.Forms.TextBox()
         Me.txt_1 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.txt_Diffrence = New System.Windows.Forms.TextBox()
+        Me.lab_Diffrence = New System.Windows.Forms.Label()
+        Me.txt_TotalAmountCollection = New System.Windows.Forms.TextBox()
+        Me.lab_TotalAmountCollection = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.btn_UploadCollection = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.cmbPortList = New System.Windows.Forms.ComboBox()
+        Me.lab_Port = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -52,137 +52,21 @@ Partial Class frm_CollectCash
         Me.Label12 = New System.Windows.Forms.Label()
         Me.lab_1000 = New System.Windows.Forms.Label()
         Me.lab_500 = New System.Windows.Forms.Label()
+        Me.lab_CollectionDate = New System.Windows.Forms.Label()
         Me.lab_100 = New System.Windows.Forms.Label()
-        Me.lab_50 = New System.Windows.Forms.Label()
         Me.lab_20 = New System.Windows.Forms.Label()
         Me.lab_10 = New System.Windows.Forms.Label()
         Me.lab_5 = New System.Windows.Forms.Label()
         Me.lab_2 = New System.Windows.Forms.Label()
         Me.lab_1 = New System.Windows.Forms.Label()
         Me.txt_1000 = New System.Windows.Forms.TextBox()
-        Me.lab_TotalAmountCollection = New System.Windows.Forms.Label()
-        Me.txt_TotalAmountCollection = New System.Windows.Forms.TextBox()
-        Me.lab_Diffrence = New System.Windows.Forms.Label()
-        Me.txt_Diffrence = New System.Windows.Forms.TextBox()
-        Me.btn_UploadCollection = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.lab_50 = New System.Windows.Forms.Label()
+        Me.txt_CollectionDate = New System.Windows.Forms.TextBox()
+        Me.lab_TotalCollection = New System.Windows.Forms.Label()
+        Me.txt_TotalCollection = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'cmbPortList
-        '
-        Me.cmbPortList.FormattingEnabled = True
-        Me.cmbPortList.Location = New System.Drawing.Point(216, 43)
-        Me.cmbPortList.Name = "cmbPortList"
-        Me.cmbPortList.Size = New System.Drawing.Size(72, 21)
-        Me.cmbPortList.TabIndex = 8
-        Me.cmbPortList.Visible = False
-        '
-        'lab_Port
-        '
-        Me.lab_Port.AutoSize = True
-        Me.lab_Port.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lab_Port.Location = New System.Drawing.Point(93, 43)
-        Me.lab_Port.Name = "lab_Port"
-        Me.lab_Port.Size = New System.Drawing.Size(117, 17)
-        Me.lab_Port.TabIndex = 7
-        Me.lab_Port.Text = "Select Serial Port"
-        Me.lab_Port.Visible = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(39, 13)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(381, 24)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "Vasai-Virar Municipal Transport (VVMT)"
-        '
-        'lab_CollectionDate
-        '
-        Me.lab_CollectionDate.AutoSize = True
-        Me.lab_CollectionDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lab_CollectionDate.Location = New System.Drawing.Point(107, 71)
-        Me.lab_CollectionDate.Name = "lab_CollectionDate"
-        Me.lab_CollectionDate.Size = New System.Drawing.Size(103, 17)
-        Me.lab_CollectionDate.TabIndex = 9
-        Me.lab_CollectionDate.Text = "Collection Date"
-        '
-        'lab_TotalCollection
-        '
-        Me.lab_TotalCollection.AutoSize = True
-        Me.lab_TotalCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lab_TotalCollection.Location = New System.Drawing.Point(105, 98)
-        Me.lab_TotalCollection.Name = "lab_TotalCollection"
-        Me.lab_TotalCollection.Size = New System.Drawing.Size(105, 17)
-        Me.lab_TotalCollection.TabIndex = 10
-        Me.lab_TotalCollection.Text = "Total Collection"
-        '
-        'txt_CollectionDate
-        '
-        Me.txt_CollectionDate.Location = New System.Drawing.Point(216, 70)
-        Me.txt_CollectionDate.Name = "txt_CollectionDate"
-        Me.txt_CollectionDate.Size = New System.Drawing.Size(109, 20)
-        Me.txt_CollectionDate.TabIndex = 11
-        '
-        'txt_TotalCollection
-        '
-        Me.txt_TotalCollection.Location = New System.Drawing.Point(216, 97)
-        Me.txt_TotalCollection.Name = "txt_TotalCollection"
-        Me.txt_TotalCollection.Size = New System.Drawing.Size(109, 20)
-        Me.txt_TotalCollection.TabIndex = 12
-        '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.ColumnCount = 3
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.65116!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.875!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.75!))
-        Me.TableLayoutPanel1.Controls.Add(Me.Label13, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 1, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_500, 1, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_100, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_50, 1, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_20, 1, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_10, 1, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_5, 1, 7)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_2, 1, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_1, 1, 9)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label3, 0, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label4, 0, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label5, 0, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label6, 0, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label7, 0, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label8, 0, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label9, 0, 7)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label10, 0, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label11, 0, 9)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label12, 2, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_1000, 2, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_500, 2, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_100, 2, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_50, 2, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_20, 2, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_10, 2, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_5, 2, 7)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_2, 2, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.lab_1, 2, 9)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_1000, 1, 1)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(58, 131)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 10
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(320, 275)
-        Me.TableLayoutPanel1.TabIndex = 13
         '
         'Label13
         '
@@ -268,16 +152,6 @@ Partial Class frm_CollectCash
         Me.txt_1.Size = New System.Drawing.Size(100, 20)
         Me.txt_1.TabIndex = 23
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(7, 34)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(7)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(39, 13)
-        Me.Label3.TabIndex = 24
-        Me.Label3.Text = "1000 x"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -298,6 +172,60 @@ Partial Class frm_CollectCash
         Me.Label5.TabIndex = 26
         Me.Label5.Text = "100 x"
         '
+        'txt_Diffrence
+        '
+        Me.txt_Diffrence.Location = New System.Drawing.Point(267, 451)
+        Me.txt_Diffrence.Name = "txt_Diffrence"
+        Me.txt_Diffrence.Size = New System.Drawing.Size(114, 20)
+        Me.txt_Diffrence.TabIndex = 30
+        '
+        'lab_Diffrence
+        '
+        Me.lab_Diffrence.AutoSize = True
+        Me.lab_Diffrence.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lab_Diffrence.Location = New System.Drawing.Point(188, 451)
+        Me.lab_Diffrence.Name = "lab_Diffrence"
+        Me.lab_Diffrence.Size = New System.Drawing.Size(65, 17)
+        Me.lab_Diffrence.TabIndex = 29
+        Me.lab_Diffrence.Text = "Diffrence"
+        '
+        'txt_TotalAmountCollection
+        '
+        Me.txt_TotalAmountCollection.Location = New System.Drawing.Point(267, 423)
+        Me.txt_TotalAmountCollection.Name = "txt_TotalAmountCollection"
+        Me.txt_TotalAmountCollection.Size = New System.Drawing.Size(114, 20)
+        Me.txt_TotalAmountCollection.TabIndex = 28
+        '
+        'lab_TotalAmountCollection
+        '
+        Me.lab_TotalAmountCollection.AutoSize = True
+        Me.lab_TotalAmountCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lab_TotalAmountCollection.Location = New System.Drawing.Point(96, 426)
+        Me.lab_TotalAmountCollection.Name = "lab_TotalAmountCollection"
+        Me.lab_TotalAmountCollection.Size = New System.Drawing.Size(157, 17)
+        Me.lab_TotalAmountCollection.TabIndex = 27
+        Me.lab_TotalAmountCollection.Text = "Total Amount Collection"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(7, 34)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(7)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(39, 13)
+        Me.Label3.TabIndex = 24
+        Me.Label3.Text = "1000 x"
+        '
+        'btn_UploadCollection
+        '
+        Me.btn_UploadCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_UploadCollection.Location = New System.Drawing.Point(132, 477)
+        Me.btn_UploadCollection.Name = "btn_UploadCollection"
+        Me.btn_UploadCollection.Size = New System.Drawing.Size(190, 29)
+        Me.btn_UploadCollection.TabIndex = 31
+        Me.btn_UploadCollection.Text = "Upload Collection"
+        Me.btn_UploadCollection.UseVisualStyleBackColor = True
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -307,6 +235,36 @@ Partial Class frm_CollectCash
         Me.Label6.Size = New System.Drawing.Size(27, 13)
         Me.Label6.TabIndex = 27
         Me.Label6.Text = "50 x"
+        '
+        'cmbPortList
+        '
+        Me.cmbPortList.FormattingEnabled = True
+        Me.cmbPortList.Location = New System.Drawing.Point(219, 49)
+        Me.cmbPortList.Name = "cmbPortList"
+        Me.cmbPortList.Size = New System.Drawing.Size(72, 21)
+        Me.cmbPortList.TabIndex = 21
+        Me.cmbPortList.Visible = False
+        '
+        'lab_Port
+        '
+        Me.lab_Port.AutoSize = True
+        Me.lab_Port.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lab_Port.Location = New System.Drawing.Point(96, 49)
+        Me.lab_Port.Name = "lab_Port"
+        Me.lab_Port.Size = New System.Drawing.Size(117, 17)
+        Me.lab_Port.TabIndex = 20
+        Me.lab_Port.Text = "Select Serial Port"
+        Me.lab_Port.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(42, 19)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(381, 24)
+        Me.Label1.TabIndex = 19
+        Me.Label1.Text = "Vasai-Virar Municipal Transport (VVMT)"
         '
         'Label7
         '
@@ -386,6 +344,16 @@ Partial Class frm_CollectCash
         Me.lab_500.Size = New System.Drawing.Size(0, 13)
         Me.lab_500.TabIndex = 35
         '
+        'lab_CollectionDate
+        '
+        Me.lab_CollectionDate.AutoSize = True
+        Me.lab_CollectionDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lab_CollectionDate.Location = New System.Drawing.Point(110, 77)
+        Me.lab_CollectionDate.Name = "lab_CollectionDate"
+        Me.lab_CollectionDate.Size = New System.Drawing.Size(103, 17)
+        Me.lab_CollectionDate.TabIndex = 22
+        Me.lab_CollectionDate.Text = "Collection Date"
+        '
         'lab_100
         '
         Me.lab_100.AutoSize = True
@@ -394,15 +362,6 @@ Partial Class frm_CollectCash
         Me.lab_100.Name = "lab_100"
         Me.lab_100.Size = New System.Drawing.Size(0, 13)
         Me.lab_100.TabIndex = 36
-        '
-        'lab_50
-        '
-        Me.lab_50.AutoSize = True
-        Me.lab_50.Location = New System.Drawing.Point(218, 115)
-        Me.lab_50.Margin = New System.Windows.Forms.Padding(7)
-        Me.lab_50.Name = "lab_50"
-        Me.lab_50.Size = New System.Drawing.Size(0, 13)
-        Me.lab_50.TabIndex = 37
         '
         'lab_20
         '
@@ -457,70 +416,111 @@ Partial Class frm_CollectCash
         Me.txt_1000.Size = New System.Drawing.Size(100, 20)
         Me.txt_1000.TabIndex = 15
         '
-        'lab_TotalAmountCollection
+        'TableLayoutPanel1
         '
-        Me.lab_TotalAmountCollection.AutoSize = True
-        Me.lab_TotalAmountCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lab_TotalAmountCollection.Location = New System.Drawing.Point(93, 420)
-        Me.lab_TotalAmountCollection.Name = "lab_TotalAmountCollection"
-        Me.lab_TotalAmountCollection.Size = New System.Drawing.Size(157, 17)
-        Me.lab_TotalAmountCollection.TabIndex = 14
-        Me.lab_TotalAmountCollection.Text = "Total Amount Collection"
+        Me.TableLayoutPanel1.ColumnCount = 3
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.65116!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.875!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.75!))
+        Me.TableLayoutPanel1.Controls.Add(Me.Label13, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_500, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_100, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_50, 1, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_20, 1, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_10, 1, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_5, 1, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_2, 1, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_1, 1, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label3, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label4, 0, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label5, 0, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label6, 0, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label7, 0, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label8, 0, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label9, 0, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label10, 0, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label11, 0, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label12, 2, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_1000, 2, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_500, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_100, 2, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_50, 2, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_20, 2, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_10, 2, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_5, 2, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_2, 2, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.lab_1, 2, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_1000, 1, 1)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(61, 137)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 10
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(320, 275)
+        Me.TableLayoutPanel1.TabIndex = 26
         '
-        'txt_TotalAmountCollection
+        'lab_50
         '
-        Me.txt_TotalAmountCollection.Location = New System.Drawing.Point(264, 417)
-        Me.txt_TotalAmountCollection.Name = "txt_TotalAmountCollection"
-        Me.txt_TotalAmountCollection.Size = New System.Drawing.Size(114, 20)
-        Me.txt_TotalAmountCollection.TabIndex = 15
+        Me.lab_50.AutoSize = True
+        Me.lab_50.Location = New System.Drawing.Point(218, 115)
+        Me.lab_50.Margin = New System.Windows.Forms.Padding(7)
+        Me.lab_50.Name = "lab_50"
+        Me.lab_50.Size = New System.Drawing.Size(0, 13)
+        Me.lab_50.TabIndex = 37
         '
-        'lab_Diffrence
+        'txt_CollectionDate
         '
-        Me.lab_Diffrence.AutoSize = True
-        Me.lab_Diffrence.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lab_Diffrence.Location = New System.Drawing.Point(185, 445)
-        Me.lab_Diffrence.Name = "lab_Diffrence"
-        Me.lab_Diffrence.Size = New System.Drawing.Size(65, 17)
-        Me.lab_Diffrence.TabIndex = 16
-        Me.lab_Diffrence.Text = "Diffrence"
+        Me.txt_CollectionDate.Location = New System.Drawing.Point(219, 76)
+        Me.txt_CollectionDate.Name = "txt_CollectionDate"
+        Me.txt_CollectionDate.Size = New System.Drawing.Size(109, 20)
+        Me.txt_CollectionDate.TabIndex = 24
         '
-        'txt_Diffrence
+        'lab_TotalCollection
         '
-        Me.txt_Diffrence.Location = New System.Drawing.Point(264, 445)
-        Me.txt_Diffrence.Name = "txt_Diffrence"
-        Me.txt_Diffrence.Size = New System.Drawing.Size(114, 20)
-        Me.txt_Diffrence.TabIndex = 17
+        Me.lab_TotalCollection.AutoSize = True
+        Me.lab_TotalCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lab_TotalCollection.Location = New System.Drawing.Point(108, 104)
+        Me.lab_TotalCollection.Name = "lab_TotalCollection"
+        Me.lab_TotalCollection.Size = New System.Drawing.Size(105, 17)
+        Me.lab_TotalCollection.TabIndex = 23
+        Me.lab_TotalCollection.Text = "Total Collection"
         '
-        'btn_UploadCollection
+        'txt_TotalCollection
         '
-        Me.btn_UploadCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_UploadCollection.Location = New System.Drawing.Point(129, 471)
-        Me.btn_UploadCollection.Name = "btn_UploadCollection"
-        Me.btn_UploadCollection.Size = New System.Drawing.Size(190, 29)
-        Me.btn_UploadCollection.TabIndex = 18
-        Me.btn_UploadCollection.Text = "Upload Collection"
-        Me.btn_UploadCollection.UseVisualStyleBackColor = True
+        Me.txt_TotalCollection.Location = New System.Drawing.Point(219, 103)
+        Me.txt_TotalCollection.Name = "txt_TotalCollection"
+        Me.txt_TotalCollection.Size = New System.Drawing.Size(109, 20)
+        Me.txt_TotalCollection.TabIndex = 25
         '
-        'frm_CollectCash
+        'frm_CollectCash_Only
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(465, 524)
-        Me.Controls.Add(Me.btn_UploadCollection)
         Me.Controls.Add(Me.txt_Diffrence)
         Me.Controls.Add(Me.lab_Diffrence)
         Me.Controls.Add(Me.txt_TotalAmountCollection)
         Me.Controls.Add(Me.lab_TotalAmountCollection)
-        Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.Controls.Add(Me.txt_TotalCollection)
-        Me.Controls.Add(Me.txt_CollectionDate)
-        Me.Controls.Add(Me.lab_TotalCollection)
-        Me.Controls.Add(Me.lab_CollectionDate)
+        Me.Controls.Add(Me.btn_UploadCollection)
         Me.Controls.Add(Me.cmbPortList)
         Me.Controls.Add(Me.lab_Port)
         Me.Controls.Add(Me.Label1)
-        Me.Name = "frm_CollectCash"
-        Me.Text = "Collect Cash"
+        Me.Controls.Add(Me.lab_CollectionDate)
+        Me.Controls.Add(Me.TableLayoutPanel1)
+        Me.Controls.Add(Me.txt_CollectionDate)
+        Me.Controls.Add(Me.lab_TotalCollection)
+        Me.Controls.Add(Me.txt_TotalCollection)
+        Me.Name = "frm_CollectCash_Only"
+        Me.Text = "Coupon Collect Cash"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
@@ -528,16 +528,8 @@ Partial Class frm_CollectCash
 
     End Sub
 
-    Friend WithEvents cmbPortList As ComboBox
-    Friend WithEvents lab_Port As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents lab_CollectionDate As Label
-    Friend WithEvents lab_TotalCollection As Label
-    Friend WithEvents txt_CollectionDate As TextBox
-    Friend WithEvents txt_TotalCollection As TextBox
-    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents Label13 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents txt_1000 As TextBox
     Friend WithEvents txt_500 As TextBox
     Friend WithEvents txt_100 As TextBox
     Friend WithEvents txt_50 As TextBox
@@ -546,10 +538,18 @@ Partial Class frm_CollectCash
     Friend WithEvents txt_5 As TextBox
     Friend WithEvents txt_2 As TextBox
     Friend WithEvents txt_1 As TextBox
-    Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
+    Friend WithEvents txt_Diffrence As TextBox
+    Friend WithEvents lab_Diffrence As Label
+    Friend WithEvents txt_TotalAmountCollection As TextBox
+    Friend WithEvents lab_TotalAmountCollection As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents btn_UploadCollection As Button
     Friend WithEvents Label6 As Label
+    Friend WithEvents cmbPortList As ComboBox
+    Friend WithEvents lab_Port As Label
+    Friend WithEvents Label1 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
@@ -558,17 +558,17 @@ Partial Class frm_CollectCash
     Friend WithEvents Label12 As Label
     Friend WithEvents lab_1000 As Label
     Friend WithEvents lab_500 As Label
+    Friend WithEvents lab_CollectionDate As Label
     Friend WithEvents lab_100 As Label
-    Friend WithEvents lab_50 As Label
     Friend WithEvents lab_20 As Label
     Friend WithEvents lab_10 As Label
     Friend WithEvents lab_5 As Label
     Friend WithEvents lab_2 As Label
     Friend WithEvents lab_1 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents lab_TotalAmountCollection As Label
-    Friend WithEvents txt_TotalAmountCollection As TextBox
-    Friend WithEvents lab_Diffrence As Label
-    Friend WithEvents txt_Diffrence As TextBox
-    Friend WithEvents btn_UploadCollection As Button
+    Friend WithEvents txt_1000 As TextBox
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents lab_50 As Label
+    Friend WithEvents txt_CollectionDate As TextBox
+    Friend WithEvents lab_TotalCollection As Label
+    Friend WithEvents txt_TotalCollection As TextBox
 End Class

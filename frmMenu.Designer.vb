@@ -22,6 +22,7 @@ Partial Class frmMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.btn_Master = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btn_Auditing = New System.Windows.Forms.Button()
@@ -31,10 +32,18 @@ Partial Class frmMenu
         Me.btnDownLoad = New System.Windows.Forms.Button()
         Me.btnSendFile = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.txtProcStat = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.CMBPORTNO = New System.Windows.Forms.ComboBox()
+        Me.lab_UserName = New System.Windows.Forms.Label()
+        Me.lab_User = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.MasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AuditingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CouponToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btn_Master.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btn_Master
@@ -42,23 +51,23 @@ Partial Class frmMenu
         Me.btn_Master.Controls.Add(Me.Button1)
         Me.btn_Master.Controls.Add(Me.btn_Auditing)
         Me.btn_Master.Controls.Add(Me.btn_Push)
-        Me.btn_Master.Controls.Add(Me.CMBPORTNO)
         Me.btn_Master.Controls.Add(Me.btnExit)
         Me.btn_Master.Controls.Add(Me.BtnErase)
         Me.btn_Master.Controls.Add(Me.btnDownLoad)
         Me.btn_Master.Controls.Add(Me.btnSendFile)
-        Me.btn_Master.Location = New System.Drawing.Point(97, 70)
+        Me.btn_Master.Location = New System.Drawing.Point(384, 363)
         Me.btn_Master.Name = "btn_Master"
-        Me.btn_Master.Size = New System.Drawing.Size(241, 282)
+        Me.btn_Master.Size = New System.Drawing.Size(50, 35)
         Me.btn_Master.TabIndex = 0
         Me.btn_Master.TabStop = False
+        Me.btn_Master.Visible = False
         '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.Blue
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(23, 66)
+        Me.Button1.Location = New System.Drawing.Point(23, 43)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(193, 42)
         Me.Button1.TabIndex = 7
@@ -70,7 +79,7 @@ Partial Class frmMenu
         Me.btn_Auditing.BackColor = System.Drawing.Color.Blue
         Me.btn_Auditing.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Auditing.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btn_Auditing.Location = New System.Drawing.Point(23, 136)
+        Me.btn_Auditing.Location = New System.Drawing.Point(23, 113)
         Me.btn_Auditing.Name = "btn_Auditing"
         Me.btn_Auditing.Size = New System.Drawing.Size(193, 42)
         Me.btn_Auditing.TabIndex = 6
@@ -92,7 +101,7 @@ Partial Class frmMenu
         Me.btnExit.BackColor = System.Drawing.Color.Blue
         Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnExit.Location = New System.Drawing.Point(23, 207)
+        Me.btnExit.Location = New System.Drawing.Point(23, 184)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(193, 42)
         Me.btnExit.TabIndex = 3
@@ -104,7 +113,7 @@ Partial Class frmMenu
         Me.BtnErase.BackColor = System.Drawing.Color.Blue
         Me.BtnErase.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnErase.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.BtnErase.Location = New System.Drawing.Point(23, 207)
+        Me.BtnErase.Location = New System.Drawing.Point(23, 184)
         Me.BtnErase.Name = "BtnErase"
         Me.BtnErase.Size = New System.Drawing.Size(193, 42)
         Me.BtnErase.TabIndex = 2
@@ -117,7 +126,7 @@ Partial Class frmMenu
         Me.btnDownLoad.BackColor = System.Drawing.Color.Blue
         Me.btnDownLoad.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDownLoad.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnDownLoad.Location = New System.Drawing.Point(23, 207)
+        Me.btnDownLoad.Location = New System.Drawing.Point(23, 184)
         Me.btnDownLoad.Name = "btnDownLoad"
         Me.btnDownLoad.Size = New System.Drawing.Size(193, 42)
         Me.btnDownLoad.TabIndex = 1
@@ -130,7 +139,7 @@ Partial Class frmMenu
         Me.btnSendFile.BackColor = System.Drawing.Color.Blue
         Me.btnSendFile.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSendFile.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnSendFile.Location = New System.Drawing.Point(23, 207)
+        Me.btnSendFile.Location = New System.Drawing.Point(23, 184)
         Me.btnSendFile.Name = "btnSendFile"
         Me.btnSendFile.Size = New System.Drawing.Size(193, 42)
         Me.btnSendFile.TabIndex = 0
@@ -138,47 +147,91 @@ Partial Class frmMenu
         Me.btnSendFile.UseVisualStyleBackColor = False
         Me.btnSendFile.Visible = False
         '
-        'txtProcStat
+        'lab_UserName
         '
-        Me.txtProcStat.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtProcStat.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtProcStat.ForeColor = System.Drawing.Color.Red
-        Me.txtProcStat.Location = New System.Drawing.Point(0, 442)
-        Me.txtProcStat.Name = "txtProcStat"
-        Me.txtProcStat.Size = New System.Drawing.Size(359, 15)
-        Me.txtProcStat.TabIndex = 8
+        Me.lab_UserName.AutoSize = True
+        Me.lab_UserName.Location = New System.Drawing.Point(38, 5)
+        Me.lab_UserName.Name = "lab_UserName"
+        Me.lab_UserName.Size = New System.Drawing.Size(57, 13)
+        Me.lab_UserName.TabIndex = 10
+        Me.lab_UserName.Text = "UserName"
         '
-        'Label1
+        'lab_User
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(34, 27)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(381, 24)
-        Me.Label1.TabIndex = 9
-        Me.Label1.Text = "Vasai-Virar Municipal Transport (VVMT)"
+        Me.lab_User.AutoSize = True
+        Me.lab_User.Location = New System.Drawing.Point(3, 5)
+        Me.lab_User.Name = "lab_User"
+        Me.lab_User.Size = New System.Drawing.Size(35, 13)
+        Me.lab_User.TabIndex = 11
+        Me.lab_User.Text = "User :"
         '
-        'CMBPORTNO
+        'Panel1
         '
-        Me.CMBPORTNO.FormattingEnabled = True
-        Me.CMBPORTNO.Location = New System.Drawing.Point(71, 19)
-        Me.CMBPORTNO.Name = "CMBPORTNO"
-        Me.CMBPORTNO.Size = New System.Drawing.Size(82, 21)
-        Me.CMBPORTNO.TabIndex = 4
+        Me.Panel1.Controls.Add(Me.lab_User)
+        Me.Panel1.Controls.Add(Me.lab_UserName)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.Location = New System.Drawing.Point(0, 408)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(434, 23)
+        Me.Panel1.TabIndex = 12
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MasterToolStripMenuItem, Me.AuditingToolStripMenuItem, Me.CouponToolStripMenuItem, Me.CloseToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(434, 24)
+        Me.MenuStrip1.TabIndex = 14
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'MasterToolStripMenuItem
+        '
+        Me.MasterToolStripMenuItem.Name = "MasterToolStripMenuItem"
+        Me.MasterToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
+        Me.MasterToolStripMenuItem.Text = "Master"
+        '
+        'AuditingToolStripMenuItem
+        '
+        Me.AuditingToolStripMenuItem.Name = "AuditingToolStripMenuItem"
+        Me.AuditingToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
+        Me.AuditingToolStripMenuItem.Text = "Auditing"
+        '
+        'CouponToolStripMenuItem
+        '
+        Me.CouponToolStripMenuItem.Name = "CouponToolStripMenuItem"
+        Me.CouponToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
+        Me.CouponToolStripMenuItem.Text = "Coupon"
+        '
+        'CloseToolStripMenuItem
+        '
+        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.CloseToolStripMenuItem.Text = "Close"
         '
         'frmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(434, 427)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtProcStat)
+        Me.ClientSize = New System.Drawing.Size(434, 431)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.btn_Master)
+        Me.IsMdiContainer = True
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmMenu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "PC2M"
+        Me.Text = "Vasai-Virar Municipal Transport (VVMT)"
         Me.btn_Master.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -189,10 +242,16 @@ Partial Class frmMenu
     Friend WithEvents btnDownLoad As System.Windows.Forms.Button
     Friend WithEvents btnSendFile As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
-    Friend WithEvents txtProcStat As System.Windows.Forms.TextBox
     Friend WithEvents btn_Push As Button
     Friend WithEvents btn_Auditing As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents Label1 As Label
-    Friend WithEvents CMBPORTNO As ComboBox
+    Friend WithEvents lab_UserName As Label
+    Friend WithEvents lab_User As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents MasterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AuditingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CouponToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CloseToolStripMenuItem As ToolStripMenuItem
 End Class

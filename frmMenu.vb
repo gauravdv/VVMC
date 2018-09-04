@@ -8,6 +8,10 @@ Public Class frmMenu
     Public dbcomm As MySqlCommand
     Public dbread As MySqlDataReader
 
+    Dim _UserName As String = frm_Login._UserName
+    Dim _UserId As String = frm_Login._UserId
+
+    'Not Used
     Private Sub btnSendFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFile.Click
         Dim strSendFileName As String
 
@@ -18,7 +22,7 @@ Public Class frmMenu
         If strSendFileName.Length > 1 Then
             Try
                 Dim tSendFile As New PC2M
-                Call tSendFile.UploadData(strSendFileName, CMBPORTNO.Text)
+                'Call tSendFile.UploadData(strSendFileName, CMBPORTNO.Text)
 
             Catch ex As Exception
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -26,13 +30,17 @@ Public Class frmMenu
         End If
     End Sub
 
+    'form Load
     Private Sub frmMenu_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        WindowState = FormWindowState.Maximized
+        lab_UserName.Text = _UserName
         System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = False
         For Each sp As String In My.Computer.Ports.SerialPortNames
-            CMBPORTNO.Items.Add(sp)
+            'CMBPORTNO.Items.Add(sp)
         Next
     End Sub
 
+    'Not Used
     Private Sub btnDownLoad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDownLoad.Click
         Dim strRecFile As String
         Dim objReader As System.IO.StreamReader
@@ -42,7 +50,7 @@ Public Class frmMenu
         If strRecFile.Length > 1 Then
             Try
                 Dim tGetFile As New PC2M
-                tGetFile.DownLoad(strRecFile, "B", CMBPORTNO.Text)
+                ' tGetFile.DownLoad(strRecFile, "B", CMBPORTNO.Text)
                 If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\download\outputdata" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")) Then
                     If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\download\outputdata" & Format(Now, "dd_MM_yyyy_hh_mm") & ".csv")) Then
                         IO.File.Delete(System.String.Concat(My.Application.Info.DirectoryPath, "\download\outputdata" & Format(Now, "dd_MM_yyyy_hh_mm") & ".csv"))
@@ -58,21 +66,24 @@ Public Class frmMenu
         End If
     End Sub
 
+    'Not Userd
     Private Sub BtnErase_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnErase.Click
         Dim strSendFileName As String
         strSendFileName = System.String.Concat(My.Application.Info.DirectoryPath, "\Erase.txt")
         If strSendFileName.Length > 1 Then
             Try
                 Dim tSendFile As New PC2M
-                tSendFile.UploadData(strSendFileName, CMBPORTNO.Text)
+                ' tSendFile.UploadData(strSendFileName, CMBPORTNO.Text)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub
 
+    'btn Close
     Private Sub btnExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExit.Click
         Me.Close()
+        Application.Exit()
     End Sub
 
     'For Database Connection
@@ -142,6 +153,7 @@ Public Class frmMenu
 
     End Sub
 
+    'Get Conductor Details
     Public Sub getConductorDetails()
         Dim _fldi_conductor_id As String
         Dim Sql As String
@@ -161,15 +173,70 @@ Public Class frmMenu
         End Try
     End Sub
 
-    'btn_Auditing
+    'btn Auditing
     Private Sub btn_Auditing_Click(sender As Object, e As EventArgs) Handles btn_Auditing.Click
         Dim Auditing = New frm_Auditing
         Auditing.Show()
     End Sub
 
+    'btn Mater
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim Master = New frm_Master
-        Master.Show()
+        'Dim Master = New frm_Master
+        'Master.Show()
+        frm_Master.Show()
+    End Sub
+
+    'form closed
+    Private Sub frmMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        'Dim LogIn = New frm_Login
+        'LogIn.Show()
+        frm_Auditing.Close()
+        frm_CollectCash.Close()
+        frm_Auditing.Close()
+        Application.Exit()
+    End Sub
+
+    Private Sub AuditingToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        Dim Auditing = New frm_Auditing
+        Auditing.Show()
+        Auditing.MdiParent = Me
+    End Sub
+
+    Private Sub MasterToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles MasterToolStripMenuItem.Click
+        frm_Auditing.Close()
+        frm_CollectCash.Close()
+        frm_CouponCollection.Close()
+
+        frm_Master.MdiParent = Me
+        frm_Master.WindowState = FormWindowState.Maximized
+        frm_Master.Show()
+
+    End Sub
+
+    Private Sub AuditingToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles AuditingToolStripMenuItem.Click
+        frm_CollectCash.Close()
+        frm_CouponCollection.Close()
+        frm_Master.Close()
+
+        'Dim Auditing = New frm_Auditing
+        frm_Auditing.MdiParent = Me
+        frm_Auditing.WindowState = FormWindowState.Maximized
+        frm_Auditing.Show()
+    End Sub
+
+    Private Sub CouponToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CouponToolStripMenuItem.Click
+        frm_Master.Close()
+        frm_Auditing.Close()
+        frm_CollectCash.Close()
+
+        frm_CouponCollection_Only.MdiParent = Me
+        frm_CouponCollection_Only.WindowState = FormWindowState.Maximized
+        frm_CouponCollection_Only.Show()
+    End Sub
+
+    Private Sub CloseToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
+        Me.Close()
+        Application.Exit()
     End Sub
 End Class
 

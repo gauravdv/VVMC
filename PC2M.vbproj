@@ -89,6 +89,30 @@
     <Compile Include="frm_CollectCash.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_CollectCash_Only.Designer.vb">
+      <DependentUpon>frm_CollectCash_Only.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_CollectCash_Only.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_CouponCollection.Designer.vb">
+      <DependentUpon>frm_CouponCollection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_CouponCollection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_CouponCollection_Only.Designer.vb">
+      <DependentUpon>frm_CouponCollection_Only.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_CouponCollection_Only.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Login.Designer.vb">
+      <DependentUpon>frm_Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_Master.Designer.vb">
       <DependentUpon>frm_Master.vb</DependentUpon>
     </Compile>
@@ -121,6 +145,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_CollectCash.resx">
       <DependentUpon>frm_CollectCash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_CollectCash_Only.resx">
+      <DependentUpon>frm_CollectCash_Only.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_CouponCollection.resx">
+      <DependentUpon>frm_CouponCollection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_CouponCollection_Only.resx">
+      <DependentUpon>frm_CouponCollection_Only.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Login.resx">
+      <DependentUpon>frm_Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Master.resx">
       <DependentUpon>frm_Master.vb</DependentUpon>

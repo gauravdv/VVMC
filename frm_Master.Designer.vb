@@ -40,14 +40,18 @@ Partial Class frm_Master
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lab_User = New System.Windows.Forms.Label()
+        Me.lab_UserName = New System.Windows.Forms.Label()
         CType(Me.dgv_WayBillDetails, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(178, 9)
+        Me.Label1.Location = New System.Drawing.Point(432, 52)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(381, 24)
         Me.Label1.TabIndex = 7
@@ -56,7 +60,7 @@ Partial Class frm_Master
         'cmbPortList
         '
         Me.cmbPortList.FormattingEnabled = True
-        Me.cmbPortList.Location = New System.Drawing.Point(375, 49)
+        Me.cmbPortList.Location = New System.Drawing.Point(629, 92)
         Me.cmbPortList.Name = "cmbPortList"
         Me.cmbPortList.Size = New System.Drawing.Size(72, 21)
         Me.cmbPortList.TabIndex = 10
@@ -65,7 +69,7 @@ Partial Class frm_Master
         '
         Me.lab_Port.AutoSize = True
         Me.lab_Port.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lab_Port.Location = New System.Drawing.Point(252, 49)
+        Me.lab_Port.Location = New System.Drawing.Point(506, 92)
         Me.lab_Port.Name = "lab_Port"
         Me.lab_Port.Size = New System.Drawing.Size(117, 17)
         Me.lab_Port.TabIndex = 9
@@ -73,7 +77,7 @@ Partial Class frm_Master
         '
         'txt_WayBill
         '
-        Me.txt_WayBill.Location = New System.Drawing.Point(226, 98)
+        Me.txt_WayBill.Location = New System.Drawing.Point(480, 141)
         Me.txt_WayBill.Name = "txt_WayBill"
         Me.txt_WayBill.Size = New System.Drawing.Size(123, 20)
         Me.txt_WayBill.TabIndex = 11
@@ -81,7 +85,7 @@ Partial Class frm_Master
         'btn_GetWayBill
         '
         Me.btn_GetWayBill.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_GetWayBill.Location = New System.Drawing.Point(372, 95)
+        Me.btn_GetWayBill.Location = New System.Drawing.Point(626, 138)
         Me.btn_GetWayBill.Name = "btn_GetWayBill"
         Me.btn_GetWayBill.Size = New System.Drawing.Size(96, 29)
         Me.btn_GetWayBill.TabIndex = 12
@@ -92,7 +96,7 @@ Partial Class frm_Master
         '
         Me.dgv_WayBillDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_WayBillDetails.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11})
-        Me.dgv_WayBillDetails.Location = New System.Drawing.Point(21, 146)
+        Me.dgv_WayBillDetails.Location = New System.Drawing.Point(275, 189)
         Me.dgv_WayBillDetails.Name = "dgv_WayBillDetails"
         Me.dgv_WayBillDetails.Size = New System.Drawing.Size(767, 257)
         Me.dgv_WayBillDetails.TabIndex = 13
@@ -155,18 +159,48 @@ Partial Class frm_Master
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(295, 412)
+        Me.Button1.Location = New System.Drawing.Point(549, 455)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(141, 33)
         Me.Button1.TabIndex = 14
         Me.Button1.Text = "Upload WayBill"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.lab_User)
+        Me.Panel1.Controls.Add(Me.lab_UserName)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.Location = New System.Drawing.Point(0, 540)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1246, 23)
+        Me.Panel1.TabIndex = 15
+        Me.Panel1.Visible = False
+        '
+        'lab_User
+        '
+        Me.lab_User.AutoSize = True
+        Me.lab_User.Location = New System.Drawing.Point(3, 5)
+        Me.lab_User.Name = "lab_User"
+        Me.lab_User.Size = New System.Drawing.Size(35, 13)
+        Me.lab_User.TabIndex = 11
+        Me.lab_User.Text = "User :"
+        '
+        'lab_UserName
+        '
+        Me.lab_UserName.AutoSize = True
+        Me.lab_UserName.Location = New System.Drawing.Point(38, 5)
+        Me.lab_UserName.Name = "lab_UserName"
+        Me.lab_UserName.Size = New System.Drawing.Size(57, 13)
+        Me.lab_UserName.TabIndex = 10
+        Me.lab_UserName.Text = "UserName"
+        '
         'frm_Master
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1246, 563)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.dgv_WayBillDetails)
         Me.Controls.Add(Me.btn_GetWayBill)
@@ -177,6 +211,8 @@ Partial Class frm_Master
         Me.Name = "frm_Master"
         Me.Text = "Generate WayBill"
         CType(Me.dgv_WayBillDetails, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -200,4 +236,7 @@ Partial Class frm_Master
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column11 As DataGridViewTextBoxColumn
     Friend WithEvents Button1 As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents lab_User As Label
+    Friend WithEvents lab_UserName As Label
 End Class
