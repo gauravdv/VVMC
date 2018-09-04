@@ -1,0 +1,9 @@
+ tbl_waybill_ticket_handheld_data_dummy
+	Store data when machine connected and tickets detail will be store on this table	
+
+ tbl_conductor_coupon_collection_dummy
+	Stored the coupon tickets
+
+ tbl_waybill_mst
+	Update the waybill history
+	datae and time and user_id

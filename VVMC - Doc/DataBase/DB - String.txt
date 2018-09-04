@@ -1,0 +1,6 @@
+
+
+Server      :  http://192.168.1.253/phpmyadmin/index.php?db=db_vvmt_ticketing&table=tbl_waybill_ticket_handheld_data_dummy&target=sql.php&token=7bf3583d323556a637bb2a77ba4ad1f8#PMAURL-0:index.php?db=db_vvmt_ticketing&table=tbl_waybill_ticket_handheld_data_dummy&server=1&target=sql.php&token=7bf3583d323556a637bb2a77ba4ad1f8
+User Name   :  root
+PassWord    :  mysql@123
+DataBase    :  db_vvmt_ticketing
