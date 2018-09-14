@@ -465,11 +465,11 @@ Public Class frm_Auditing
             Try
                 Dim tGetFile As New PC2M
                 tGetFile.DownLoad(strRecFile, "B", cmbPortList.Text)
+
                 If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\WayBill\WayBill" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")) Then
                     objReader = New System.IO.StreamReader(strRecFile)
                     tStr = Replace(objReader.ReadToEnd, "@", "")
                     objReader.Close()
-
                     'FileName = txtpath.Replace("file:\", "")
                     If System.IO.File.Exists(Path_WayBill) = True Then
                         Dim objReaders As New System.IO.StreamReader(Path_WayBill)

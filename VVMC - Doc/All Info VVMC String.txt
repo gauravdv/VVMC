@@ -1,0 +1,48 @@
+192.168.1.253;db_vvmt_ticketing;root;mysql@123;	 ---------Local
+192.168.1.251;db_vvmt_tick;Ramesh;ramesh;-----------LIve Testing
+
+80.241.219.166;db_vvmt_ticketing;vvmt;*i@val!in;-----------LIve	
+
+
+
+https://www.base64decode.org/  
+
+https://www.youtube.com/watch?v=Vrue7CIghIw ------ form into from with menu
+
+
+Testing Db----------------------------------------------------------------------------------------------------
+
+	http://192.168.1.253/phpmyadmin/sql.php?db=db_vvmt_ticketing&table=tbl_conductor_coupon_collection_dummy&server=1&target=&token=bbfdf1682c4cbe68b3f9cb59db4b9786
+	db_vvmt_ticketing
+	root
+	mysql@123
+	
+VVMC LIVE--------------------------------------------------------------------------------------------------------
+
+	http://80.241.219.166/Secur3/phpMyAdmin/index.php?db=db_vvmt_ticketing&token=95c4e076a066cc8472c0e7976c1194ce
+	user :-vvmt
+	pwd:- *i@val!in
+ 	db_vvmt_ticketing 
+
+	http://192.168.1.251:8081/secure_dis/phpMyAdmin
+	root
+
+LIve Testing---------------------------------------------------------------------------------------------------
+
+	http://192.168.1.251:8081/secure_dis/phpMyAdmin
+	root ---------- Ramesh
+	p@ssw0rd-------- ramesh
+		-------- db_vvmt_tick
+DataBase Changes----------------------------------------------------------------------------------------------
+
+ tbl_waybill_ticket_handheld_data_dummy
+	Store data when machine connected and tickets detail will be store on this table	
+
+ tbl_conductor_coupon_collection_dummy
+	Stored the coupon tickets
+
+ tbl_waybill_mst
+	Update the waybill history
+	datae and time and user_id
+
+

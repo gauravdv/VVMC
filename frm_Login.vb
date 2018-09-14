@@ -1,5 +1,6 @@
 ﻿Imports PC2M.PC2M
 Imports System.IO
+Imports System.Data.SqlClient
 Imports MySql.Data.MySqlClient
 
 Public Class frm_Login

@@ -55,9 +55,9 @@ Partial Class frmMenu
         Me.btn_Master.Controls.Add(Me.BtnErase)
         Me.btn_Master.Controls.Add(Me.btnDownLoad)
         Me.btn_Master.Controls.Add(Me.btnSendFile)
-        Me.btn_Master.Location = New System.Drawing.Point(384, 363)
+        Me.btn_Master.Location = New System.Drawing.Point(105, 52)
         Me.btn_Master.Name = "btn_Master"
-        Me.btn_Master.Size = New System.Drawing.Size(50, 35)
+        Me.btn_Master.Size = New System.Drawing.Size(329, 346)
         Me.btn_Master.TabIndex = 0
         Me.btn_Master.TabStop = False
         Me.btn_Master.Visible = False
@@ -88,9 +88,9 @@ Partial Class frmMenu
         '
         'btn_Push
         '
-        Me.btn_Push.Location = New System.Drawing.Point(23, 265)
+        Me.btn_Push.Location = New System.Drawing.Point(23, 258)
         Me.btn_Push.Name = "btn_Push"
-        Me.btn_Push.Size = New System.Drawing.Size(10, 29)
+        Me.btn_Push.Size = New System.Drawing.Size(252, 29)
         Me.btn_Push.TabIndex = 5
         Me.btn_Push.Text = "Push"
         Me.btn_Push.UseVisualStyleBackColor = True
@@ -101,7 +101,7 @@ Partial Class frmMenu
         Me.btnExit.BackColor = System.Drawing.Color.Blue
         Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnExit.Location = New System.Drawing.Point(23, 184)
+        Me.btnExit.Location = New System.Drawing.Point(48, 232)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(193, 42)
         Me.btnExit.TabIndex = 3
@@ -113,7 +113,7 @@ Partial Class frmMenu
         Me.BtnErase.BackColor = System.Drawing.Color.Blue
         Me.BtnErase.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnErase.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.BtnErase.Location = New System.Drawing.Point(23, 184)
+        Me.BtnErase.Location = New System.Drawing.Point(48, 232)
         Me.BtnErase.Name = "BtnErase"
         Me.BtnErase.Size = New System.Drawing.Size(193, 42)
         Me.BtnErase.TabIndex = 2
@@ -126,7 +126,7 @@ Partial Class frmMenu
         Me.btnDownLoad.BackColor = System.Drawing.Color.Blue
         Me.btnDownLoad.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDownLoad.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnDownLoad.Location = New System.Drawing.Point(23, 184)
+        Me.btnDownLoad.Location = New System.Drawing.Point(101, 161)
         Me.btnDownLoad.Name = "btnDownLoad"
         Me.btnDownLoad.Size = New System.Drawing.Size(193, 42)
         Me.btnDownLoad.TabIndex = 1

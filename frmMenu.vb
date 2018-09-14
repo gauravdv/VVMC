@@ -50,7 +50,7 @@ Public Class frmMenu
         If strRecFile.Length > 1 Then
             Try
                 Dim tGetFile As New PC2M
-                ' tGetFile.DownLoad(strRecFile, "B", CMBPORTNO.Text)
+                'tGetFile.DownLoad(strRecFile, "B", CMBPORTNO.Text)
                 If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\download\outputdata" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")) Then
                     If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\download\outputdata" & Format(Now, "dd_MM_yyyy_hh_mm") & ".csv")) Then
                         IO.File.Delete(System.String.Concat(My.Application.Info.DirectoryPath, "\download\outputdata" & Format(Now, "dd_MM_yyyy_hh_mm") & ".csv"))
