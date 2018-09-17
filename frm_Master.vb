@@ -24,6 +24,7 @@ Public Class frm_Master
         myCSB.Database = db_Name
         myCSB.UserID = db_UserID
         myCSB.Password = db_Password
+        myCSB.SslMode = MySqlSslMode.None
         conn = New MySqlConnection(myCSB.ConnectionString)
         'conn.ConnectionString = String.Format("server={0}; user id={1}; password={2}; database={3}; pooling=false", db_Server, db_Name, db_UserID, db_Password)
         Try

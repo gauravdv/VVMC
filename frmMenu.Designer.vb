@@ -55,9 +55,9 @@ Partial Class frmMenu
         Me.btn_Master.Controls.Add(Me.BtnErase)
         Me.btn_Master.Controls.Add(Me.btnDownLoad)
         Me.btn_Master.Controls.Add(Me.btnSendFile)
-        Me.btn_Master.Location = New System.Drawing.Point(105, 52)
+        Me.btn_Master.Location = New System.Drawing.Point(405, 378)
         Me.btn_Master.Name = "btn_Master"
-        Me.btn_Master.Size = New System.Drawing.Size(329, 346)
+        Me.btn_Master.Size = New System.Drawing.Size(29, 20)
         Me.btn_Master.TabIndex = 0
         Me.btn_Master.TabStop = False
         Me.btn_Master.Visible = False

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frm_CollectCash
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frm_CollectCash
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.cmbPortList = New System.Windows.Forms.ComboBox()
         Me.lab_Port = New System.Windows.Forms.Label()
@@ -65,7 +65,12 @@ Partial Class frm_CollectCash
         Me.lab_Diffrence = New System.Windows.Forms.Label()
         Me.txt_Diffrence = New System.Windows.Forms.TextBox()
         Me.btn_UploadCollection = New System.Windows.Forms.Button()
+        Me.dgv_CollectCash = New System.Windows.Forms.DataGridView()
+        Me.Particulers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Count = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Amount = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.dgv_CollectCash, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cmbPortList
@@ -501,11 +506,43 @@ Partial Class frm_CollectCash
         Me.btn_UploadCollection.Text = "Upload Collection"
         Me.btn_UploadCollection.UseVisualStyleBackColor = True
         '
+        'dgv_CollectCash
+        '
+        Me.dgv_CollectCash.AllowUserToAddRows = False
+        Me.dgv_CollectCash.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgv_CollectCash.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_CollectCash.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Particulers, Me.Count, Me.Amount})
+        Me.dgv_CollectCash.Location = New System.Drawing.Point(20, 128)
+        Me.dgv_CollectCash.Name = "dgv_CollectCash"
+        Me.dgv_CollectCash.Size = New System.Drawing.Size(443, 278)
+        Me.dgv_CollectCash.TabIndex = 33
+        '
+        'Particulers
+        '
+        Me.Particulers.HeaderText = "Particulers"
+        Me.Particulers.Name = "Particulers"
+        Me.Particulers.ReadOnly = True
+        Me.Particulers.Width = 150
+        '
+        'Count
+        '
+        Me.Count.HeaderText = "Count"
+        Me.Count.Name = "Count"
+        Me.Count.Width = 125
+        '
+        'Amount
+        '
+        Me.Amount.HeaderText = "Amount"
+        Me.Amount.Name = "Amount"
+        Me.Amount.ReadOnly = True
+        Me.Amount.Width = 125
+        '
         'frm_CollectCash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(465, 524)
+        Me.ClientSize = New System.Drawing.Size(483, 511)
+        Me.Controls.Add(Me.dgv_CollectCash)
         Me.Controls.Add(Me.btn_UploadCollection)
         Me.Controls.Add(Me.txt_Diffrence)
         Me.Controls.Add(Me.lab_Diffrence)
@@ -523,6 +560,7 @@ Partial Class frm_CollectCash
         Me.Text = "Collect Cash"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
+        CType(Me.dgv_CollectCash, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -571,4 +609,8 @@ Partial Class frm_CollectCash
     Friend WithEvents lab_Diffrence As Label
     Friend WithEvents txt_Diffrence As TextBox
     Friend WithEvents btn_UploadCollection As Button
+    Friend WithEvents dgv_CollectCash As DataGridView
+    Friend WithEvents Particulers As DataGridViewTextBoxColumn
+    Friend WithEvents Count As DataGridViewTextBoxColumn
+    Friend WithEvents Amount As DataGridViewTextBoxColumn
 End Class

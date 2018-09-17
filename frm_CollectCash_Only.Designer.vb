@@ -65,7 +65,12 @@ Partial Class frm_CollectCash_Only
         Me.txt_CollectionDate = New System.Windows.Forms.TextBox()
         Me.lab_TotalCollection = New System.Windows.Forms.Label()
         Me.txt_TotalCollection = New System.Windows.Forms.TextBox()
+        Me.dgv_CollectCash = New System.Windows.Forms.DataGridView()
+        Me.Particulers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Count = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Amount = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.dgv_CollectCash, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label13
@@ -501,11 +506,43 @@ Partial Class frm_CollectCash_Only
         Me.txt_TotalCollection.Size = New System.Drawing.Size(109, 20)
         Me.txt_TotalCollection.TabIndex = 25
         '
+        'dgv_CollectCash
+        '
+        Me.dgv_CollectCash.AllowUserToAddRows = False
+        Me.dgv_CollectCash.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgv_CollectCash.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_CollectCash.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Particulers, Me.Count, Me.Amount})
+        Me.dgv_CollectCash.Location = New System.Drawing.Point(14, 136)
+        Me.dgv_CollectCash.Name = "dgv_CollectCash"
+        Me.dgv_CollectCash.Size = New System.Drawing.Size(443, 278)
+        Me.dgv_CollectCash.TabIndex = 32
+        '
+        'Particulers
+        '
+        Me.Particulers.HeaderText = "Particulers"
+        Me.Particulers.Name = "Particulers"
+        Me.Particulers.ReadOnly = True
+        Me.Particulers.Width = 150
+        '
+        'Count
+        '
+        Me.Count.HeaderText = "Count"
+        Me.Count.Name = "Count"
+        Me.Count.Width = 125
+        '
+        'Amount
+        '
+        Me.Amount.HeaderText = "Amount"
+        Me.Amount.Name = "Amount"
+        Me.Amount.ReadOnly = True
+        Me.Amount.Width = 125
+        '
         'frm_CollectCash_Only
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(465, 524)
+        Me.ClientSize = New System.Drawing.Size(477, 524)
+        Me.Controls.Add(Me.dgv_CollectCash)
         Me.Controls.Add(Me.txt_Diffrence)
         Me.Controls.Add(Me.lab_Diffrence)
         Me.Controls.Add(Me.txt_TotalAmountCollection)
@@ -523,6 +560,7 @@ Partial Class frm_CollectCash_Only
         Me.Text = "Coupon Collect Cash"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
+        CType(Me.dgv_CollectCash, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -571,4 +609,8 @@ Partial Class frm_CollectCash_Only
     Friend WithEvents txt_CollectionDate As TextBox
     Friend WithEvents lab_TotalCollection As Label
     Friend WithEvents txt_TotalCollection As TextBox
+    Friend WithEvents dgv_CollectCash As DataGridView
+    Friend WithEvents Particulers As DataGridViewTextBoxColumn
+    Friend WithEvents Count As DataGridViewTextBoxColumn
+    Friend WithEvents Amount As DataGridViewTextBoxColumn
 End Class

@@ -27,14 +27,6 @@ Partial Class frm_CouponCollection_Only
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CB_NoTicketSold = New System.Windows.Forms.CheckBox()
         Me.txt_Date = New System.Windows.Forms.TextBox()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgv_WayBillDetails = New System.Windows.Forms.DataGridView()
         Me.btn_GetConductorTicketDetail = New System.Windows.Forms.Button()
         Me.cmb_ConductorId = New System.Windows.Forms.ComboBox()
@@ -48,6 +40,14 @@ Partial Class frm_CouponCollection_Only
         Me.btn_CollectCash = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgv_WayBillDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -97,49 +97,6 @@ Partial Class frm_CouponCollection_Only
         Me.txt_Date.Name = "txt_Date"
         Me.txt_Date.Size = New System.Drawing.Size(100, 20)
         Me.txt_Date.TabIndex = 48
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Ticket Max Number"
-        Me.Column8.Name = "Column8"
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Nutrition Tax"
-        Me.Column7.Name = "Column7"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Amount"
-        Me.Column6.Name = "Column6"
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "No of Tickets"
-        Me.Column5.Name = "Column5"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Ticket End Number"
-        Me.Column4.Name = "Column4"
-        Me.Column4.Width = 150
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Ticket Start Number"
-        Me.Column3.Name = "Column3"
-        Me.Column3.Width = 150
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Ticket Block Series No"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Width = 150
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Denomination"
-        Me.Column1.Name = "Column1"
         '
         'dgv_WayBillDetails
         '
@@ -265,6 +222,56 @@ Partial Class frm_CouponCollection_Only
         Me.Label1.TabIndex = 39
         Me.Label1.Text = "Vasai-Virar Municipal Transport (VVMT)"
         '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Denomination"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Ticket Block Series No"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 150
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Ticket Start Number"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        Me.Column3.Width = 150
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Ticket End Number"
+        Me.Column4.Name = "Column4"
+        Me.Column4.Width = 150
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "No of Tickets"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Amount"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Nutrition Tax"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Ticket Max Number"
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        '
         'frm_CouponCollection_Only
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -301,14 +308,6 @@ Partial Class frm_CouponCollection_Only
     Friend WithEvents Label4 As Label
     Friend WithEvents CB_NoTicketSold As CheckBox
     Friend WithEvents txt_Date As TextBox
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents dgv_WayBillDetails As DataGridView
     Friend WithEvents btn_GetConductorTicketDetail As Button
     Friend WithEvents cmb_ConductorId As ComboBox
@@ -322,4 +321,12 @@ Partial Class frm_CouponCollection_Only
     Friend WithEvents btn_CollectCash As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label1 As Label
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
 End Class

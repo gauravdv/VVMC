@@ -534,6 +534,7 @@ Public Class frm_CollectCash
         myCSB.Database = db_Name
         myCSB.UserID = db_UserID
         myCSB.Password = db_Password
+        myCSB.SslMode = MySqlSslMode.None
         conn = New MySqlConnection(myCSB.ConnectionString)
         ' conn.ConnectionString = String.Format("server={0}; user id={1}; password={2}; database={3}; pooling=false", db_Server, db_Name, db_UserID, db_Password)
         Try
@@ -574,6 +575,7 @@ Public Class frm_CollectCash
 
     ' Load Form 
     Private Sub frm_CollectCash_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         get_cmbPort()
         If Not TotalCollection = 0 Then
             Dim An As Int64
@@ -587,6 +589,10 @@ Public Class frm_CollectCash
         txt_CollectionDate.Text = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
         db_connection()
         get_WayBillData()
+        'dgv_CollectCash.Rows.Clear()
+        'get_dgvDetails()
+        dgv_CollectCash.Rows.Clear()
+        get_CurrencyRateDetails()
     End Sub
 
     Private Sub btn_UploadCollection_Click(sender As Object, e As EventArgs) Handles btn_UploadCollection.Click
@@ -616,7 +622,7 @@ Public Class frm_CollectCash
         End If
     End Sub
 
-    '\Get WatBill Mst DAta
+    'Get WatBill Mst DAta
     Private Sub get_WayBillData()
         Dim Sql As String
         If Not _ConEmpWayBill = "" Then
@@ -652,4 +658,69 @@ Public Class frm_CollectCash
         End If
     End Sub
 
+    'Get Coupon Amt Detail
+    Private Sub get_dgvDetails()
+        Dim sQL As String
+        Dim _fldv_Coupon_Currancy_rate As String
+
+        sQL = "SELECT fldv_Coupon_Currancy_rate FROM tbl_currancy_rate"
+        Try
+            conn.Open()
+            dbcomm = New MySqlCommand(sQL, conn)
+            dbread = dbcomm.ExecuteReader
+            While dbread.Read()
+                _fldv_Coupon_Currancy_rate = dbread.GetString("fldv_Coupon_Currancy_rate")
+
+                'Grid View
+                dgv_CollectCash.Rows.Add(New String() {_fldv_Coupon_Currancy_rate, 0, 0.0})
+
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        conn.Close()
+    End Sub
+
+    'Get Coupon Amt Detail
+    Private Sub get_CurrencyRateDetails()
+        Dim sQL As String
+        Dim _fldv_Coupon_Currancy_rate As String
+
+        sQL = "SELECT fldv_Coupon_Currancy_rate FROM tbl_currancy_rate ORDER BY fldv_Coupon_Currancy_rate DESC "
+        Try
+            conn.Open()
+            dbcomm = New MySqlCommand(sQL, conn)
+            dbread = dbcomm.ExecuteReader
+            While dbread.Read()
+                _fldv_Coupon_Currancy_rate = dbread.GetString("fldv_Coupon_Currancy_rate")
+
+                'Grid View
+                dgv_CollectCash.Rows.Add(New String() {_fldv_Coupon_Currancy_rate, 0, 0})
+
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        conn.Close()
+    End Sub
+
+    'dgv Calculations
+    Private Sub dgv_Calculations()
+        Dim Amount As String
+
+        For i As Integer = 0 To dgv_CollectCash.RowCount - 1
+            If IsNumeric(dgv_CollectCash.Rows(i).Cells(1).Value) Then
+                dgv_CollectCash.Rows(i).Cells(2).Value = dgv_CollectCash.Rows(i).Cells(0).Value * dgv_CollectCash.Rows(i).Cells(1).Value
+                Amount = dgv_CollectCash.Rows(i).Cells(2).Value + Amount
+                txt_TotalAmountCollection.Text = Amount
+                txt_Diffrence.Text = txt_TotalCollection.Text - Amount
+            Else
+                dgv_CollectCash.Rows(i).Cells(1).Value = 0
+            End If
+        Next
+    End Sub
+
+    Private Sub dgv_CollectCash_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_CollectCash.CellEndEdit
+        dgv_Calculations()
+    End Sub
 End Class

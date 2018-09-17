@@ -1,5 +1,5 @@
 192.168.1.253;db_vvmt_ticketing;root;mysql@123;	 ---------Local
-192.168.1.251;db_vvmt_tick;Ramesh;ramesh;-----------LIve Testing
+	-----------LIve Testing
 
 80.241.219.166;db_vvmt_ticketing;vvmt;*i@val!in;-----------LIve	
 
