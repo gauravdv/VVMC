@@ -7,6 +7,15 @@ Imports System.Text
 
 Public Class frm_Auditing
 
+    Dim objReader As System.IO.StreamReader
+    Dim tStr As String
+    Dim tRecCntr As Int64
+    Dim tLenCntr As Int64
+    Dim tDataCntr As Int64
+    Public Declare Sub Sleep Lib "kernel32.dll" (ByVal dwMilliseconds As Long)
+
+    Dim value As Integer = 0
+
     Dim conn As New MySqlConnection
     Public dbcomm As MySqlCommand
     Public dbread As MySqlDataReader
@@ -337,7 +346,8 @@ Public Class frm_Auditing
             If Not TicketData1.Equals("") Then
                 Dim arrayOfTicketData() As String = TicketData1.Split(vbLf)
                 Dim CountLine As Integer = arrayOfTicketData.Length
-                CountLine = CountLine - 2 ' Remove Last Two Line
+                ' CountLine = CountLine - 2 ' Remove Last Two Line ' When Used dll
+                CountLine = CountLine - 1 ' with out dll
                 FullTicketData1 = ""
                 Dim NoLine As Integer = 0
 
@@ -385,6 +395,9 @@ Public Class frm_Auditing
                     dbcomm.ExecuteNonQuery()
                     conn.Close()
                     MessageBox.Show("Ticket Upload successfully.....")
+                    btn_UploadTicket.Enabled = False
+                    btn_EraseTicket.Enabled = True
+                    btn_DeleteBill.Enabled = True
                 Catch ex As Exception
                     MsgBox("Error...Please try later" + ex.Message)
                     btn_UploadTicket.Enabled = True
@@ -409,83 +422,83 @@ Public Class frm_Auditing
 
     'Download Ticket & Display
     Private Sub Download_Ticket()
-        Dim strRecFile As String
-        Dim objReader As System.IO.StreamReader
-        Dim tStr As String
-        Dim txtFilePath As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)
-        Dim TextLine As String
+        'Dim strRecFile As String
+        'Dim objReader As System.IO.StreamReader
+        'Dim tStr As String
+        'Dim txtFilePath As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)
+        'Dim TextLine As String
 
-        If Not IO.Directory.Exists(My.Application.Info.DirectoryPath & "\TicketData") Then IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\TicketData")
-        strRecFile = System.String.Concat(My.Application.Info.DirectoryPath, "\TicketData\TicketData" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")
-        Path_Ticket = strRecFile
-        If strRecFile.Length > 1 Then
-            Try
-                Dim tGetFile As New PC2M
-                tGetFile.DownLoad(strRecFile, "D", cmbPortList.Text)
-                If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\TicketData\TicketData" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")) Then
-                    objReader = New System.IO.StreamReader(strRecFile)
-                    tStr = Replace(objReader.ReadToEnd, "@", "")
-                    objReader.Close()
+        'If Not IO.Directory.Exists(My.Application.Info.DirectoryPath & "\TicketData") Then IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\TicketData")
+        'strRecFile = System.String.Concat(My.Application.Info.DirectoryPath, "\TicketData\TicketData" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")
+        'Path_Ticket = strRecFile
+        'If strRecFile.Length > 1 Then
+        '    Try
+        '        Dim tGetFile As New PC2M
+        '        tGetFile.DownLoad(strRecFile, "D", cmbPortList.Text)
+        '        If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\TicketData\TicketData" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")) Then
+        '            objReader = New System.IO.StreamReader(strRecFile)
+        '            tStr = Replace(objReader.ReadToEnd, "@", "")
+        '            objReader.Close()
 
-                    If System.IO.File.Exists(Path_Ticket) = True Then
-                        Dim objReaders As New System.IO.StreamReader(Path_Ticket)
-                        Do While objReaders.Peek() <> -1
-                            'TextLine = TextLine & objReaders.ReadLine() & vbNewLine
-                            TextLine = TextLine & objReaders.ReadLine() & vbNewLine
-                            TextLine = TextLine.Replace(vbNullChar, "")
-                        Loop
-                        txt_Ticket.Text = TextLine
-                        btn_UploadTicket.Enabled = True
-                    Else
-                        MessageBox.Show("File Does Not Exist")
-                    End If
+        '            If System.IO.File.Exists(Path_Ticket) = True Then
+        '                Dim objReaders As New System.IO.StreamReader(Path_Ticket)
+        '                Do While objReaders.Peek() <> -1
+        '                    'TextLine = TextLine & objReaders.ReadLine() & vbNewLine
+        '                    TextLine = TextLine & objReaders.ReadLine() & vbNewLine
+        '                    TextLine = TextLine.Replace(vbNullChar, "")
+        '                Loop
+        '                txt_Ticket.Text = TextLine
+        '                btn_UploadTicket.Enabled = True
+        '            Else
+        '                MessageBox.Show("File Does Not Exist")
+        '            End If
 
-                End If
-            Catch ex As Exception
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-        End If
+        '        End If
+        '    Catch ex As Exception
+        '        MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    End Try
+        'End If
 
     End Sub
 
     'Download WayBill & Display
     Private Sub Download_WayBill()
-        Dim strRecFile As String
-        Dim objReader As System.IO.StreamReader
-        Dim tStr As String
-        Dim txtFilePath As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)
-        'Dim txtpath As String = txtFilePath & "\" + "WayBill" + "\" + "WayBill.txt"
-        Dim TextLine As String
-        'Dim FileName As String
-        ' Dim Path As String
-        If Not IO.Directory.Exists(My.Application.Info.DirectoryPath & "\WayBill") Then IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\WayBill")
-        strRecFile = System.String.Concat(My.Application.Info.DirectoryPath, "\WayBill\WayBill" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")
-        Path_WayBill = strRecFile
-        If strRecFile.Length > 1 Then
-            Try
-                Dim tGetFile As New PC2M
-                tGetFile.DownLoad(strRecFile, "B", cmbPortList.Text)
+        'Dim strRecFile As String
+        'Dim objReader As System.IO.StreamReader
+        'Dim tStr As String
+        'Dim txtFilePath As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)
+        ''Dim txtpath As String = txtFilePath & "\" + "WayBill" + "\" + "WayBill.txt"
+        'Dim TextLine As String
+        ''Dim FileName As String
+        '' Dim Path As String
+        'If Not IO.Directory.Exists(My.Application.Info.DirectoryPath & "\WayBill") Then IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\WayBill")
+        'strRecFile = System.String.Concat(My.Application.Info.DirectoryPath, "\WayBill\WayBill" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")
+        'Path_WayBill = strRecFile
+        'If strRecFile.Length > 1 Then
+        '    Try
+        '        Dim tGetFile As New PC2M
+        '        tGetFile.DownLoad(strRecFile, "B", cmbPortList.Text)
 
-                If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\WayBill\WayBill" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")) Then
-                    objReader = New System.IO.StreamReader(strRecFile)
-                    tStr = Replace(objReader.ReadToEnd, "@", "")
-                    objReader.Close()
-                    'FileName = txtpath.Replace("file:\", "")
-                    If System.IO.File.Exists(Path_WayBill) = True Then
-                        Dim objReaders As New System.IO.StreamReader(Path_WayBill)
-                        Do While objReaders.Peek() <> -1
-                            TextLine = TextLine & objReaders.ReadLine() & vbNewLine
-                        Loop
-                        txt_WayBill.Text = TextLine
-                    Else
-                        MessageBox.Show("File Does Not Exist")
-                    End If
+        '        If IO.File.Exists(System.String.Concat(My.Application.Info.DirectoryPath, "\WayBill\WayBill" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")) Then
+        '            objReader = New System.IO.StreamReader(strRecFile)
+        '            tStr = Replace(objReader.ReadToEnd, "@", "")
+        '            objReader.Close()
+        '            'FileName = txtpath.Replace("file:\", "")
+        '            If System.IO.File.Exists(Path_WayBill) = True Then
+        '                Dim objReaders As New System.IO.StreamReader(Path_WayBill)
+        '                Do While objReaders.Peek() <> -1
+        '                    TextLine = TextLine & objReaders.ReadLine() & vbNewLine
+        '                Loop
+        '                txt_WayBill.Text = TextLine
+        '            Else
+        '                MessageBox.Show("File Does Not Exist")
+        '            End If
 
-                End If
-            Catch ex As Exception
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-        End If
+        '        End If
+        '    Catch ex As Exception
+        '        MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    End Try
+        'End If
 
     End Sub
 
@@ -553,12 +566,61 @@ Public Class frm_Auditing
         strSendFileName = System.String.Concat(My.Application.Info.DirectoryPath, "\Erase.txt")
         If strSendFileName.Length > 1 Then
             Try
-                Dim tSendFile As New PC2M
-                tSendFile.UploadData(strSendFileName, cmbPortList.Text)
-                txt_WayBill.Text = ""
-                txt_Ticket.Text = ""
+                tRecCntr = 1
+                tLenCntr = 1
+                tDataCntr = 1
+                With IoPort
+                    If .IsOpen Then .Close()
+                    .PortName = cmbPortList.Text
+                    .Handshake = IO.Ports.Handshake.None
+                    .RtsEnable = True
+                    .WriteBufferSize = 512
+                    .BaudRate = 115200
+                    .Parity = IO.Ports.Parity.None
+                    .ParityReplace = 8
+                    .StopBits = 1
+                    If System.IO.File.Exists(strSendFileName) = True Then
+                        tStr = ""
+                        objReader = New System.IO.StreamReader(strSendFileName)
+                        Do While objReader.Peek() <> -1
+                            tStr = tStr & objReader.ReadLine
+                            tLenCntr = tLenCntr + 1
+
+                            Application.DoEvents()
+                        Loop
+                        objReader.Close()
+                        tLenCntr = 1
+                        tAckChr = Mid(tStr, 2, 1)
+
+                        tStr = Mid(tStr, 3, Len(tStr))
+                        'tStr = Space(2) & tStr
+                        .Open()
+                        .Write("$")
+                    Else
+                        MsgBox("File Does Not Exist")
+                    End If
+                End With
             Catch ex As Exception
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    Private Sub Erase_WaybillTicket2()
+        Dim strSendFileName As String
+        strSendFileName = System.String.Concat(My.Application.Info.DirectoryPath, "\Erase.txt")
+        If strSendFileName.Length > 1 Then
+            Try
+                'Dim tSendFile As New PC2M
+                'tSendFile.UploadData(strSendFileName, cmbPortList.Text)
+                txt_WayBill.Text = ""
+                txt_Ticket.Text = ""
+                btn_EraseTicket.Enabled = False
+                btn_DeleteBill.Enabled = False
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                btn_EraseTicket.Enabled = True
+                btn_DeleteBill.Enabled = True
             End Try
         End If
     End Sub
@@ -572,7 +634,8 @@ Public Class frm_Auditing
         Next
         db_connection()
         login_UserId()
-        ' btn_UploadTicket.Enabled = False
+        btn_CollectTicket.Enabled = False
+        btn_UploadTicket.Enabled = False
         btn_CollectCardData.Enabled = False
         btn_UploadCardData.Enabled = False
         btn_CollectCash.Enabled = False
@@ -832,25 +895,28 @@ Public Class frm_Auditing
     Private Sub btn_CollectWayBill_Click(sender As Object, e As EventArgs) Handles btn_CollectWayBill.Click
         btn_CollectWayBill.Enabled = False
         If Not cmbPortList.Text = "" Then
-            Download_WayBill()
-            btn_DeleteBill.Enabled = True
+            ' Download_WayBill() with dll
+            __DownloadWayBill() 'with out  dll
         Else
             MessageBox.Show("Port Number Cant be Blank")
+            btn_CollectWayBill.Enabled = True
         End If
-        btn_CollectWayBill.Enabled = True
+        'btn_CollectWayBill.Enabled = True
     End Sub
 
     'btn Collect Ticket
     Private Sub btn_CollectTicket_Click(sender As Object, e As EventArgs) Handles btn_CollectTicket.Click
         btn_CollectTicket.Enabled = False
+        Me.Cursor = Cursors.WaitCursor
         If Not cmbPortList.Text = "" Then
-            Download_Ticket()
+            'Download_Ticket() with dll
+            __DownloadTickets() 'without dll
             CalculateTotalFare()
-            btn_EraseTicket.Enabled = True
+            'btn_EraseTicket.Enabled = True
         Else
             MessageBox.Show("Port Number Cant be Blank")
         End If
-        btn_CollectTicket.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
     'btn Upload Waybill Tickets
@@ -860,7 +926,7 @@ Public Class frm_Auditing
         get_EtimDetails()
         TotalCollection = txt_TotalCollection.Text
 
-        btn_UploadTicket.Enabled = True
+        'btn_UploadTicket.Enabled = True
         frm_CouponCollection.MdiParent = frmMenu
         frm_CouponCollection.WindowState = FormWindowState.Maximized
         frm_CouponCollection.Show()
@@ -875,16 +941,315 @@ Public Class frm_Auditing
         Erase_WaybillTicket()
         txt_TotalTicketCollection.Text = ""
         txt_TotalCollection.Text = ""
-        btn_EraseTicket.Enabled = True
+        txt_WayBill.Text = ""
+        txt_Ticket.Text = ""
     End Sub
 
     Private Sub btn_DeleteBill_Click(sender As Object, e As EventArgs) Handles btn_DeleteBill.Click
         Erase_WaybillTicket()
         txt_TotalTicketCollection.Text = ""
         txt_TotalCollection.Text = ""
+        txt_WayBill.Text = ""
+        txt_Ticket.Text = ""
+    End Sub
+
+    Dim tFileName As String
+    Dim tFileName2 As String
+    Dim tAckChr As String
+    Dim tDwnData As String
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        __DownloadWayBill()
+    End Sub
+
+    'WayBill Download Without Dll
+    Private Sub __DownloadWayBill()
+        Dim txtFilePath As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)
+        If Not IO.Directory.Exists(My.Application.Info.DirectoryPath & "\WayBill") Then IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\WayBill")
+        tFileName = System.String.Concat(My.Application.Info.DirectoryPath, "\WayBill\WayBill" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")
+        Path_WayBill = tFileName
+
+        'tFileName = System.String.Concat(My.Application.Info.DirectoryPath, "\output" & Date.Today.Day & "_" & Date.Today.Month & "_" & Date.Today.Year & ".txt")
+        If IO.File.Exists(tFileName) Then IO.File.Delete(tFileName)
+        Try
+            txt_WayBill.Text = ""
+            With IOPORT_DW
+                If .IsOpen Then .Close()
+                .PortName = cmbPortList.Text
+                .RtsEnable = True
+                .BaudRate = 115200
+                .Parity = IO.Ports.Parity.None
+                .ParityReplace = 8
+                .StopBits = 1
+                tAckChr = "B"
+                .Open()
+                .Write("$")
+
+                btn_CollectWayBill.Enabled = True
+            End With
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If IOPORT_DW.IsOpen Then IOPORT_DW.Close()
+        End Try
+    End Sub
+
+    Private Sub IOPORT_DW_DataReceived(ByVal sender As Object, ByVal e As System.IO.Ports.SerialDataReceivedEventArgs) Handles IOPORT_DW.DataReceived
+        Dim tBuffer As String
+        Dim tStr As String
+        Dim tData As String
+        Dim tcntr As Int16
+        Dim tPrevFileName As String
+        Try
+            With IOPORT_DW
+                tBuffer = .ReadExisting
+                If InStr(tBuffer, "$") > 0 Then 'tBuffer.StartsWith("$") Then
+                    If Len(Trim(tAckChr)) <> 0 Then
+                        .Write(tAckChr)
+                        tAckChr = ""
+                    Else
+                        .Write("O")
+                    End If
+                ElseIf InStr(tBuffer, Chr(4)) <> 0 Then '  tBuffer.StartsWith(Chr(4)) Then
+                    IOPORT_DW.Close()
+                    txt_WayBill.Text = txt_WayBill.Text & tBuffer
+                    IO.File.AppendAllText(tFileName, tBuffer)
+
+                    tcntr = 1
+                    tStr = ""
+                    Dim tReader As New IO.StreamReader(tFileName)
+                    tPrevFileName = tFileName
+                    tFileName = ""
+                    While Not tReader.EndOfStream
+                        tData = tReader.ReadLine
+                        If tData <> Chr(4) Then
+                            tStr = tStr & tData & vbCrLf
+                        End If
+                        If tcntr = 1 Then
+                            tFileName = Replace(tStr, vbCrLf, "")
+                            tStr = ""
+                        End If
+                        tcntr = tcntr + 1
+                    End While
+                    tReader.Close()
+                    tReader.Dispose()
+                    'If Len(Trim(tFileName)) > 0 Then
+                    tStr = Replace(tStr, Chr(4), "")
+                    IO.File.AppendAllText(tPrevFileName, tStr)
+                    'End If
+                    'MsgBox("Data download Successfully!!!", MsgBoxStyle.OkOnly)
+                    'Me.Close()
+                    btn_CollectWayBill.Enabled = False
+                    btn_CollectTicket.Enabled = True
+                Else
+                    txt_WayBill.Text = txt_WayBill.Text & tBuffer
+                    IO.File.AppendAllText(tFileName, tBuffer)
+
+                    'tcntr = 1
+                    'tStr = ""
+                    'Dim tReader As New IO.StreamReader(tFileName)
+                    'tFileName = ""
+                    'While Not tReader.EndOfStream
+
+                    '    tStr = tStr & tReader.ReadLine
+                    '    If tcntr = 1 Then
+                    '        tFileName = Replace(tStr, vbCrLf, "")
+                    '        tStr = ""
+                    '    End If
+                    '    tcntr = tcntr + 1
+                    'End While
+                    'tReader.Close()
+                    'tReader.Dispose()
+                    ''If Len(Trim(tFileName)) > 0 Then
+                    'tStr = Replace(tStr, Chr(4), "")
+                    'IO.File.AppendAllText(My.Application.Info.DirectoryPath & "\" & tFileName, tStr)
+                    ''End If
+                    'MsgBox("Data download Successfully!!!", MsgBoxStyle.OkOnly)
+                    'Me.Close()
+                End If
+            End With
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.OkOnly)
+            If IOPORT_DW.IsOpen Then IOPORT_DW.Close()
+            'Me.Close()
+        End Try
+
+    End Sub
+
+    'Ticket Download Without Dll
+    Private Sub __DownloadTickets()
+        Dim txtFilePath As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)
+        If Not IO.Directory.Exists(My.Application.Info.DirectoryPath & "\TicketData") Then IO.Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\TicketData")
+        tFileName2 = System.String.Concat(My.Application.Info.DirectoryPath, "\TicketData\TicketData" & Format(Now, "dd_MM_yyyy_hh_mm") & ".txt")
+
+        If IO.File.Exists(tFileName2) Then IO.File.Delete(tFileName2)
+        Try
+            txt_Ticket.Text = ""
+            With sp_Ticket
+                If .IsOpen Then .Close()
+                .PortName = cmbPortList.Text
+                .RtsEnable = True
+                .BaudRate = 115200
+                .Parity = IO.Ports.Parity.None
+                .ParityReplace = 8
+                .StopBits = 1
+                tAckChr = "D"
+                .Open()
+                .Write("$")
+
+                btn_CollectTicket.Enabled = True
+            End With
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If sp_Ticket.IsOpen Then sp_Ticket.Close()
+        End Try
+    End Sub
+
+    Private Sub sp_Ticket_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp_Ticket.DataReceived
+        Dim tBuffer As String
+        Dim tStr As String
+        Dim tData As String
+        Dim tcntr As Int16
+        Dim tPrevFileName As String
+        Try
+            With sp_Ticket
+                tBuffer = .ReadExisting
+                If InStr(tBuffer, "$") > 0 Then 'tBuffer.StartsWith("$") Then
+                    If Len(Trim(tAckChr)) <> 0 Then
+                        .Write(tAckChr)
+                        tAckChr = ""
+                    Else
+                        .Write("O")
+                    End If
+                ElseIf InStr(tBuffer, Chr(4)) <> 0 Then '  tBuffer.StartsWith(Chr(4)) Then
+                    sp_Ticket.Close()
+                    txt_Ticket.Text = txt_Ticket.Text & tBuffer
+                    IO.File.AppendAllText(tFileName2, tBuffer)
+
+                    tcntr = 1
+                    tStr = ""
+                    Dim tReader As New IO.StreamReader(tFileName2)
+                    tPrevFileName = tFileName2
+                    tFileName2 = ""
+                    While Not tReader.EndOfStream
+                        tData = tReader.ReadLine
+                        If tData <> Chr(4) Then
+                            tStr = tStr & tData & vbCrLf
+                        End If
+                        If tcntr = 1 Then
+                            tFileName2 = Replace(tStr, vbCrLf, "")
+                            tStr = ""
+                        End If
+                        tcntr = tcntr + 1
+                    End While
+                    tReader.Close()
+                    tReader.Dispose()
+                    'If Len(Trim(tFileName2)) > 0 Then
+                    tStr = Replace(tStr, Chr(4), "")
+                    IO.File.AppendAllText(tPrevFileName, tStr)
+                    'End If
+                    'MsgBox("Data download Successfully!!!", MsgBoxStyle.OkOnly)
+                    'Me.Close()
+                    btn_CollectTicket.Enabled = False
+                    btn_UploadTicket.Enabled = True
+                Else
+                    txt_Ticket.Text = txt_Ticket.Text & tBuffer
+                    IO.File.AppendAllText(tFileName2, tBuffer)
+                End If
+            End With
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.OkOnly)
+            If sp_Ticket.IsOpen Then sp_Ticket.Close()
+            'Me.Close()
+        End Try
+
+        CalculateTotalFare()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        btn_CollectTicket.Enabled = False
+        If Not cmbPortList.Text = "" Then
+            __DownloadTickets()
+            btn_EraseTicket.Enabled = True
+        Else
+            MessageBox.Show("Port Number Cant be Blank")
+        End If
+        btn_CollectTicket.Enabled = True
     End Sub
 
 
+    Private Sub IoPort_DataReceived(ByVal sender As Object, ByVal e As System.IO.Ports.SerialDataReceivedEventArgs) Handles IoPort.DataReceived
+        Dim encodedString() As Byte
+        Dim tBuffer As String
+        Dim tFname As String
+        Dim tCntr As Int64
+        Dim tLCntr As Int64
+        Dim tUCntr As Int64
+        Dim tSendString As String
 
+        Try
+            With IoPort
+                tBuffer = Chr(.ReadChar)
+                'TextBox2.Text = TextBox2.Text & "Receive String : " & tBuffer
+                If tBuffer.StartsWith("$") Then
+                    'TextBox1.Text = tBuffer
+                    If Len(tAckChr) <> 0 Then
+                        .Write(tAckChr)
+                        'TextBox2.Text = TextBox2.Text & "Sending String : " & tAckChr & vbCrLf
+                        tAckChr = ""
+                    End If
+                ElseIf tBuffer.StartsWith("O") Then
+                    'TextBox1.Text = tBuffer
+                    If tDataCntr >= Len(tStr) Then
+                        .Write(Chr(4))
+                        Sleep(300)
+                        .Close()
+                        'System.IO.File.AppendAllText(My.Application.Info.DirectoryPath & "\Send.txt", TextBox2.Text)
+                        'MsgBox("Process Completed Successfully!!!", MsgBoxStyle.OkOnly)
+                        'txtProcStat.Text = ""
+                    Else
+                        tSendString = ""
+                        For tCntr = tDataCntr To Len(tStr)
+                            tSendString = tSendString & Mid(tStr, tCntr, 1)
+                            If Mid(tStr, tCntr, 1) = "@" Then
+                                Exit For
+                            End If
+                        Next tCntr
+                        tDataCntr = tCntr + 1
+
+                        tSendString = tSendString.Replace(vbCrLf, "")
+                        tSendString = tSendString.Replace(vbCr, "")
+
+                        'TextBox2.Text = tSendString
+                        encodedString = encode(tSendString)
+                        .Write(encodedString, 0, encodedString.Length)
+                        'TextBox2.Text = "Send String :" & encodedString.ToString
+                        'Call ProStat()
+                        tLenCntr = tLenCntr + 1
+                        tRecCntr = tRecCntr + 1
+                        If tSendString = Chr(4) Then
+                            Sleep(300)
+                            .Close()
+                            'MsgBox("Process Completed Successfully!!!", MsgBoxStyle.OkOnly)
+                            'txtProcStat.Text = ""
+                        End If
+                    End If
+                End If
+
+            End With
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.OkOnly)
+            'txtProcStat.Text = ""
+            If IoPort.IsOpen Then IoPort.Close()
+        End Try
+    End Sub
+
+    Public Shared Function encode(ByVal str As String) As Byte()
+        Dim utf8Encoding As New System.Text.UTF8Encoding
+        Dim encodedString() As Byte
+
+        encodedString = utf8Encoding.GetBytes(str)
+
+        Return encodedString
+    End Function
 
 End Class

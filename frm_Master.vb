@@ -3,6 +3,15 @@ Imports System.IO
 Imports MySql.Data.MySqlClient
 
 Public Class frm_Master
+
+    Dim objReader As System.IO.StreamReader
+    Dim tStr As String
+    Dim tRecCntr As Int64
+    Dim tLenCntr As Int64
+    Dim tDataCntr As Int64
+    Dim tAckChr As String
+    Public Declare Sub Sleep Lib "kernel32.dll" (ByVal dwMilliseconds As Long)
+
     Dim conn As New MySqlConnection
     Public dbcomm As MySqlCommand
     Public dbread As MySqlDataReader
@@ -15,6 +24,8 @@ Public Class frm_Master
 
     Dim _UserName As String = frm_Login._UserName
     Dim _UserId As String = frm_Login._UserId
+
+
 
     'DatabAse Connections
     Private Sub db_connection()
@@ -135,10 +146,65 @@ Public Class frm_Master
 
     'Push WayBill into Machine
     Private Sub Push_WayBill()
+        Dim strSendFileName As String
+        Dim tChar As String
+        strSendFileName = WayBill_txtPath
+        If strSendFileName.Length > 1 Then
+            Try
+                tLenCntr = 1
+                tDataCntr = 1
+                'Call ReadIni()
+                tRecCntr = 1
+                'txtProcStat.Text = ""
+                With IoPort
+                    If .IsOpen Then .Close()
+                    .PortName = cmbPortList.Text
+                    .Handshake = IO.Ports.Handshake.None
+                    .RtsEnable = True
+                    .WriteBufferSize = 512
+                    .BaudRate = 115200
+                    .Parity = IO.Ports.Parity.None
+                    .ParityReplace = 8
+                    .StopBits = 1
+                    If System.IO.File.Exists(strSendFileName) = True Then
+                        tStr = ""
+                        objReader = New System.IO.StreamReader(strSendFileName, System.Text.UnicodeEncoding.UTF8)
+                        'txtProcStat.Text = "Please Wait !!! Process Text file..."
+                        tStr = objReader.ReadToEnd
+                        'Do While objReader.Peek() <> -1
+                        '    tChar = Chr(objReader.Read)
+
+                        '    tStr = tStr & tChar
+                        '    If tChar = "@" Then tLenCntr = tLenCntr + 1
+                        '    Application.DoEvents()
+                        'Loop
+                        objReader.Close()
+                        'txtProcStat.Text = "Text File Process Completed... Starting Data Send to HHD..."
+                        'MsgBox("Make a HHD On!!!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "PC2M")
+
+                        '  If Asc(Mid(tStr, 1, 1)) = 239 Then
+                        'tStr = Mid(tStr, 6, Len(tStr))
+                        'End If
+                        tLenCntr = 1
+                        tAckChr = Mid(tStr, 2, 1)
+                        tStr = Mid(tStr, 3, Len(tStr))
+                        .Open()
+                        .Write("$")
+                    Else
+                        MsgBox("File Does Not Exist")
+                    End If
+                End With
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    Private Sub Push_WayBill2()
         If WayBill_txtPath.Length > 1 Then
             Try
-                Dim tSendFile As New PC2M
-                Call tSendFile.UploadData(WayBill_txtPath, cmbPortList.Text)
+                'Dim tSendFile As New PC2M
+                'Call tSendFile.UploadData(WayBill_txtPath, cmbPortList.Text)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
@@ -193,4 +259,80 @@ Public Class frm_Master
         dgv_WayBillDetails.Refresh()
         Push_WayBill()
     End Sub
+
+    Private Sub IoPort_DataReceived(ByVal sender As Object, ByVal e As System.IO.Ports.SerialDataReceivedEventArgs) Handles IoPort.DataReceived
+        Dim encodedString() As Byte
+        Dim tBuffer As String
+        Dim tFname As String
+        Dim tCntr As Int64
+        Dim tLCntr As Int64
+        Dim tUCntr As Int64
+        Dim tSendString As String
+
+        Try
+            With IoPort
+                tBuffer = Chr(.ReadChar)
+                'TextBox2.Text = TextBox2.Text & "Receive String : " & tBuffer
+                If tBuffer.StartsWith("$") Then
+                    'TextBox1.Text = tBuffer
+                    If Len(tAckChr) <> 0 Then
+                        .Write(tAckChr)
+                        'TextBox2.Text = TextBox2.Text & "Sending String : " & tAckChr & vbCrLf
+                        tAckChr = ""
+                    End If
+                ElseIf tBuffer.StartsWith("O") Then
+                    'TextBox1.Text = tBuffer
+                    If tDataCntr >= Len(tStr) Then
+                        .Write(Chr(4))
+                        'Sleep(300)
+                        .Close()
+                        'System.IO.File.AppendAllText(My.Application.Info.DirectoryPath & "\Send.txt", TextBox2.Text)
+                        'MsgBox("Process Completed Successfully!!!", MsgBoxStyle.OkOnly)
+                        'txtProcStat.Text = ""
+                    Else
+                        tSendString = ""
+                        For tCntr = tDataCntr To Len(tStr)
+                            tSendString = tSendString & Mid(tStr, tCntr, 1)
+                            If Mid(tStr, tCntr, 1) = "@" Then
+                                Exit For
+                            End If
+                        Next tCntr
+                        tDataCntr = tCntr + 1
+
+                        tSendString = tSendString.Replace(vbCrLf, "")
+                        tSendString = tSendString.Replace(vbCr, "")
+
+                        'TextBox2.Text = tSendString
+                        encodedString = encode(tSendString)
+                        .Write(encodedString, 0, encodedString.Length)
+                        'TextBox2.Text = "Send String :" & encodedString.ToString
+                        'Call ProStat()
+                        tLenCntr = tLenCntr + 1
+                        tRecCntr = tRecCntr + 1
+                        If tSendString = Chr(4) Then
+                            Sleep(300)
+                            .Close()
+                            MsgBox("Process Completed Successfully!!!", MsgBoxStyle.OkOnly)
+                            'txtProcStat.Text = ""
+                        End If
+                    End If
+                End If
+
+            End With
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.OkOnly)
+            'txtProcStat.Text = ""
+            If IoPort.IsOpen Then IoPort.Close()
+        End Try
+    End Sub
+
+    Public Shared Function encode(ByVal str As String) As Byte()
+        Dim utf8Encoding As New System.Text.UTF8Encoding
+        Dim encodedString() As Byte
+
+        encodedString = utf8Encoding.GetBytes(str)
+
+        Return encodedString
+    End Function
+
 End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frm_CollectCash_Only
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frm_CollectCash_Only
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -69,8 +69,15 @@ Partial Class frm_CollectCash_Only
         Me.Particulers = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Count = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Amount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgv_CollectCashCoin = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.dgv_CollectCash, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgv_CollectCashCoin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label13
@@ -156,6 +163,7 @@ Partial Class frm_CollectCash_Only
         Me.txt_1.Name = "txt_1"
         Me.txt_1.Size = New System.Drawing.Size(100, 20)
         Me.txt_1.TabIndex = 23
+        Me.txt_1.Visible = False
         '
         'Label4
         '
@@ -179,7 +187,7 @@ Partial Class frm_CollectCash_Only
         '
         'txt_Diffrence
         '
-        Me.txt_Diffrence.Location = New System.Drawing.Point(267, 451)
+        Me.txt_Diffrence.Location = New System.Drawing.Point(258, 563)
         Me.txt_Diffrence.Name = "txt_Diffrence"
         Me.txt_Diffrence.Size = New System.Drawing.Size(114, 20)
         Me.txt_Diffrence.TabIndex = 30
@@ -188,7 +196,7 @@ Partial Class frm_CollectCash_Only
         '
         Me.lab_Diffrence.AutoSize = True
         Me.lab_Diffrence.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lab_Diffrence.Location = New System.Drawing.Point(188, 451)
+        Me.lab_Diffrence.Location = New System.Drawing.Point(179, 563)
         Me.lab_Diffrence.Name = "lab_Diffrence"
         Me.lab_Diffrence.Size = New System.Drawing.Size(65, 17)
         Me.lab_Diffrence.TabIndex = 29
@@ -196,7 +204,7 @@ Partial Class frm_CollectCash_Only
         '
         'txt_TotalAmountCollection
         '
-        Me.txt_TotalAmountCollection.Location = New System.Drawing.Point(267, 423)
+        Me.txt_TotalAmountCollection.Location = New System.Drawing.Point(258, 535)
         Me.txt_TotalAmountCollection.Name = "txt_TotalAmountCollection"
         Me.txt_TotalAmountCollection.Size = New System.Drawing.Size(114, 20)
         Me.txt_TotalAmountCollection.TabIndex = 28
@@ -205,7 +213,7 @@ Partial Class frm_CollectCash_Only
         '
         Me.lab_TotalAmountCollection.AutoSize = True
         Me.lab_TotalAmountCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lab_TotalAmountCollection.Location = New System.Drawing.Point(96, 426)
+        Me.lab_TotalAmountCollection.Location = New System.Drawing.Point(87, 538)
         Me.lab_TotalAmountCollection.Name = "lab_TotalAmountCollection"
         Me.lab_TotalAmountCollection.Size = New System.Drawing.Size(157, 17)
         Me.lab_TotalAmountCollection.TabIndex = 27
@@ -224,7 +232,7 @@ Partial Class frm_CollectCash_Only
         'btn_UploadCollection
         '
         Me.btn_UploadCollection.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_UploadCollection.Location = New System.Drawing.Point(132, 477)
+        Me.btn_UploadCollection.Location = New System.Drawing.Point(182, 589)
         Me.btn_UploadCollection.Name = "btn_UploadCollection"
         Me.btn_UploadCollection.Size = New System.Drawing.Size(190, 29)
         Me.btn_UploadCollection.TabIndex = 31
@@ -320,6 +328,7 @@ Partial Class frm_CollectCash_Only
         Me.Label11.Size = New System.Drawing.Size(21, 13)
         Me.Label11.TabIndex = 32
         Me.Label11.Text = "1 x"
+        Me.Label11.Visible = False
         '
         'Label12
         '
@@ -427,7 +436,6 @@ Partial Class frm_CollectCash_Only
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.65116!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.875!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.75!))
-        Me.TableLayoutPanel1.Controls.Add(Me.Label13, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label2, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_500, 1, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_100, 1, 3)
@@ -457,7 +465,8 @@ Partial Class frm_CollectCash_Only
         Me.TableLayoutPanel1.Controls.Add(Me.lab_2, 2, 8)
         Me.TableLayoutPanel1.Controls.Add(Me.lab_1, 2, 9)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_1000, 1, 1)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(61, 137)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label13, 0, 0)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(805, 65)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 10
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
@@ -472,6 +481,7 @@ Partial Class frm_CollectCash_Only
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(320, 275)
         Me.TableLayoutPanel1.TabIndex = 26
+        Me.TableLayoutPanel1.Visible = False
         '
         'lab_50
         '
@@ -509,12 +519,11 @@ Partial Class frm_CollectCash_Only
         'dgv_CollectCash
         '
         Me.dgv_CollectCash.AllowUserToAddRows = False
-        Me.dgv_CollectCash.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgv_CollectCash.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_CollectCash.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Particulers, Me.Count, Me.Amount})
-        Me.dgv_CollectCash.Location = New System.Drawing.Point(14, 136)
+        Me.dgv_CollectCash.Location = New System.Drawing.Point(62, 129)
         Me.dgv_CollectCash.Name = "dgv_CollectCash"
-        Me.dgv_CollectCash.Size = New System.Drawing.Size(443, 278)
+        Me.dgv_CollectCash.Size = New System.Drawing.Size(443, 259)
         Me.dgv_CollectCash.TabIndex = 32
         '
         'Particulers
@@ -537,11 +546,64 @@ Partial Class frm_CollectCash_Only
         Me.Amount.ReadOnly = True
         Me.Amount.Width = 125
         '
+        'dgv_CollectCashCoin
+        '
+        Me.dgv_CollectCashCoin.AllowUserToAddRows = False
+        Me.dgv_CollectCashCoin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_CollectCashCoin.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3})
+        Me.dgv_CollectCashCoin.Location = New System.Drawing.Point(62, 403)
+        Me.dgv_CollectCashCoin.Name = "dgv_CollectCashCoin"
+        Me.dgv_CollectCashCoin.Size = New System.Drawing.Size(443, 114)
+        Me.dgv_CollectCashCoin.TabIndex = 33
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Particulers"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Width = 150
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Count"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Width = 125
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Amount"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.Width = 125
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(12, 151)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(46, 17)
+        Me.Label14.TabIndex = 34
+        Me.Label14.Text = "Note :"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(12, 429)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(44, 17)
+        Me.Label15.TabIndex = 35
+        Me.Label15.Text = "Coin :"
+        '
         'frm_CollectCash_Only
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(477, 524)
+        Me.ClientSize = New System.Drawing.Size(529, 622)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.dgv_CollectCashCoin)
         Me.Controls.Add(Me.dgv_CollectCash)
         Me.Controls.Add(Me.txt_Diffrence)
         Me.Controls.Add(Me.lab_Diffrence)
@@ -561,6 +623,7 @@ Partial Class frm_CollectCash_Only
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         CType(Me.dgv_CollectCash, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgv_CollectCashCoin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -613,4 +676,10 @@ Partial Class frm_CollectCash_Only
     Friend WithEvents Particulers As DataGridViewTextBoxColumn
     Friend WithEvents Count As DataGridViewTextBoxColumn
     Friend WithEvents Amount As DataGridViewTextBoxColumn
+    Friend WithEvents dgv_CollectCashCoin As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label15 As Label
 End Class

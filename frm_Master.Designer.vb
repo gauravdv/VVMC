@@ -22,6 +22,7 @@ Partial Class frm_Master
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbPortList = New System.Windows.Forms.ComboBox()
         Me.lab_Port = New System.Windows.Forms.Label()
@@ -43,6 +44,7 @@ Partial Class frm_Master
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lab_User = New System.Windows.Forms.Label()
         Me.lab_UserName = New System.Windows.Forms.Label()
+        Me.IoPort = New System.IO.Ports.SerialPort(Me.components)
         CType(Me.dgv_WayBillDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -239,4 +241,5 @@ Partial Class frm_Master
     Friend WithEvents Panel1 As Panel
     Friend WithEvents lab_User As Label
     Friend WithEvents lab_UserName As Label
+    Friend WithEvents IoPort As IO.Ports.SerialPort
 End Class

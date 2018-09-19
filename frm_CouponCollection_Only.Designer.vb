@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frm_CouponCollection_Only
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frm_CouponCollection_Only
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btn_UploadTicketsData = New System.Windows.Forms.Button()
         Me.txt_totalAmount = New System.Windows.Forms.TextBox()
@@ -28,6 +28,14 @@ Partial Class frm_CouponCollection_Only
         Me.CB_NoTicketSold = New System.Windows.Forms.CheckBox()
         Me.txt_Date = New System.Windows.Forms.TextBox()
         Me.dgv_WayBillDetails = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btn_GetConductorTicketDetail = New System.Windows.Forms.Button()
         Me.cmb_ConductorId = New System.Windows.Forms.ComboBox()
         Me.cmb_WayBillNo = New System.Windows.Forms.ComboBox()
@@ -40,14 +48,6 @@ Partial Class frm_CouponCollection_Only
         Me.btn_CollectCash = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgv_WayBillDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -106,6 +106,56 @@ Partial Class frm_CouponCollection_Only
         Me.dgv_WayBillDetails.Name = "dgv_WayBillDetails"
         Me.dgv_WayBillDetails.Size = New System.Drawing.Size(793, 325)
         Me.dgv_WayBillDetails.TabIndex = 49
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Denomination"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Ticket Block Series No"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 150
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Ticket Start Number"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        Me.Column3.Width = 150
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Ticket End Number"
+        Me.Column4.Name = "Column4"
+        Me.Column4.Width = 150
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "No of Tickets"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Amount"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Nutrition Tax"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Ticket Max Number"
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
         '
         'btn_GetConductorTicketDetail
         '
@@ -221,56 +271,6 @@ Partial Class frm_CouponCollection_Only
         Me.Label1.Size = New System.Drawing.Size(381, 24)
         Me.Label1.TabIndex = 39
         Me.Label1.Text = "Vasai-Virar Municipal Transport (VVMT)"
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Denomination"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Ticket Block Series No"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        Me.Column2.Width = 150
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Ticket Start Number"
-        Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
-        Me.Column3.Width = 150
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Ticket End Number"
-        Me.Column4.Name = "Column4"
-        Me.Column4.Width = 150
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "No of Tickets"
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Amount"
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Nutrition Tax"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Ticket Max Number"
-        Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
         '
         'frm_CouponCollection_Only
         '

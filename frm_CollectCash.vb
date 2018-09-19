@@ -2,6 +2,10 @@
 Imports MySql.Data.MySqlClient
 
 Public Class frm_CollectCash
+
+    Dim AmountCal_1 As Double
+    Dim AmountCal_2 As Double
+
     Dim conn As New MySqlConnection
     Public dbcomm As MySqlCommand
     Public dbread As MySqlDataReader
@@ -191,7 +195,6 @@ Public Class frm_CollectCash
             'Dim _fldv_conductor_employee_code As String
             'Dim _fldv_driver_employee_code As String
 
-
             'Dim _fldv_vehicle_number As String
             'Dim _fldv_division_name As String
             'Dim _fldv_division_code As String
@@ -200,28 +203,48 @@ Public Class frm_CollectCash
             'Dim _fldv_schedule As String
             'Dim _fldv_etm_number As String
 
-            Dim _fldv_collection_1000_count As String = txt_1000.Text
-            Dim _fldf_collection_1000_amt As String = A1000
-            Dim _fldv_collection_500_count As String = txt_500.Text
-            Dim _fldf_collection_500_amt As String = A500
-            Dim _fldv_collection_100_count As String = txt_100.Text
-            Dim _fldf_collection_100_amt As String = A100
-            Dim _fldv_collection_50_count As String = txt_50.Text
-            Dim _fldf_collection_50_amt As String = A50
-            Dim _fldv_collection_20_count As String = txt_20.Text
-            Dim _fldf_collection_20_amt As String = A20
-            Dim _fldv_collection_10_count As String = txt_10.Text
-            Dim _fldf_collection_10_amt As String = A10
-            Dim _fldv_collection_5_count As String = txt_5.Text
-            Dim _fldf_collection_5_amt As String = A5
-            Dim _fldv_collection_2_count As String = txt_2.Text
-            Dim _fldf_collection_2_amt As String = A2
-            Dim _fldv_collection_1_count As String = txt_1.Text
-            Dim _fldf_collection_1_amt As String = A1
+            'Dim _fldv_collection_1000_count As String = txt_1000.Text
+            'Dim _fldf_collection_1000_amt As String = A1000
+            'Dim _fldv_collection_500_count As String = txt_500.Text
+            'Dim _fldf_collection_500_amt As String = A500
+            'Dim _fldv_collection_100_count As String = txt_100.Text
+            'Dim _fldf_collection_100_amt As String = A100
+            'Dim _fldv_collection_50_count As String = txt_50.Text
+            'Dim _fldf_collection_50_amt As String = A50
+            'Dim _fldv_collection_20_count As String = txt_20.Text
+            'Dim _fldf_collection_20_amt As String = A20
+            'Dim _fldv_collection_10_count As String = txt_10.Text
+            'Dim _fldf_collection_10_amt As String = A10
+            'Dim _fldv_collection_5_count As String = txt_5.Text
+            'Dim _fldf_collection_5_amt As String = A5
+            'Dim _fldv_collection_2_count As String = txt_2.Text
+            'Dim _fldf_collection_2_amt As String = A2
+            'Dim _fldv_collection_1_count As String = txt_1.Text
+            'Dim _fldf_collection_1_amt As String = A1
+            Dim _fldv_collection_2000_count As String = dgv_CollectCash.Rows(0).Cells(1).Value
+            Dim _fldf_collection_2000_amt As String = dgv_CollectCash.Rows(0).Cells(2).Value
+            Dim _fldv_collection_1000_count As String = 0
+            Dim _fldf_collection_1000_amt As String = 0
+            Dim _fldv_collection_500_count As String = dgv_CollectCash.Rows(1).Cells(1).Value
+            Dim _fldf_collection_500_amt As String = dgv_CollectCash.Rows(1).Cells(2).Value
+            Dim _fldv_collection_200_count As String = dgv_CollectCash.Rows(2).Cells(1).Value
+            Dim _fldf_collection_200_amt As String = dgv_CollectCash.Rows(2).Cells(2).Value
+            Dim _fldv_collection_100_count As String = dgv_CollectCash.Rows(3).Cells(1).Value
+            Dim _fldf_collection_100_amt As String = dgv_CollectCash.Rows(3).Cells(2).Value
+            Dim _fldv_collection_50_count As String = dgv_CollectCash.Rows(4).Cells(1).Value
+            Dim _fldf_collection_50_amt As String = dgv_CollectCash.Rows(4).Cells(2).Value
+            Dim _fldv_collection_20_count As String = dgv_CollectCash.Rows(5).Cells(1).Value
+            Dim _fldf_collection_20_amt As String = dgv_CollectCash.Rows(5).Cells(2).Value
+            Dim _fldv_collection_10_count As String = dgv_CollectCash.Rows(6).Cells(1).Value
+            Dim _fldf_collection_10_amt As String = dgv_CollectCash.Rows(6).Cells(2).Value
+            Dim _fldv_collection_5_count As String = dgv_CollectCash.Rows(7).Cells(1).Value
+            Dim _fldf_collection_5_amt As String = dgv_CollectCash.Rows(7).Cells(2).Value
+            Dim _fldv_collection_2_count As String = dgv_CollectCash.Rows(8).Cells(1).Value
+            Dim _fldf_collection_2_amt As String = dgv_CollectCash.Rows(8).Cells(2).Value
+            Dim _fldv_collection_1_count As String = dgv_CollectCash.Rows(9).Cells(1).Value
+            Dim _fldf_collection_1_amt As String = dgv_CollectCash.Rows(9).Cells(2).Value
             Dim _fldf_collection_total_amt As String = txt_TotalAmountCollection.Text
             Dim _fldv_amount_difference As String = txt_Diffrence.Text
-
-
 
             Dim ConductorCode As String = _fldv_conductor_employee_code
             Dim DriverCode As String = _fldv_driver_employee_code
@@ -240,19 +263,36 @@ Public Class frm_CollectCash
 
             'MessageBox.Show(ConductorName + ConductorId)
 
+            Dim _fldv_collection_10_ps_count As String = dgv_CollectCashCoin.Rows(0).Cells(1).Value
+            Dim _fldv_collection_5_ps_count As String = dgv_CollectCashCoin.Rows(1).Cells(1).Value
+            Dim _fldv_collection_2_ps_count As String = dgv_CollectCashCoin.Rows(2).Cells(1).Value
+            Dim _fldv_collection_1_ps_count As String = dgv_CollectCashCoin.Rows(3).Cells(1).Value
+
+            Dim _fldf_collection_10_ps_amt As String = dgv_CollectCashCoin.Rows(0).Cells(2).Value
+            Dim _fldf_collection_5_ps_amt As String = dgv_CollectCashCoin.Rows(1).Cells(2).Value
+            Dim _fldf_collection_2_ps_amt As String = dgv_CollectCashCoin.Rows(2).Cells(2).Value
+            Dim _fldf_collection_1_ps_amt As String = dgv_CollectCashCoin.Rows(3).Cells(2).Value
+
             Sql = "INSERT INTO tbl_conductor_collection_amount (fldv_waybill_no, fldv_conductor_name, fldv_driver_name, fldv_vehicle_number,
                     fldv_division_name, fldv_division_code,fldv_depot_name, fldv_depot_code, fldv_schedule,
-                    fldv_etm_number, flddt_collection_date,fldv_collection_1000_count, fldf_collection_1000_amt,fldv_collection_500_count, fldf_collection_500_amt,
+                    fldv_etm_number, flddt_collection_date, fldv_collection_2000_count, fldf_collection_2000_amt,fldv_collection_1000_count, fldf_collection_1000_amt,
+                    fldv_collection_500_count, fldf_collection_500_amt, fldv_collection_200_count, fldf_collection_200_amt, 
                     fldv_collection_100_count,fldf_collection_100_amt,fldv_collection_50_count,fldf_collection_50_amt,fldv_collection_20_count,fldf_collection_20_amt,
                     fldv_collection_10_count,fldf_collection_10_amt,fldv_collection_5_count,fldf_collection_5_amt,fldv_collection_2_count,
-                    fldf_collection_2_amt,fldv_collection_1_count,fldf_collection_1_amt,fldf_collection_total_amt,fldv_collection_date,fldc_status,
+                    fldf_collection_2_amt,fldv_collection_1_count,fldf_collection_1_amt,fldv_collection_10_ps_count, fldf_collection_10_ps_amt, fldv_collection_5_ps_count,
+                    fldf_collection_5_ps_amt, fldv_collection_2_ps_count, fldf_collection_2_ps_amt , fldv_collection_1_ps_count, fldf_collection_1_ps_amt, 
+                    fldf_collection_total_amt,fldv_collection_date,fldc_status,
                     fldi_user_id,flddt_last_upd_date,fldv_amount_difference) 
                     Value ('" + _fldv_waybill_no + "', '" + ConductorCode + "', '" + DriverCode + "','" + _fldv_vehicle_number + "',
                     '" + _fldv_division_name + "','" + _fldv_division_code + "','" + _fldv_depot_name + "' , '" + _fldv_depot_code + "', '" + _fldv_schedule + "',
-                    '" + _fldv_etm_number + "','" + _flddt_collection_date + "' ,'" + _fldv_collection_1000_count + "', '" + _fldf_collection_1000_amt + "','" + _fldv_collection_500_count + "','" + _fldf_collection_500_amt + "' ,
+                    '" + _fldv_etm_number + "','" + _flddt_collection_date + "' ,  '" + _fldv_collection_2000_count + "' ,  '" + _fldf_collection_2000_amt + "' ,'" + _fldv_collection_1000_count + "', '" + _fldf_collection_1000_amt + "',
+                    '" + _fldv_collection_500_count + "','" + _fldf_collection_500_amt + "' , '" + _fldv_collection_200_count + "','" + _fldf_collection_200_amt + "' ,
                    '" + _fldv_collection_100_count + "' , '" + _fldf_collection_100_amt + "', '" + _fldv_collection_50_count + "', '" + _fldf_collection_50_amt + "', '" + _fldv_collection_20_count + "', '" + _fldf_collection_20_amt + "',
                     '" + _fldv_collection_10_count + "', '" + _fldf_collection_10_amt + "', '" + _fldv_collection_5_count + "', '" + _fldf_collection_5_amt + "', '" + _fldv_collection_2_count + "',
-                   '" + _fldf_collection_2_amt + "' , '" + _fldv_collection_1_count + "', '" + _fldf_collection_1_amt + "', '" + _fldf_collection_total_amt + "', '" + _fldv_collection_date + "', '" + _fldc_status + "',
+                   '" + _fldf_collection_2_amt + "' , '" + _fldv_collection_1_count + "', '" + _fldf_collection_1_amt + "', 
+                      '" + _fldv_collection_10_ps_count + "', '" + _fldf_collection_10_ps_amt + "' , '" + _fldv_collection_5_ps_count + "', '" + _fldf_collection_5_ps_amt + "',
+                   '" + _fldv_collection_2_ps_count + "', '" + _fldf_collection_2_ps_amt + "' , '" + _fldv_collection_1_ps_count + "', '" + _fldf_collection_1_ps_amt + "', 
+                    '" + _fldf_collection_total_amt + "', '" + _fldv_collection_date + "', '" + _fldc_status + "',
                    '" + _UserId + "' , '" + _flddt_last_upd_date2 + "', '" + _fldv_amount_difference + "')"
 
             Try
@@ -593,6 +633,7 @@ Public Class frm_CollectCash
         'get_dgvDetails()
         dgv_CollectCash.Rows.Clear()
         get_CurrencyRateDetails()
+        get_CurrencyRateDetailsCoin()
     End Sub
 
     Private Sub btn_UploadCollection_Click(sender As Object, e As EventArgs) Handles btn_UploadCollection.Click
@@ -686,7 +727,7 @@ Public Class frm_CollectCash
         Dim sQL As String
         Dim _fldv_Coupon_Currancy_rate As String
 
-        sQL = "SELECT fldv_Coupon_Currancy_rate FROM tbl_currancy_rate ORDER BY fldv_Coupon_Currancy_rate DESC "
+        sQL = "SELECT fldv_Coupon_Currancy_rate FROM tbl_currancy_rate WHERE fldv_Currancy_Type = 'Note' ORDER BY fldv_Coupon_Currancy_rate DESC "
         Try
             conn.Open()
             dbcomm = New MySqlCommand(sQL, conn)
@@ -704,7 +745,61 @@ Public Class frm_CollectCash
         conn.Close()
     End Sub
 
+    Private Sub get_CurrencyRateDetailsCoin()
+        Dim sQL As String
+        Dim _fldv_Coupon_Currancy_Coin As String
+
+        sQL = "SELECT fldv_Coupon_Currancy_rate FROM tbl_currancy_rate WHERE fldv_Currancy_Type = 'Coin' ORDER BY fldv_Coupon_Currancy_rate DESC "
+        Try
+            conn.Open()
+            dbcomm = New MySqlCommand(sQL, conn)
+            dbread = dbcomm.ExecuteReader
+            While dbread.Read()
+                _fldv_Coupon_Currancy_Coin = dbread.GetString("fldv_Coupon_Currancy_rate")
+
+                'Grid View
+                dgv_CollectCashCoin.Rows.Add(New String() {_fldv_Coupon_Currancy_Coin, 0, 0})
+
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        conn.Close()
+    End Sub
+
     'dgv Calculations
+    Private Sub dgv_CalculationsNote()
+        Dim Amount As String
+        For i As Integer = 0 To dgv_CollectCash.RowCount - 1
+            If IsNumeric(dgv_CollectCash.Rows(i).Cells(1).Value) Then
+                dgv_CollectCash.Rows(i).Cells(2).Value = dgv_CollectCash.Rows(i).Cells(0).Value * dgv_CollectCash.Rows(i).Cells(1).Value
+                Amount = dgv_CollectCash.Rows(i).Cells(2).Value + Amount
+                txt_TotalAmountCollection.Text = Amount + AmountCal_2
+                AmountCal_1 = Amount
+                txt_Diffrence.Text = txt_TotalCollection.Text - txt_TotalAmountCollection.Text
+            Else
+                dgv_CollectCash.Rows(i).Cells(1).Value = 0
+            End If
+        Next
+    End Sub
+
+    Private Sub dgv_CalculationsCoin()
+        Dim Amount As String
+
+        For i As Integer = 0 To dgv_CollectCashCoin.RowCount - 1
+            If IsNumeric(dgv_CollectCash.Rows(i).Cells(1).Value) Then
+                dgv_CollectCashCoin.Rows(i).Cells(2).Value = dgv_CollectCashCoin.Rows(i).Cells(0).Value * dgv_CollectCashCoin.Rows(i).Cells(1).Value
+                Amount = dgv_CollectCashCoin.Rows(i).Cells(2).Value + Amount
+                txt_TotalAmountCollection.Text = Amount + AmountCal_1
+                AmountCal_2 = Amount
+                txt_Diffrence.Text = txt_TotalCollection.Text - txt_TotalAmountCollection.Text
+            Else
+                dgv_CollectCashCoin.Rows(i).Cells(1).Value = 0
+            End If
+        Next
+    End Sub
+
+    'Old fuction not in used
     Private Sub dgv_Calculations()
         Dim Amount As String
 
@@ -720,7 +815,12 @@ Public Class frm_CollectCash
         Next
     End Sub
 
+
     Private Sub dgv_CollectCash_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_CollectCash.CellEndEdit
-        dgv_Calculations()
+        dgv_CalculationsNote()
+    End Sub
+
+    Private Sub dgv_CollectCashCoin_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_CollectCashCoin.CellEndEdit
+        dgv_CalculationsCoin()
     End Sub
 End Class

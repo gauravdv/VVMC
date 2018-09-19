@@ -22,6 +22,7 @@ Partial Class frm_Auditing
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lab_Port = New System.Windows.Forms.Label()
         Me.lab_WayBill = New System.Windows.Forms.Label()
@@ -49,6 +50,11 @@ Partial Class frm_Auditing
         Me.lab_User = New System.Windows.Forms.Label()
         Me.lab_UserName = New System.Windows.Forms.Label()
         Me.btn_Coupon = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.IOPORT_DW = New System.IO.Ports.SerialPort(Me.components)
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.sp_Ticket = New System.IO.Ports.SerialPort(Me.components)
+        Me.IoPort = New System.IO.Ports.SerialPort(Me.components)
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -115,13 +121,14 @@ Partial Class frm_Auditing
         '
         Me.txt_WayBill.Location = New System.Drawing.Point(287, 127)
         Me.txt_WayBill.Name = "txt_WayBill"
+        Me.txt_WayBill.ReadOnly = True
         Me.txt_WayBill.Size = New System.Drawing.Size(860, 56)
         Me.txt_WayBill.TabIndex = 6
         Me.txt_WayBill.Text = ""
         '
         'btn_CollectWayBill
         '
-        Me.btn_CollectWayBill.Location = New System.Drawing.Point(298, 370)
+        Me.btn_CollectWayBill.Location = New System.Drawing.Point(387, 370)
         Me.btn_CollectWayBill.Name = "btn_CollectWayBill"
         Me.btn_CollectWayBill.Size = New System.Drawing.Size(100, 30)
         Me.btn_CollectWayBill.TabIndex = 7
@@ -132,6 +139,7 @@ Partial Class frm_Auditing
         '
         Me.txt_Ticket.Location = New System.Drawing.Point(287, 189)
         Me.txt_Ticket.Name = "txt_Ticket"
+        Me.txt_Ticket.ReadOnly = True
         Me.txt_Ticket.Size = New System.Drawing.Size(860, 121)
         Me.txt_Ticket.TabIndex = 8
         Me.txt_Ticket.Text = ""
@@ -140,6 +148,7 @@ Partial Class frm_Auditing
         '
         Me.txt_SmartCard.Location = New System.Drawing.Point(287, 316)
         Me.txt_SmartCard.Name = "txt_SmartCard"
+        Me.txt_SmartCard.ReadOnly = True
         Me.txt_SmartCard.Size = New System.Drawing.Size(860, 28)
         Me.txt_SmartCard.TabIndex = 9
         Me.txt_SmartCard.Text = ""
@@ -147,7 +156,7 @@ Partial Class frm_Auditing
         '
         'btn_CollectTicket
         '
-        Me.btn_CollectTicket.Location = New System.Drawing.Point(404, 370)
+        Me.btn_CollectTicket.Location = New System.Drawing.Point(493, 370)
         Me.btn_CollectTicket.Name = "btn_CollectTicket"
         Me.btn_CollectTicket.Size = New System.Drawing.Size(100, 30)
         Me.btn_CollectTicket.TabIndex = 10
@@ -156,7 +165,7 @@ Partial Class frm_Auditing
         '
         'btn_UploadTicket
         '
-        Me.btn_UploadTicket.Location = New System.Drawing.Point(510, 370)
+        Me.btn_UploadTicket.Location = New System.Drawing.Point(599, 370)
         Me.btn_UploadTicket.Name = "btn_UploadTicket"
         Me.btn_UploadTicket.Size = New System.Drawing.Size(100, 30)
         Me.btn_UploadTicket.TabIndex = 11
@@ -165,34 +174,37 @@ Partial Class frm_Auditing
         '
         'btn_CollectCardData
         '
-        Me.btn_CollectCardData.Location = New System.Drawing.Point(616, 370)
+        Me.btn_CollectCardData.Location = New System.Drawing.Point(86, 473)
         Me.btn_CollectCardData.Name = "btn_CollectCardData"
         Me.btn_CollectCardData.Size = New System.Drawing.Size(100, 30)
         Me.btn_CollectCardData.TabIndex = 12
         Me.btn_CollectCardData.Text = "Collect Card Data"
         Me.btn_CollectCardData.UseVisualStyleBackColor = True
+        Me.btn_CollectCardData.Visible = False
         '
         'btn_UploadCardData
         '
-        Me.btn_UploadCardData.Location = New System.Drawing.Point(722, 370)
+        Me.btn_UploadCardData.Location = New System.Drawing.Point(192, 473)
         Me.btn_UploadCardData.Name = "btn_UploadCardData"
         Me.btn_UploadCardData.Size = New System.Drawing.Size(100, 30)
         Me.btn_UploadCardData.TabIndex = 13
         Me.btn_UploadCardData.Text = "Upload card Data"
         Me.btn_UploadCardData.UseVisualStyleBackColor = True
+        Me.btn_UploadCardData.Visible = False
         '
         'btn_CollectCash
         '
-        Me.btn_CollectCash.Location = New System.Drawing.Point(828, 370)
+        Me.btn_CollectCash.Location = New System.Drawing.Point(298, 473)
         Me.btn_CollectCash.Name = "btn_CollectCash"
         Me.btn_CollectCash.Size = New System.Drawing.Size(100, 30)
         Me.btn_CollectCash.TabIndex = 14
         Me.btn_CollectCash.Text = "Collect Cash"
         Me.btn_CollectCash.UseVisualStyleBackColor = True
+        Me.btn_CollectCash.Visible = False
         '
         'btn_EraseTicket
         '
-        Me.btn_EraseTicket.Location = New System.Drawing.Point(934, 370)
+        Me.btn_EraseTicket.Location = New System.Drawing.Point(705, 370)
         Me.btn_EraseTicket.Name = "btn_EraseTicket"
         Me.btn_EraseTicket.Size = New System.Drawing.Size(100, 30)
         Me.btn_EraseTicket.TabIndex = 15
@@ -201,7 +213,7 @@ Partial Class frm_Auditing
         '
         'btn_DeleteBill
         '
-        Me.btn_DeleteBill.Location = New System.Drawing.Point(1040, 370)
+        Me.btn_DeleteBill.Location = New System.Drawing.Point(811, 370)
         Me.btn_DeleteBill.Name = "btn_DeleteBill"
         Me.btn_DeleteBill.Size = New System.Drawing.Size(100, 30)
         Me.btn_DeleteBill.TabIndex = 16
@@ -295,7 +307,7 @@ Partial Class frm_Auditing
         'btn_Coupon
         '
         Me.btn_Coupon.AccessibleDescription = ""
-        Me.btn_Coupon.Location = New System.Drawing.Point(1047, 509)
+        Me.btn_Coupon.Location = New System.Drawing.Point(1047, 511)
         Me.btn_Coupon.Name = "btn_Coupon"
         Me.btn_Coupon.Size = New System.Drawing.Size(100, 25)
         Me.btn_Coupon.TabIndex = 24
@@ -303,11 +315,44 @@ Partial Class frm_Auditing
         Me.btn_Coupon.UseVisualStyleBackColor = True
         Me.btn_Coupon.Visible = False
         '
+        'Button1
+        '
+        Me.Button1.Enabled = False
+        Me.Button1.Location = New System.Drawing.Point(1065, 511)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 25
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
+        '
+        'IOPORT_DW
+        '
+        '
+        'Button2
+        '
+        Me.Button2.Enabled = False
+        Me.Button2.Location = New System.Drawing.Point(1065, 513)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 26
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button2.Visible = False
+        '
+        'sp_Ticket
+        '
+        '
+        'IoPort
+        '
+        '
         'frm_Auditing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1246, 563)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btn_Coupon)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.txt_TotalCollection)
@@ -369,4 +414,9 @@ Partial Class frm_Auditing
     Friend WithEvents lab_User As Label
     Friend WithEvents lab_UserName As Label
     Friend WithEvents btn_Coupon As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents IOPORT_DW As IO.Ports.SerialPort
+    Friend WithEvents Button2 As Button
+    Friend WithEvents sp_Ticket As IO.Ports.SerialPort
+    Friend WithEvents IoPort As IO.Ports.SerialPort
 End Class
