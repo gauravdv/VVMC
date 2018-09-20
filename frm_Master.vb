@@ -25,8 +25,6 @@ Public Class frm_Master
     Dim _UserName As String = frm_Login._UserName
     Dim _UserId As String = frm_Login._UserId
 
-
-
     'DatabAse Connections
     Private Sub db_connection()
         Get_DataBaseDetail()

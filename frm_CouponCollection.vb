@@ -272,9 +272,28 @@ Public Class frm_CouponCollection
         For i As Integer = 0 To dgv_WayBillDetails.RowCount - 1
             Dim _NutritionTax As Double = CDbl(dgv_WayBillDetails.Rows(i).Cells(6).Value)
 
-            If CInt(dgv_WayBillDetails.Rows(i).Cells(7).Value) >= CInt(dgv_WayBillDetails.Rows(i).Cells(3).Value) And
-                    CInt(dgv_WayBillDetails.Rows(i).Cells(2).Value) <= CInt(dgv_WayBillDetails.Rows(i).Cells(3).Value) Then
-                dgv_WayBillDetails.Rows(i).Cells(4).Value = dgv_WayBillDetails.Rows(i).Cells(3).Value - dgv_WayBillDetails.Rows(i).Cells(2).Value
+            If IsNumeric(dgv_WayBillDetails.Rows(i).Cells(3).Value) Then
+                If dgv_WayBillDetails.Rows(i).Cells(3).Value = 0 Or dgv_WayBillDetails.Rows(i).Cells(3).Value = CInt(dgv_WayBillDetails.Rows(i).Cells(7).Value) Then
+
+                    dgv_WayBillDetails.Rows(i).Cells(3).Value = CInt(dgv_WayBillDetails.Rows(i).Cells(7).Value)
+                    dgv_WayBillDetails.Rows(i).Cells(4).Value = dgv_WayBillDetails.Rows(i).Cells(3).Value - dgv_WayBillDetails.Rows(i).Cells(2).Value
+                    dgv_WayBillDetails.Rows(i).Cells(4).Value = dgv_WayBillDetails.Rows(i).Cells(4).Value + 1
+
+                Else
+                    If dgv_WayBillDetails.Rows(i).Cells(7).Value >= dgv_WayBillDetails.Rows(i).Cells(3).Value And
+                        dgv_WayBillDetails.Rows(i).Cells(2).Value <= dgv_WayBillDetails.Rows(i).Cells(3).Value Then
+
+                        dgv_WayBillDetails.Rows(i).Cells(4).Value = dgv_WayBillDetails.Rows(i).Cells(3).Value - dgv_WayBillDetails.Rows(i).Cells(2).Value
+
+                    Else
+                        MessageBox.Show("Enter Valid Tickets Number")
+                        dgv_WayBillDetails.Rows(i).Cells(3).Value = dgv_WayBillDetails.Rows(i).Cells(2).Value
+                    End If
+
+
+                End If
+
+
 
                 ' If Tax = 0
                 If Not _NutritionTax = 0 Then
@@ -290,9 +309,10 @@ Public Class frm_CouponCollection
                     txt_totalAmount.Text = Amount
                 End If
             Else
-                MessageBox.Show("Enter Valid Tickets Number")
                 dgv_WayBillDetails.Rows(i).Cells(3).Value = dgv_WayBillDetails.Rows(i).Cells(2).Value
             End If
+
+
 
         Next
     End Sub
